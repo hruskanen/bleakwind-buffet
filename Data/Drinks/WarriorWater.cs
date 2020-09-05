@@ -11,11 +11,19 @@ using System.Text;
 
 namespace BleakwindBuffet.Data.Drinks
 {
-    class WarriorWater
+    /// <summary>
+    /// Class for representing Warrior Water
+    /// </summary>
+    public class WarriorWater
     {
         ///Common 
-        double Price = 0;
-        uint Calories = 0;
+        public double Price = 0;
+        public uint Calories = 0;
+
+        /// <summary>
+        /// Creates the SpecialInstructions list and adds items to
+        /// the list based on if a varible had changed from its default
+        /// </summary>
         public List<string> SpecialInstructions
         {
             get
@@ -27,6 +35,12 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
+        /// <summary>
+        /// creates private and public sizes
+        /// </summary>
+        /// <exception cref="System.NotImplementedException">
+        /// Thrown if the size is not known 
+        /// </exception>
         private Size size = Size.Small;
         public Size Size
         {
@@ -40,6 +54,9 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool Ice on if ice should be added
+        /// </summary>
         private bool ice = true;
         public bool Ice
         {
@@ -55,6 +72,9 @@ namespace BleakwindBuffet.Data.Drinks
 
 
         ///Unique
+        /// <summary>
+        /// Creates public and private bool lemon on if lemon should be added
+        /// </summary>
         private bool lemon = false;
         public bool Lemon
         {
@@ -68,8 +88,12 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
-
-
+        /// <summary>
+        /// Returns a description of the Warrior Water
+        /// </summary>
+        /// <returns> 
+        /// A string describing the Warrior Water
+        /// </returns>
         public override string ToString()
         {
             return size + " Warrior Water";

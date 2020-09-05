@@ -10,11 +10,19 @@ using System.Text;
 
 namespace BleakwindBuffet.Data.Entrees
 {
-    class BriarheartBurger
+    /// <summary>
+    /// Class for representing Briarheart Burger
+    /// </summary>
+    public class BriarheartBurger
     {
         ///Common 
-        double Price { get; } = 6.32;
-        uint Calories { get; } = 743;
+        public double Price { get; } = 6.32;
+        public uint Calories { get; } = 743;
+
+        /// <summary>
+        /// Creates the SpecialInstructions list and adds items to
+        /// the list based on if a varible had changed from its default
+        /// </summary>
         public List<string> SpecialInstructions
         {
             get
@@ -31,6 +39,9 @@ namespace BleakwindBuffet.Data.Entrees
 
 
         ///Unique
+        /// <summary>
+        /// Creates public and private bool bun on if the bun should be added
+        /// </summary>
         private bool bun = true;
         public bool Bun
         {
@@ -44,6 +55,9 @@ namespace BleakwindBuffet.Data.Entrees
             } 
         }
 
+        /// <summary>
+        /// Creates public and private bool ketchup on if the ketchup should be added
+        /// </summary>
         private bool ketchup = true;
         public bool Ketchup
         {
@@ -57,6 +71,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool mustard on if the mustard should be added
+        /// </summary>
         private bool mustard = true;
         public bool Mustard
         {
@@ -70,6 +87,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool pickles on if the pickles should be added
+        /// </summary>
         private bool pickle = true;
         public bool Pickle
         {
@@ -84,6 +104,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool cheese on if the cheese should be added
+        /// </summary>
         private bool cheese = true;
         public bool Cheese
         {
@@ -99,8 +122,11 @@ namespace BleakwindBuffet.Data.Entrees
 
 
         /// <summary>
-        /// Prints all varibles of object
+        /// Returns a description of the Briarheart Burger
         /// </summary>
+        /// <returns> 
+        /// A string describing the Briarheart Burger
+        /// </returns>
         public override string ToString()
         {
             return "Briarheart Burger";

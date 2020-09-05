@@ -10,11 +10,19 @@ using System.Text;
 
 namespace BleakwindBuffet.Data.Entrees
 {
-    class PhillyPoacher
+    /// <summary>
+    /// Class for representing Philly Poacher
+    /// </summary>
+    public class PhillyPoacher
     {
         ///Common 
-        double Price { get; } = 7.23;
-        uint Calories { get; } = 784;
+        public double Price { get; } = 7.23;
+        public uint Calories { get; } = 784;
+
+        /// <summary>
+        /// Creates the SpecialInstructions list and adds items to
+        /// the list based on if a varible had changed from its default
+        /// </summary>
         public List<string> SpecialInstructions
         {
             get
@@ -28,6 +36,9 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         ///Unique
+        /// <summary>
+        /// Creates public and private bool bun on if the bun should be added
+        /// </summary>
         private bool sirloin = true;
         public bool Sirloin
         {
@@ -41,6 +52,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool onion on if onion should be added
+        /// </summary>
         private bool onion = true;
         public bool Onion
         {
@@ -54,6 +68,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool roll on if a roll should be added
+        /// </summary>
         private bool roll = true;
         public bool Roll
         {
@@ -70,8 +87,11 @@ namespace BleakwindBuffet.Data.Entrees
 
 
         /// <summary>
-        /// Prints all varibles of object
+        /// Returns a description of the Philly Poacher
         /// </summary>
+        /// <returns> 
+        /// A string describing the Philly Poacher
+        /// </returns>
         public override string ToString()
         {
             return "Philly Poacher";

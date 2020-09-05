@@ -4,9 +4,9 @@
  * Purpose: Test the CandlehearthCoffee.cs class in the Data library
  */
 using Xunit;
-
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
+using BleakwindBuffet.Data.Drinks;
 
 namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
 {
@@ -15,41 +15,67 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         [Fact]
         public void ShouldNotIncludeIceByDefault()
         {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            Assert.False(item.Ice);
         }
 
         [Fact]
         public void ShouldNotBeDecafByDefault()
         {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            Assert.False(item.Decaf);
         }
 
         [Fact]
         public void ShouldNotHaveRoomForCreamByDefault()
         {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            Assert.False(item.RoomForCream);
         }
 
         [Fact]
         public void ShouldBeSmallByDefault()
         {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            Assert.Equal(Size.Small, item.Size);
         }
 
         [Fact]
         public void ShouldBeAbleToSetIce()
         {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            item.Ice = true;
+            Assert.True(item.Ice);
+            item.Ice = false;
+            Assert.False(item.Ice);
         }
 
         [Fact]
         public void ShouldBeAbleToSetDecaf()
         {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            item.Decaf = true;
+            Assert.True(item.Decaf);
         }
 
         [Fact]
         public void ShouldBeAbleToSetRoomForCream()
         {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            item.RoomForCream = true;
+            Assert.True(item.RoomForCream);
         }
 
         [Fact]
         public void ShouldBeAbleToSetSize()
         {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            item.Size = Size.Large;
+            Assert.Equal(Size.Large, item.Size);
+            item.Size = Size.Medium;
+            Assert.Equal(Size.Medium, item.Size);
+            item.Size = Size.Small;
+            Assert.Equal(Size.Small, item.Size);
         }
 
         [Theory]
@@ -58,6 +84,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         [InlineData(Size.Large, 1.75)]
         public void ShouldHaveCorrectPriceForSize(Size size, double price)
         {
+            CandlehearthCoffee item = new CandlehearthCoffee() { Size = size };
+            Assert.Equal(size, item.Size);
+            Assert.Equal(price, item.Price);
         }
 
         [Theory]
@@ -66,6 +95,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         [InlineData(Size.Large, 20)]
         public void ShouldHaveCorrectCaloriesForSize(Size size, uint cal)
         {
+            CandlehearthCoffee item = new CandlehearthCoffee() { Size = size };
+            Assert.Equal(size, item.Size);
+            Assert.Equal(cal, item.Calories);
         }
 
         [Theory]
@@ -75,6 +107,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         [InlineData(false, false)]
         public void ShouldHaveCorrectSpecialInstructions(bool includeIce, bool includeCream)
         {
+            CandlehearthCoffee item = new CandlehearthCoffee()
+            {
+                Ice = includeIce,
+                RoomForCream = includeCream
+            };
+
+            if (includeIce) Assert.Contains("Add Ice", item.SpecialInstructions);
+            if (includeCream) Assert.Contains("Add Cream", item.SpecialInstructions);
+            if (!includeIce && !includeCream) Assert.Empty(item.SpecialInstructions);
         }
 
         [Theory]
@@ -86,6 +127,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         [InlineData(false, Size.Large, "Large Candlehearth Coffee")]
         public void ShouldReturnCorrectToStringBasedOnSize(bool decaf, Size size, string name)
         {
+            CandlehearthCoffee item = new CandlehearthCoffee()
+            {
+                Size = size,
+                Decaf = decaf
+            };
+            Assert.Equal(name, item.ToString());
         }
     }
 }

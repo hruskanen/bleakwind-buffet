@@ -10,11 +10,19 @@ using System.Text;
 
 namespace BleakwindBuffet.Data.Entrees
 {
-    class GardenOrcOmelette
+    /// <summary>
+    /// Class for representing Garden Orc Omelette
+    /// </summary>
+    public class GardenOrcOmelette
     {
         ///Common 
-        double Price { get; } = 4.57;
-        uint Calories { get; } = 404;
+        public double Price { get; } = 4.57;
+        public uint Calories { get; } = 404;
+
+        /// <summary>
+        /// Creates the SpecialInstructions list and adds items to
+        /// the list based on if a varible had changed from its default
+        /// </summary>
         public List<string> SpecialInstructions
         {
             get
@@ -29,6 +37,9 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         ///Unique
+        /// <summary>
+        /// Creates public and private bool broccoli on if the broccoli should be added
+        /// </summary>
         private bool broccoli = true;
         public bool Broccoli
         {
@@ -42,6 +53,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool mushrooms on if the mushrooms should be added
+        /// </summary>
         private bool mushrooms = true;
         public bool Mushrooms
         {
@@ -55,6 +69,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool tomatos on if the tomatos should be added
+        /// </summary>
         private bool tomato = true;
         public bool Tomato
         {
@@ -68,6 +85,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool cheddar on if the cheddar should be added
+        /// </summary>
         private bool cheddar = true;
         public bool Cheddar
         {
@@ -83,8 +103,11 @@ namespace BleakwindBuffet.Data.Entrees
 
 
         /// <summary>
-        /// Prints all varibles of object
+        /// Returns a description of the Garden Orc Omelette
         /// </summary>
+        /// <returns> 
+        /// A string describing the Garden Orc Omelette
+        /// </returns>
         public override string ToString()
         {
             return "Garden Orc Omelette";

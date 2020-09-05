@@ -11,7 +11,7 @@ using System.Text;
 namespace BleakwindBuffet.Data.Enums
 {
     /// <summary>
-    /// Stores available sizes
+    /// Stores available flavors
     /// </summary>
     public enum SodaFlavor
     {

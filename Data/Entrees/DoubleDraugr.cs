@@ -10,11 +10,19 @@ using System.Text;
 
 namespace BleakwindBuffet.Data.Entrees
 {
-    class DoubleDraugr
+    /// <summary>
+    /// Class for representing Double Draugr
+    /// </summary>
+    public class DoubleDraugr
     {
         ///Common 
-        double Price { get; } = 7.32;
-        uint Calories { get; } = 843;
+        public double Price { get; } = 7.32;
+        public uint Calories { get; } = 843;
+
+        /// <summary>
+        /// Creates the SpecialInstructions list and adds items to
+        /// the list based on if a varible had changed from its default
+        /// </summary>
         public List<string> SpecialInstructions
         {
             get
@@ -33,6 +41,9 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         ///Unique
+        /// <summary>
+        /// Creates public and private bool bun on if the bun should be added
+        /// </summary>
         private bool bun = true;
         public bool Bun
         {
@@ -46,6 +57,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool ketchup on if the ketchup should be added
+        /// </summary>
         private bool ketchup = true;
         public bool Ketchup
         {
@@ -59,6 +73,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool mustard on if the mustard should be added
+        /// </summary>
         private bool mustard = true;
         public bool Mustard
         {
@@ -72,6 +89,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool pickles on if the pickles should be added
+        /// </summary>
         private bool pickle = true;
         public bool Pickle
         {
@@ -85,6 +105,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool cheese on if the cheese should be added
+        /// </summary>
         private bool cheese = true;
         public bool Cheese
         {
@@ -98,6 +121,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool tomatos on if the tomatos should be added
+        /// </summary>
         private bool tomato = true;
         public bool Tomato
         {
@@ -111,6 +137,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool lettuce on if the lettuce should be added
+        /// </summary>
         private bool lettuce = true;
         public bool Lettuce
         {
@@ -124,6 +153,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool mayo on if the mayo should be added
+        /// </summary>
         private bool mayo = true;
         public bool Mayo
         {
@@ -139,8 +171,11 @@ namespace BleakwindBuffet.Data.Entrees
 
 
         /// <summary>
-        /// Prints all varibles of object
+        /// Returns a description of the Double Draugr
         /// </summary>
+        /// <returns> 
+        /// A string describing the Double Draugr
+        /// </returns>
         public override string ToString()
         {
             return "Double Draugr";

@@ -11,12 +11,27 @@ using BleakwindBuffet.Data.Enums;
 
 namespace BleakwindBuffet.Data.Sides
 {
-    class MadOtarGrits
+    /// <summary>
+    /// Class for representing Mad Otar Grits
+    /// </summary>
+    public class MadOtarGrits
     {
         ///Common 
-        double Price = 1.22;
-        uint Calories = 105;
-        List<string> SpecialInstructions { get; }
+        public double Price = 1.22;
+        public uint Calories = 105;
+
+        /// <summary>
+        /// Creates the SpecialInstructions list and adds items to
+        /// the list based on if a varible had changed from its default
+        /// </summary>
+        public List<string> SpecialInstructions { get; } = new List<string>();
+
+        /// <summary>
+        /// creates private and public sizes and changes Calories and Price accordingly
+        /// </summary>
+        /// <exception cref="System.NotImplementedException">
+        /// Thrown if the size is not known 
+        /// </exception>
         private Size size = Size.Small;
         public Size Size
         {
@@ -51,8 +66,11 @@ namespace BleakwindBuffet.Data.Sides
 
 
         /// <summary>
-        /// Prints all varibles of object
+        /// Returns a description of the Mad Otar Grits
         /// </summary>
+        /// <returns> 
+        /// A string describing the Mad Otar Grits
+        /// </returns>
         public override string ToString()
         {
             return size + " Mad Otar Grits";

@@ -11,21 +11,35 @@ using System.Text;
 
 namespace BleakwindBuffet.Data.Drinks
 {
-    class MarkarthMilk
+    /// <summary>
+    /// Class for representing Markarth Milk
+    /// </summary>
+    public class MarkarthMilk
     {
         ///Common 
-        double Price = 1.05;
-        uint Calories = 56;
+        public double Price = 1.05;
+        public uint Calories = 56;
+
+        /// <summary>
+        /// Creates the SpecialInstructions list and adds items to
+        /// the list based on if a varible had changed from its default
+        /// </summary>
         public List<string> SpecialInstructions
         {
             get
             {
                 List<string> temp = new List<string>();
-                if (!ice) { temp.Add("Hold Ice"); }
+                if (ice) { temp.Add("Add Ice"); }
                 return temp;
             }
         }
 
+        /// <summary>
+        /// creates private and public sizes and changes Calories and Price accordingly
+        /// </summary>
+        /// <exception cref="System.NotImplementedException">
+        /// Thrown if the size is not known 
+        /// </exception>
         private Size size = Size.Small;
         public Size Size
         {
@@ -58,7 +72,10 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
-        private bool ice = true;
+        /// <summary>
+        /// Creates public and private bool Ice on if ice should be added
+        /// </summary>
+        private bool ice = false;
         public bool Ice
         {
             get
@@ -71,7 +88,12 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
-
+        /// <summary>
+        /// Returns a description of the Markarth Milk
+        /// </summary>
+        /// <returns> 
+        /// A string describing the Markarth Milk
+        /// </returns>
         public override string ToString()
         {
             return size + " Markarth Milk";

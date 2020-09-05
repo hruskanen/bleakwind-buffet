@@ -11,12 +11,27 @@ using BleakwindBuffet.Data.Enums;
 
 namespace BleakwindBuffet.Data.Sides
 {
-    class FriedMiraak
+    /// <summary>
+    /// Class for representing Fried Miraak
+    /// </summary>
+    public class FriedMiraak
     {
         ///Common 
-        double Price = 1.78;
-        uint Calories = 151;
-        List<string> SpecialInstructions { get; }
+        public double Price = 1.78;
+        public uint Calories = 151;
+
+        /// <summary>
+        /// Creates the SpecialInstructions list and adds items to
+        /// the list based on if a varible had changed from its default
+        /// </summary>
+        public List<string> SpecialInstructions { get; } = new List<string>();
+
+        /// <summary>
+        /// creates private and public sizes and changes Calories and Price accordingly
+        /// </summary>
+        /// <exception cref="System.NotImplementedException">
+        /// Thrown if the size is not known 
+        /// </exception>
         private Size size = Size.Small;
         public Size Size
         {
@@ -51,8 +66,11 @@ namespace BleakwindBuffet.Data.Sides
 
 
         /// <summary>
-        /// Prints all varibles of object
+        /// Returns a description of the Fried Miraak
         /// </summary>
+        /// <returns> 
+        /// A string describing the Fried Miraak
+        /// </returns>
         public override string ToString()
         {
             return size + " Fried Miraak";

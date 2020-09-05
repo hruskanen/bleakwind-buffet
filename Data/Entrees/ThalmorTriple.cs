@@ -10,11 +10,19 @@ using System.Text;
 
 namespace BleakwindBuffet.Data.Entrees
 {
-    class ThalmorTriple
+    /// <summary>
+    /// Class for representing Thalmor Triple
+    /// </summary>
+    public class ThalmorTriple
     {
         ///Common 
-        double Price { get; } = 8.32;
-        uint Calories { get; } = 943;
+        public double Price { get; } = 8.32;
+        public uint Calories { get; } = 943;
+
+        /// <summary>
+        /// Creates the SpecialInstructions list and adds items to
+        /// the list based on if a varible had changed from its default
+        /// </summary>
         public List<string> SpecialInstructions
         {
             get
@@ -27,6 +35,7 @@ namespace BleakwindBuffet.Data.Entrees
                 if (!cheese) { temp.Add("Hold Cheese"); }
                 if (!tomato) { temp.Add("Hold Tomato"); }
                 if (!lettuce) { temp.Add("Hold Lettuce"); }
+                if (!mayo) { temp.Add("Hold Mayo"); }
                 if (!bacon) { temp.Add("Hold Bacon"); }
                 if (!egg) { temp.Add("Hold Egg"); }
                 return temp;
@@ -34,6 +43,9 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         ///Unique
+        /// <summary>
+        /// Creates public and private bool bun on if the bun should be added
+        /// </summary>
         private bool bun = true;
         public bool Bun
         {
@@ -47,6 +59,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool ketchup on if the ketchup should be added
+        /// </summary>
         private bool ketchup = true;
         public bool Ketchup
         {
@@ -60,6 +75,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool mustard on if the mustard should be added
+        /// </summary>
         private bool mustard = true;
         public bool Mustard
         {
@@ -73,6 +91,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool pickle on if the pickles should be added
+        /// </summary>
         private bool pickle = true;
         public bool Pickle
         {
@@ -86,6 +107,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool cheese on if the cheese should be added
+        /// </summary>
         private bool cheese = true;
         public bool Cheese
         {
@@ -99,6 +123,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool tomato on if the tomatos should be added
+        /// </summary>
         private bool tomato = true;
         public bool Tomato
         {
@@ -112,6 +139,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool lettuce on if the lettuce should be added
+        /// </summary>
         private bool lettuce = true;
         public bool Lettuce
         {
@@ -125,6 +155,25 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool mayo on if the mayo should be added
+        /// </summary>
+        private bool mayo = true;
+        public bool Mayo
+        {
+            get
+            {
+                return mayo;
+            }
+            set
+            {
+                mayo = value;
+            }
+        }
+
+        /// <summary>
+        /// Creates public and private bool bacon on if the bacon should be added
+        /// </summary>
         private bool bacon = true;
         public bool Bacon
         {
@@ -138,6 +187,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool egg on if the egg should be added
+        /// </summary>
         private bool egg = true;
         public bool Egg
         {
@@ -153,8 +205,11 @@ namespace BleakwindBuffet.Data.Entrees
 
 
         /// <summary>
-        /// Prints all varibles of object
+        /// Returns a description of the Thalmor Triple
         /// </summary>
+        /// <returns> 
+        /// A string describing the Thalmor Triple
+        /// </returns>
         public override string ToString()
         {
             return "Thalmor Triple";

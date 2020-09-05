@@ -10,11 +10,19 @@ using System.Text;
 
 namespace BleakwindBuffet.Data.Entrees
 {
-    class SmokehouseSkeleton
+    /// <summary>
+    /// Class for representing Smokehouse Skeleton
+    /// </summary>
+    public class SmokehouseSkeleton
     {
         ///Common 
-        double Price { get; } = 5.62;
-        uint Calories { get; } = 602;
+        public double Price { get; } = 5.62;
+        public uint Calories { get; } = 602;
+
+        /// <summary>
+        /// Creates the SpecialInstructions list and adds items to
+        /// the list based on if a varible had changed from its default
+        /// </summary>
         public List<string> SpecialInstructions
         {
             get
@@ -22,13 +30,16 @@ namespace BleakwindBuffet.Data.Entrees
                 List<string> temp = new List<string>();
                 if (!sausageLink) { temp.Add("Hold Sausage Link"); }
                 if (!egg) { temp.Add("Hold Egg"); }
-                if (!hashBrowns) { temp.Add("Hold Hash Browns"); }
+                if (!hashBrowns) { temp.Add("Hold HashBrowns"); }
                 if (!pancake) { temp.Add("Hold Pancake"); }
                 return temp;
             }
         }
 
         ///Unique
+        /// <summary>
+        /// Creates public and private bool sausageLink on if the sausageLink should be added
+        /// </summary>
         private bool sausageLink = true;
         public bool SausageLink
         {
@@ -42,6 +53,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool egg on if the egg should be added
+        /// </summary>
         private bool egg = true;
         public bool Egg
         {
@@ -55,6 +69,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool hashBrowns on if the hash Browns should be added
+        /// </summary>
         private bool hashBrowns = true;
         public bool HashBrowns
         {
@@ -68,6 +85,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// Creates public and private bool pancake on if the pancakes should be added
+        /// </summary>
         private bool pancake = true;
         public bool Pancake
         {
@@ -83,8 +103,11 @@ namespace BleakwindBuffet.Data.Entrees
 
 
         /// <summary>
-        /// Prints all varibles of object
+        /// Returns a description of the Smokehouse Skeleton
         /// </summary>
+        /// <returns> 
+        /// A string describing the Smokehouse Skeleton
+        /// </returns>
         public override string ToString()
         {
             return "Smokehouse Skeleton";

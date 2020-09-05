@@ -3,12 +3,10 @@
  * Class: SailorSodaTests.cs
  * Purpose: Test the SailorSoda.cs class in the Data library
  */
-using System;
-
 using Xunit;
-
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
+using BleakwindBuffet.Data.Drinks;
 
 namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
 {
@@ -17,31 +15,62 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         [Fact]
         public void ShouldIncludeIceByDefault()
         {
+            SailorSoda item = new SailorSoda();
+            Assert.True(item.Ice);
         }
 
         [Fact]
         public void ShouldBeSmallByDefault()
         {
+            SailorSoda item = new SailorSoda();
+            Assert.Equal(Size.Small, item.Size);
         }
 
         [Fact]
         public void FlavorShouldBeCherryByDefault()
         {
+            SailorSoda item = new SailorSoda();
+            Assert.Equal(SodaFlavor.Cherry, item.Flavor);
         }
 
         [Fact]
         public void ShouldBeAbleToSetIce()
         {
+            SailorSoda item = new SailorSoda();
+            item.Ice = false;
+            Assert.False(item.Ice);
+            item.Ice = true;
+            Assert.True(item.Ice);
         }
 
         [Fact]
         public void ShouldBeAbleToSetSize()
         {
+            SailorSoda item = new SailorSoda();
+            item.Size = Size.Large;
+            Assert.Equal(Size.Large, item.Size);
+            item.Size = Size.Medium;
+            Assert.Equal(Size.Medium, item.Size);
+            item.Size = Size.Small;
+            Assert.Equal(Size.Small, item.Size);
         }
 
         [Fact]
         public void ShouldBeAbleToSetFlavor()
         {
+            SailorSoda item = new SailorSoda();
+            item.Flavor = SodaFlavor.Blackberry;
+            Assert.Equal(SodaFlavor.Blackberry, item.Flavor);
+            item.Flavor = SodaFlavor.Cherry;
+            Assert.Equal(SodaFlavor.Cherry, item.Flavor);
+            item.Flavor = SodaFlavor.Grapefruit;
+            Assert.Equal(SodaFlavor.Grapefruit, item.Flavor);
+            item.Flavor = SodaFlavor.Lemon;
+            Assert.Equal(SodaFlavor.Lemon, item.Flavor);
+            item.Flavor = SodaFlavor.Peach;
+            Assert.Equal(SodaFlavor.Peach, item.Flavor);
+            item.Flavor = SodaFlavor.Watermelon;
+            Assert.Equal(SodaFlavor.Watermelon, item.Flavor);
         }
 
         [Theory]
@@ -50,6 +79,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         [InlineData(Size.Large, 2.07)]
         public void ShouldHaveCorrectPriceForSize(Size size, double price)
         {
+            SailorSoda item = new SailorSoda() { Size = size };
+            Assert.Equal(size, item.Size);
+            Assert.Equal(price, item.Price);
         }
 
         [Theory]
@@ -58,6 +90,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         [InlineData(Size.Large, 205)]
         public void ShouldHaveCorrectCaloriesForSize(Size size, uint cal)
         {
+            SailorSoda item = new SailorSoda() { Size = size };
+            Assert.Equal(size, item.Size);
+            Assert.Equal(cal, item.Calories);
         }
 
         [Theory]
@@ -65,6 +100,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         [InlineData(false)]
         public void ShouldHaveCorrectSpecialInstructions(bool includeIce)
         {
+            SailorSoda item = new SailorSoda() { Ice = includeIce };
+            if (!includeIce) Assert.Contains("Hold Ice", item.SpecialInstructions);
+            else Assert.Empty(item.SpecialInstructions);
         }
         
         [Theory]
@@ -93,6 +131,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         [InlineData(SodaFlavor.Watermelon, Size.Large, "Large Watermelon Sailor Soda")]
         public void ShouldHaveCorrectToStringBasedOnSizeAndFlavor(SodaFlavor flavor, Size size, string name)
         {
+            SailorSoda item = new SailorSoda()
+            {
+                Flavor = flavor,
+                Size = size
+            };
+            Assert.Equal(name, item.ToString());
         }
     }
 }
