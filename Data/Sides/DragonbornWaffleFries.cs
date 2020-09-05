@@ -57,10 +57,6 @@ namespace BleakwindBuffet.Data.Sides
                     Price = 0.96;
                     Calories = 100;
                 }
-                else
-                {
-                    throw new NotImplementedException("Unknown size " + Size);
-                }
             }
         }
 

@@ -65,10 +65,6 @@ namespace BleakwindBuffet.Data.Drinks
                     Price = 1.22;
                     Calories = 93;
                 }
-                else
-                {
-                    throw new NotImplementedException("Unknown size " + Size);
-                }
             }
         }
 
