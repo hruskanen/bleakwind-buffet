@@ -14,52 +14,47 @@ namespace BleakwindBuffet.Data.Sides
     /// <summary>
     /// Class for representing Vokun Salad
     /// </summary>
-    public class VokunSalad
+    public class VokunSalad : Side
     {
         ///Common 
-        public double Price = 0.93;
-        public uint Calories = 41;
+        /// <summary>
+        /// The price for the side
+        /// </summary>
+        public override double Price
+        {
+            get
+            {
+                switch (Size)
+                {
+                    case Size.Small: return 0.93;
+                    case Size.Medium: return 1.28;
+                    case Size.Large: return 1.82;
+                    default: throw new NotImplementedException("Should never be reached");
+                }
+            }
+        }
+        /// <summary>
+        /// The amount of calories for the side
+        /// </summary>
+        public override uint Calories
+        {
+            get
+            {
+                switch (Size)
+                {
+                    case Size.Small: return 41;
+                    case Size.Medium: return 52;
+                    case Size.Large: return 73;
+                    default: throw new NotImplementedException("Should never be reached");
+                }
+            }
+        }
 
         /// <summary>
         /// Creates the SpecialInstructions list and adds items to
         /// the list based on if a varible had changed from its default
         /// </summary>
-        public List<string> SpecialInstructions { get; } = new List<string>();
-
-        /// <summary>
-        /// creates private and public sizes and changes Calories and Price accordingly
-        /// </summary>
-        /// <exception cref="System.NotImplementedException">
-        /// Thrown if the size is not known 
-        /// </exception>
-        private Size size = Size.Small;
-        public Size Size
-        {
-            get
-            {
-                return size;
-            }
-            set
-            {
-                size = value;
-                if (Size.Small == value)
-                {
-                    Price = 0.93;
-                    Calories = 41;
-                }
-                else if (Size.Medium == value)
-                {
-                    Price = 1.28;
-                    Calories = 52;
-                }
-                else if (Size.Large == value)
-                {
-                    Price = 1.82;
-                    Calories = 73;
-                }
-            }
-        }
-
+        public override List<string> SpecialInstructions { get; } = new List<string>();
 
         /// <summary>
         /// Returns a description of the Vokun Salad
@@ -69,7 +64,7 @@ namespace BleakwindBuffet.Data.Sides
         /// </returns>
         public override string ToString()
         {
-            return size + " Vokun Salad";
+            return Size + " Vokun Salad";
         }
     }
 }

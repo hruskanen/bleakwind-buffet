@@ -14,57 +14,53 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Class for representing Aretino Apple Juice
     /// </summary>
-    public class AretinoAppleJuice
+    public class AretinoAppleJuice : Drink
     {
         ///Common 
-        public double Price = 0.62;
-        public uint Calories = 44;
+        /// <summary>
+        /// The price for the drink
+        /// </summary>
+        public override double Price
+        {
+            get
+            {
+                switch (Size)
+                {
+                    case Size.Small: return 0.62;
+                    case Size.Medium: return 0.87;
+                    case Size.Large: return 1.01;
+                    default: throw new NotImplementedException("Should never be reached");
+                }
+            }
+        }
+        /// <summary>
+        /// The amount of calories for the drink
+        /// </summary>
+        public override uint Calories
+        {
+            get
+            {
+                switch (Size)
+                {
+                    case Size.Small: return 44;
+                    case Size.Medium: return 88;
+                    case Size.Large: return 132;
+                    default: throw new NotImplementedException("Should never be reached");
+                }
+            }
+        }
 
         /// <summary>
         /// Creates the SpecialInstructions list and adds items to
         /// the list based on if a varible had changed from its default
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {
                 List<string> temp = new List<string>();
                 if (ice) { temp.Add("Add Ice"); }
                 return temp;
-            }
-        }
-
-        /// <summary>
-        /// creates private and public sizes and changes Calories and Price accordingly
-        /// </summary>
-        /// <exception cref="System.NotImplementedException">
-        /// Thrown if the size is not known 
-        /// </exception>
-        private Size size = Size.Small;
-        public Size Size
-        {
-            get
-            {
-                return size;
-            }
-            set
-            {
-                size = value;
-                if (Size.Small == value)
-                {
-                    Price = 0.62;
-                    Calories = 44;
-                }
-                else if (Size.Medium == value)
-                {
-                    Price = 0.87;
-                    Calories = 88;
-                }
-                else if (Size.Large == value)
-                {
-                    Price = 1.01;
-                    Calories = 132;
-                }
             }
         }
 
@@ -92,7 +88,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// </returns>
         public override string ToString()
         {
-            return size + " Aretino Apple Juice";
+            return Size + " Aretino Apple Juice";
         }
     }
 }

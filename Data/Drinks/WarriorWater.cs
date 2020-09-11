@@ -14,17 +14,23 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Class for representing Warrior Water
     /// </summary>
-    public class WarriorWater
+    public class WarriorWater : Drink
     {
         ///Common 
-        public double Price = 0;
-        public uint Calories = 0;
+        /// <summary>
+        /// The price for the drink
+        /// </summary>
+        public override double Price { get { return 0; } }
+        /// <summary>
+        /// The amount of calories for the drink
+        /// </summary>
+        public override uint Calories { get { return 0; } }
 
         /// <summary>
         /// Creates the SpecialInstructions list and adds items to
         /// the list based on if a varible had changed from its default
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {
@@ -32,25 +38,6 @@ namespace BleakwindBuffet.Data.Drinks
                 if (!ice) { temp.Add("Hold Ice"); }
                 if (lemon) { temp.Add("Add Lemon"); }
                 return temp;
-            }
-        }
-
-        /// <summary>
-        /// creates private and public sizes
-        /// </summary>
-        /// <exception cref="System.NotImplementedException">
-        /// Thrown if the size is not known 
-        /// </exception>
-        private Size size = Size.Small;
-        public Size Size
-        {
-            get
-            {
-                return size;
-            }
-            set
-            {
-                size = value;
             }
         }
 
@@ -96,7 +83,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// </returns>
         public override string ToString()
         {
-            return size + " Warrior Water";
+            return Size + " Warrior Water";
         }
     }
 }

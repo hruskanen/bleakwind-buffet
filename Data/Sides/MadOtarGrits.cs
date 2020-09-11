@@ -14,52 +14,47 @@ namespace BleakwindBuffet.Data.Sides
     /// <summary>
     /// Class for representing Mad Otar Grits
     /// </summary>
-    public class MadOtarGrits
+    public class MadOtarGrits : Side
     {
         ///Common 
-        public double Price = 1.22;
-        public uint Calories = 105;
+        /// <summary>
+        /// The price for the side
+        /// </summary>
+        public override double Price
+        {
+            get
+            {
+                switch (Size)
+                {
+                    case Size.Small: return 1.22;
+                    case Size.Medium: return 1.58;
+                    case Size.Large: return 1.93;
+                    default: throw new NotImplementedException("Should never be reached");
+                }
+            }
+        }
+        /// <summary>
+        /// The amount of calories for the side
+        /// </summary>
+        public override uint Calories
+        {
+            get
+            {
+                switch (Size)
+                {
+                    case Size.Small: return 105;
+                    case Size.Medium: return 142;
+                    case Size.Large: return 179;
+                    default: throw new NotImplementedException("Should never be reached");
+                }
+            }
+        }
 
         /// <summary>
         /// Creates the SpecialInstructions list and adds items to
         /// the list based on if a varible had changed from its default
         /// </summary>
-        public List<string> SpecialInstructions { get; } = new List<string>();
-
-        /// <summary>
-        /// creates private and public sizes and changes Calories and Price accordingly
-        /// </summary>
-        /// <exception cref="System.NotImplementedException">
-        /// Thrown if the size is not known 
-        /// </exception>
-        private Size size = Size.Small;
-        public Size Size
-        {
-            get
-            {
-                return size;
-            }
-            set
-            {
-                size = value;
-                if (Size.Small == value)
-                {
-                    Price = 1.22;
-                    Calories = 105;
-                }
-                else if (Size.Medium == value)
-                {
-                    Price = 1.58;
-                    Calories = 142;
-                }
-                else if (Size.Large == value)
-                {
-                    Price = 1.93;
-                    Calories = 179;
-                }
-            }
-        }
-
+        public override List<string> SpecialInstructions { get; } = new List<string>();
 
         /// <summary>
         /// Returns a description of the Mad Otar Grits
@@ -69,7 +64,7 @@ namespace BleakwindBuffet.Data.Sides
         /// </returns>
         public override string ToString()
         {
-            return size + " Mad Otar Grits";
+            return Size + " Mad Otar Grits";
         }
     }
 }

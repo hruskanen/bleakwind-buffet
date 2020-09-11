@@ -16,8 +16,14 @@ namespace BleakwindBuffet.Data.Entrees
     public class SmokehouseSkeleton
     {
         ///Common 
-        public double Price { get; } = 5.62;
-        public uint Calories { get; } = 602;
+        /// <summary>
+        /// The price for the drink
+        /// </summary>
+        public double Price { get { return 5.62; } }
+        /// <summary>
+        /// The amount of calories for the drink
+        /// </summary>
+        public uint Calories { get { return 602; } }
 
         /// <summary>
         /// Creates the SpecialInstructions list and adds items to

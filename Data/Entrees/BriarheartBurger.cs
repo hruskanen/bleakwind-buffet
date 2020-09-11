@@ -13,17 +13,23 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class for representing Briarheart Burger
     /// </summary>
-    public class BriarheartBurger
+    public class BriarheartBurger : Entree
     {
         ///Common 
-        public double Price { get; } = 6.32;
-        public uint Calories { get; } = 743;
+        /// <summary>
+        /// The price for the drink
+        /// </summary>
+        public override double Price { get { return 6.32; } }
+        /// <summary>
+        /// The amount of calories for the drink
+        /// </summary>
+        public override uint Calories { get { return 743; } }
 
         /// <summary>
         /// Creates the SpecialInstructions list and adds items to
         /// the list based on if a varible had changed from its default
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {
