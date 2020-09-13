@@ -134,5 +134,19 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             };
             Assert.Equal(name, item.ToString());
         }
+
+        [Fact]
+        public void ShouldBeAssignableToAbstractDrinkClass()
+        {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            Assert.IsAssignableFrom<Drink>(item);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToAbstractIOrderItemClass()
+        {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            Assert.IsAssignableFrom<IOrderItem>(item);
+        }
     }
 }

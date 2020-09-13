@@ -69,5 +69,26 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             DragonbornWaffleFries item = new DragonbornWaffleFries() { Size = size };
             Assert.Equal(name, item.ToString());
         }
+
+        [Fact]
+        public void ShouldBeAssignableToAbstractFooClass()
+        {
+            DragonbornWaffleFries item = new DragonbornWaffleFries();
+            Assert.IsAssignableFrom<Side>(item);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToAbstractSideClass()
+        {
+            DragonbornWaffleFries item = new DragonbornWaffleFries();
+            Assert.IsAssignableFrom<Side>(item);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToAbstractIOrderItemClass()
+        {
+            DragonbornWaffleFries item = new DragonbornWaffleFries();
+            Assert.IsAssignableFrom<IOrderItem>(item);
+        }
     }
 }

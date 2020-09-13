@@ -13,23 +13,23 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class for representing Smokehouse Skeleton
     /// </summary>
-    public class SmokehouseSkeleton
+    public class SmokehouseSkeleton : Entree
     {
         ///Common 
         /// <summary>
         /// The price for the drink
         /// </summary>
-        public double Price { get { return 5.62; } }
+        public override double Price { get { return 5.62; } }
         /// <summary>
         /// The amount of calories for the drink
         /// </summary>
-        public uint Calories { get { return 602; } }
+        public override uint Calories { get { return 602; } }
 
         /// <summary>
         /// Creates the SpecialInstructions list and adds items to
         /// the list based on if a varible had changed from its default
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {

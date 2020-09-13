@@ -13,7 +13,7 @@ namespace BleakwindBuffet.Data.Sides
     /// <summary>
     /// Base class reperesenting the drinks
     /// </summary>
-    public abstract class Side
+    public abstract class Side : IOrderItem
     {
         /// <summary>
         /// The size of the drinks
