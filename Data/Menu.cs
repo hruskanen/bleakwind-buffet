@@ -1,7 +1,7 @@
 ﻿/*
 * Author: Hunter Ruskanen
 * Class name: Menu.cs
-* Purpose: no clue
+* Purpose: creats a list of all the menu items
 */
 using System;
 using System.Collections.Generic;
@@ -14,8 +14,15 @@ using BleakwindBuffet.Data.Enums;
 
 namespace BleakwindBuffet.Data
 {
-    static class Menu
+    /// <summary>
+    /// Contains all of the methods to create the menu and submenus
+    /// </summary>
+    public static class Menu
     {
+        /// <summary>
+        /// Creates the sub menu containing all of the Entrees
+        /// </summary>
+        /// <returns> a list of all of the entrees </returns>
         public static IEnumerable<IOrderItem> Entrees()
         {
             List<IOrderItem> entrees = new List<IOrderItem>();
@@ -31,6 +38,10 @@ namespace BleakwindBuffet.Data
             return entrees;
         }
 
+        /// <summary>
+        /// Creates the sub menu containing all of the Drinks
+        /// </summary>
+        /// <returns> a list of all of the Drinks in each size and flavor </returns>
         public static IEnumerable<IOrderItem> Drinks()
         {
             List<IOrderItem> drinks = new List<IOrderItem>();
@@ -49,6 +60,10 @@ namespace BleakwindBuffet.Data
             return drinks;
         }
 
+        /// <summary>
+        /// Creates the sub menu containing all of the Sides
+        /// </summary>
+        /// <returns> a list of all of the sides in each size </returns>
         public static IEnumerable<IOrderItem> Sides()
         {
             List<IOrderItem> sides = new List<IOrderItem>();
@@ -63,6 +78,10 @@ namespace BleakwindBuffet.Data
             return sides;
         }
 
+        /// <summary>
+        /// Creates the full menu using the 3 sub menus
+        /// </summary>
+        /// <returns> A List of all item offered </returns>
         public static IEnumerable<IOrderItem> FullMenu()
         {
             List<IOrderItem> meun = new List<IOrderItem>();
