@@ -5,6 +5,7 @@
 using BleakwindBuffet.Data.Entrees;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,9 +22,22 @@ namespace PointOfSale.Entrees
     /// <summary>
     /// Interaction logic for SmokehouseSkeletonCustomization.xaml
     /// </summary>
-    public partial class SmokehouseSkeletonCustomization : UserControl
+    public partial class SmokehouseSkeletonCustomization : UserControl, INotifyPropertyChanged
     {
         OrderComponent parent;
+        private SmokehouseSkeleton _Item;
+        public SmokehouseSkeleton Item
+        {
+            get { return _Item; }
+            set
+            {
+                if (_Item != value)
+                {
+                    _Item = value;
+                    NotifyPropertyChanged("Item");
+                }
+            }
+        }
 
         /// <summary>
         /// imports the item and allows to to edit it or delete it
@@ -32,11 +46,10 @@ namespace PointOfSale.Entrees
         /// <param name="item">add the inputed item in to the Customization</param>
         public SmokehouseSkeletonCustomization(OrderComponent orderComponent, SmokehouseSkeleton item)
         {
+            Item = item;
             this.parent = orderComponent;
+            DataContext = this;
             InitializeComponent();
-            _sausageLink.IsChecked = item.SausageLink;
-            _egg.IsChecked = item.Egg;
-            _hashBrowns.IsChecked = item.HashBrowns;
         }
 
         /// <summary>
@@ -46,13 +59,7 @@ namespace PointOfSale.Entrees
         /// <param name="e"></param>
         void customizationDone(object sender, RoutedEventArgs e)
         {
-            SmokehouseSkeleton item = new SmokehouseSkeleton()
-            {
-                SausageLink = (bool)_sausageLink.IsChecked,
-                Egg = (bool)_egg.IsChecked,
-                HashBrowns = (bool)_hashBrowns.IsChecked
-            };
-            parent.order.Items[parent.currentListIndex] = item;
+            parent.order.Items[parent.currentListIndex] = Item;
             parent.showMenu();
         }
 
@@ -63,8 +70,19 @@ namespace PointOfSale.Entrees
         /// <param name="e"></param>
         void customizationRemove(object sender, RoutedEventArgs e)
         {
+            parent._subTotal -= Item.Price;
             parent.order.Items.RemoveAt(parent.currentListIndex);
             parent.showMenu();
+        }
+
+        /// <summary>
+        /// Creats and event handler if a property has changed
+        /// </summary>
+        /// <param name="propertyName"> the property that changed </param>
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

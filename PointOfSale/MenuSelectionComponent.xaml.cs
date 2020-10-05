@@ -50,6 +50,7 @@ namespace PointOfSale
             BriarheartBurger item = new BriarheartBurger();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -63,6 +64,7 @@ namespace PointOfSale
             DoubleDraugr item = new DoubleDraugr();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -76,6 +78,7 @@ namespace PointOfSale
             ThalmorTriple item = new ThalmorTriple();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -89,6 +92,7 @@ namespace PointOfSale
             SmokehouseSkeleton item = new SmokehouseSkeleton();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -102,6 +106,7 @@ namespace PointOfSale
             GardenOrcOmelette item = new GardenOrcOmelette();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -115,6 +120,7 @@ namespace PointOfSale
             PhillyPoacher item = new PhillyPoacher();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -128,6 +134,7 @@ namespace PointOfSale
             ThugsTBone item = new ThugsTBone();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -141,6 +148,7 @@ namespace PointOfSale
             SailorSoda item = new SailorSoda();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -154,6 +162,7 @@ namespace PointOfSale
             MarkarthMilk item = new MarkarthMilk();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -167,6 +176,7 @@ namespace PointOfSale
             AretinoAppleJuice item = new AretinoAppleJuice();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -180,6 +190,7 @@ namespace PointOfSale
             CandlehearthCoffee item = new CandlehearthCoffee();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -193,6 +204,7 @@ namespace PointOfSale
             WarriorWater item = new WarriorWater();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -206,6 +218,7 @@ namespace PointOfSale
             VokunSalad item = new VokunSalad();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -219,6 +232,7 @@ namespace PointOfSale
             FriedMiraak item = new FriedMiraak();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -232,6 +246,7 @@ namespace PointOfSale
             MadOtarGrits item = new MadOtarGrits();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
 
@@ -245,6 +260,7 @@ namespace PointOfSale
             DragonbornWaffleFries item = new DragonbornWaffleFries();
             parent.currentListIndex = parent.order.Items.Count;
             parent.order.Items.Add(item);
+            parent._subTotal += item.Price;
             parent.swapScreens();
         }
     }

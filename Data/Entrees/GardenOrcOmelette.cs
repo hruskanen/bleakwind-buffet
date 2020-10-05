@@ -55,7 +55,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                broccoli = value;
+                if (broccoli != value)
+                {
+                    broccoli = value;
+                    NotifyPropertyChanged("Broccoli");
+                }
             }
         }
 
@@ -71,7 +75,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                mushrooms = value;
+                if (mushrooms != value)
+                {
+                    mushrooms = value;
+                    NotifyPropertyChanged("Mushrooms");
+                }
             }
         }
 
@@ -87,7 +95,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                tomato = value;
+                if (tomato != value)
+                {
+                    tomato = value;
+                    NotifyPropertyChanged("Tomato");
+                }
             }
         }
 
@@ -103,7 +115,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                cheddar = value;
+                if (cheddar != value)
+                {
+                    cheddar = value;
+                    NotifyPropertyChanged("Cheddar");
+                }
             }
         }
 

@@ -57,6 +57,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void ChangingBunNotifiesBunProperty()
+        {
+            BriarheartBurger item = new BriarheartBurger();
+            Assert.PropertyChanged(item, "Bun", () => { item.Bun = false; });
+            Assert.PropertyChanged(item, "Bun", () => { item.Bun = true; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetKetchup()
         {
             BriarheartBurger item = new BriarheartBurger();
@@ -64,6 +72,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.False(item.Ketchup);
             item.Ketchup = true;
             Assert.True(item.Ketchup);
+        }
+
+        [Fact]
+        public void ChangingKetchupNotifiesKetchupProperty()
+        {
+            BriarheartBurger item = new BriarheartBurger();
+            Assert.PropertyChanged(item, "Ketchup", () => { item.Ketchup = false; });
+            Assert.PropertyChanged(item, "Ketchup", () => { item.Ketchup = true; });
         }
 
         [Fact]
@@ -77,6 +93,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void ChangingMustardNotifiesMustardProperty()
+        {
+            BriarheartBurger item = new BriarheartBurger();
+            Assert.PropertyChanged(item, "Mustard", () => { item.Mustard = false; });
+            Assert.PropertyChanged(item, "Mustard", () => { item.Mustard = true; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetPickle()
         {
             BriarheartBurger item = new BriarheartBurger();
@@ -87,6 +111,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void ChangingPickleNotifiesPickleProperty()
+        {
+            BriarheartBurger item = new BriarheartBurger();
+            Assert.PropertyChanged(item, "Pickle", () => { item.Pickle = false; });
+            Assert.PropertyChanged(item, "Pickle", () => { item.Pickle = true; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetCheese()
         {
             BriarheartBurger item = new BriarheartBurger();
@@ -94,6 +126,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.False(item.Cheese);
             item.Cheese = true;
             Assert.True(item.Cheese);
+        }
+
+        [Fact]
+        public void ChangingCheeseNotifiesCheeseProperty()
+        {
+            BriarheartBurger item = new BriarheartBurger();
+            Assert.PropertyChanged(item, "Cheese", () => { item.Cheese = false; });
+            Assert.PropertyChanged(item, "Cheese", () => { item.Cheese = true; });
         }
 
         [Fact]

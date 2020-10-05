@@ -23,10 +23,10 @@
         </Label>
 
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2">
-            <CheckBox Name="_broccoli" Content="Broccoli" FontSize="20" Margin="5"/>
-            <CheckBox Name="_mushrooms" Content="Mushrooms" FontSize="20" Margin="5"/>
-            <CheckBox Name="_tomato" Content="Tomato" FontSize="20" Margin="5"/>
-            <CheckBox Name="_chedder" Content="Chedder" FontSize="20" Margin="5"/>
+            <CheckBox Name="_broccoli" Content="Broccoli" IsChecked="{Binding Path=Item.Broccoli, Mode=TwoWay}" FontSize="20" Margin="5"/>
+            <CheckBox Name="_mushrooms" Content="Mushrooms" IsChecked="{Binding Path=Item.Mushrooms, Mode=TwoWay}" FontSize="20" Margin="5"/>
+            <CheckBox Name="_tomato" Content="Tomato" IsChecked="{Binding Path=Item.Tomato, Mode=TwoWay}" FontSize="20" Margin="5"/>
+            <CheckBox Name="_chedder" Content="Chedder" IsChecked="{Binding Path=Item.Chedder, Mode=TwoWay}" FontSize="20" Margin="5"/>
         </StackPanel>
 
         <Button Grid.Row="1" Grid.Column="2" FontWeight="Bold" FontSize="35" Click="customizationDone" Height="75" VerticalAlignment="Bottom">

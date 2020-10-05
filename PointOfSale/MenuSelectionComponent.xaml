@@ -5,61 +5,74 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PointOfSale"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="500">
+             d:DesignHeight="700" d:DesignWidth="600">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0">
-            <Button Name="E1" Margin="5" Height="45" Click="addBriarheartBurger">
+        
+            <Button Grid.Row="0" Grid.Column="0" Margin="5" Click="addBriarheartBurger">
                 Briarheart Burger
             </Button>
-            <Button Name="E2" Margin="5" Height="45" Click="addDoubleDraugr">
+            <Button Grid.Row="1" Grid.Column="0" Margin="5" Click="addDoubleDraugr">
                 Double Draugr
             </Button>
-            <Button Name="E6" Margin="5" Height="45" Click="addThalmorTriple">
+            <Button Grid.Row="2" Grid.Column="0" Margin="5" Click="addThalmorTriple">
                 Thalmor Triple
             </Button>
-            <Button Name="E5" Margin="5" Height="45" Content="Smokehouse&#xD;&#xA;Skeleton" Click="addSmokehouseSkeleton"/>
-            <Button Name="E3" Margin="5" Height="45" Content="Garden Orc&#xD;&#xA;Omelette" Click="addGardenOrcOmelette"/>
-            <Button Name="E4" Margin="5" Height="45" Click="addPhillyPoacher">
+            <Button Grid.Row="3" Grid.Column="0" Margin="5" Click="addSmokehouseSkeleton">
+                Smokehouse Skeleton
+            </Button>
+            <Button Grid.Row="4" Grid.Column="0" Margin="5" Click="addGardenOrcOmelette">
+                Garden Orc Omelette
+            </Button>
+            <Button Grid.Row="5" Grid.Column="0" Margin="5" Click="addPhillyPoacher">
                 Philly Poacher
             </Button>
-            <Button Name="E7" Margin="5" Height="45" Click="addThugsTBone">
+            <Button Grid.Row="6" Grid.Column="0" Margin="5" Click="addThugsTBone">
                 Thugs T-Bone
             </Button>
-        </StackPanel>
 
-        <StackPanel Grid.Column="1">
-            <Button Margin="5" Height="45" Click="addSailorSoda">
+            <Button Grid.Row="0" Grid.Column="1" Margin="5" Click="addSailorSoda">
                 Sailor Soda
             </Button>
-            <Button Margin="5" Height="45" Click="addMarkarthMilk">
+            <Button Grid.Row="1" Grid.Column="1" Margin="5" Click="addMarkarthMilk">
                 Markarth Milk
             </Button>
-            <Button Margin="5" Height="45" Click="addAretinoAppleJuice" Content="Aretino Apple&#xD;&#xA;Juice"/>
-            <Button Margin="5" Height="45" Click="addCandlehearthCoffee" Content="Candlehearth&#xD;&#xA;Coffee"/>
-            <Button Margin="5" Height="45" Click="addWarriorWater">
+            <Button Grid.Row="2" Grid.Column="1" Margin="5" Click="addAretinoAppleJuice">
+                Aretino Apple Juice
+            </Button>
+            <Button Grid.Row="3" Grid.Column="1" Margin="5" Click="addCandlehearthCoffee">
+                Candlehearth Coffee
+            </Button>
+            <Button Grid.Row="4" Grid.Column="1" Margin="5" Click="addWarriorWater">
                 Warrior Water
             </Button>
-        </StackPanel>
 
-        <StackPanel Grid.Column="2">
-            <Button Margin="5" Height="45" Click="addVokunSalad">
+            <Button Grid.Row="0" Grid.Column="2" Margin="5" Click="addVokunSalad">
                 Vokun Salad
             </Button>
-            <Button Margin="5" Height="45" Click="addFriedMiraak">
+            <Button Grid.Row="1" Grid.Column="2" Margin="5" Click="addMadOtarGrits">
                 Mad Otar Grits
             </Button>
-            <Button Margin="5" Height="45" Click="addFriedMiraak">
+            <Button Grid.Row="2" Grid.Column="2" Margin="5" Click="addFriedMiraak">
                 Fried Miraak
             </Button>
-            <Button Margin="5" Height="45" Content="Dragonborn Waffle&#xD;&#xA;Fries" Click="addDragonbornWaffleFries"/>
-        </StackPanel>
-
+            <Button Grid.Row="3" Grid.Column="2" Margin="5" Click="addDragonbornWaffleFries">
+                Dragonborn Waffle&#xD;&#xA;Fries
+            </Button>
     </Grid>
 
 </UserControl>

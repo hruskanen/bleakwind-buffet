@@ -55,7 +55,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                sausageLink = value;
+                if (sausageLink != value)
+                {
+                    sausageLink = value;
+                    NotifyPropertyChanged("SausageLink");
+                }
             }
         }
 
@@ -71,7 +75,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                egg = value;
+                if (egg != value)
+                {
+                    egg = value;
+                    NotifyPropertyChanged("Egg");
+                }
             }
         }
 
@@ -87,7 +95,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                hashBrowns = value;
+                if (hashBrowns != value)
+                {
+                    hashBrowns = value;
+                    NotifyPropertyChanged("HashBrowns");
+                }
             }
         }
 
@@ -103,7 +115,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                pancake = value;
+                if (pancake != value)
+                {
+                    pancake = value;
+                    NotifyPropertyChanged("Pancake");
+                }
             }
         }
 

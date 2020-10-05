@@ -43,6 +43,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void ChangingSirloinNotifiesSirloinProperty()
+        {
+            PhillyPoacher item = new PhillyPoacher();
+            Assert.PropertyChanged(item, "Sirloin", () => { item.Sirloin = false; });
+            Assert.PropertyChanged(item, "Sirloin", () => { item.Sirloin = true; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetOnions()
         {
             PhillyPoacher item = new PhillyPoacher();
@@ -53,6 +61,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void ChangingOnionNotifiesOnionProperty()
+        {
+            PhillyPoacher item = new PhillyPoacher();
+            Assert.PropertyChanged(item, "Onion", () => { item.Onion = false; });
+            Assert.PropertyChanged(item, "Onion", () => { item.Onion = true; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetRoll()
         {
             PhillyPoacher item = new PhillyPoacher();
@@ -60,6 +76,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.False(item.Roll);
             item.Roll = true;
             Assert.True(item.Roll);
+        }
+
+        [Fact]
+        public void ChangingRollNotifiesRollProperty()
+        {
+            PhillyPoacher item = new PhillyPoacher();
+            Assert.PropertyChanged(item, "Roll", () => { item.Roll = false; });
+            Assert.PropertyChanged(item, "Roll", () => { item.Roll = true; });
         }
 
         [Fact]

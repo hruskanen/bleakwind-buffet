@@ -51,6 +51,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         }
 
         [Fact]
+        public void ChangingIceNotifiesIceProperty()
+        {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            Assert.PropertyChanged(item, "Ice", () => { item.Ice = true; });
+            Assert.PropertyChanged(item, "Ice", () => { item.Ice = false; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetDecaf()
         {
             CandlehearthCoffee item = new CandlehearthCoffee();
@@ -59,11 +67,27 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         }
 
         [Fact]
+        public void ChangingDecafNotifiesDecafProperty()
+        {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            Assert.PropertyChanged(item, "Decaf", () => { item.Decaf = true; });
+            Assert.PropertyChanged(item, "Decaf", () => { item.Decaf = false; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetRoomForCream()
         {
             CandlehearthCoffee item = new CandlehearthCoffee();
             item.RoomForCream = true;
             Assert.True(item.RoomForCream);
+        }
+
+        [Fact]
+        public void ChangingRoomForCreamNotifiesRoomForCreamProperty()
+        {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            Assert.PropertyChanged(item, "RoomForCream", () => { item.RoomForCream = true; });
+            Assert.PropertyChanged(item, "RoomForCream", () => { item.RoomForCream = false; });
         }
 
         [Fact]
@@ -76,6 +100,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             Assert.Equal(Size.Medium, item.Size);
             item.Size = Size.Small;
             Assert.Equal(Size.Small, item.Size);
+        }
+
+        [Fact]
+        public void ChangingSizeNotifiesSizeProperty()
+        {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Large; });
+            Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Medium; });
+            Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Small; });
         }
 
         [Theory]

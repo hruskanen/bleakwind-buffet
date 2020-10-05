@@ -59,7 +59,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                bun = value;
+                if (bun != value)
+                {
+                    bun = value;
+                    NotifyPropertyChanged("Bun");
+                }
             }
         }
 
@@ -75,7 +79,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                ketchup = value;
+                if (ketchup != value)
+                {
+                    ketchup = value;
+                    NotifyPropertyChanged("Ketchup");
+                }
             }
         }
 
@@ -91,7 +99,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                mustard = value;
+                if (mustard != value)
+                {
+                    mustard = value;
+                    NotifyPropertyChanged("Mustard");
+                }
             }
         }
 
@@ -107,7 +119,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                pickle = value;
+                if (pickle != value)
+                {
+                    pickle = value;
+                    NotifyPropertyChanged("Pickle");
+                }
             }
         }
 
@@ -123,7 +139,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                cheese = value;
+                if (cheese != value)
+                {
+                    cheese = value;
+                    NotifyPropertyChanged("Cheese");
+                }
             }
         }
 
@@ -139,7 +159,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                tomato = value;
+                if (tomato != value)
+                {
+                    tomato = value;
+                    NotifyPropertyChanged("Tomato");
+                }
             }
         }
 
@@ -155,7 +179,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                lettuce = value;
+                if (lettuce != value)
+                {
+                    lettuce = value;
+                    NotifyPropertyChanged("Lettuce");
+                }
             }
         }
 
@@ -171,7 +199,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                mayo = value;
+                if (mayo != value)
+                {
+                    mayo = value;
+                    NotifyPropertyChanged("Mayo");
+                }
             }
         }
 

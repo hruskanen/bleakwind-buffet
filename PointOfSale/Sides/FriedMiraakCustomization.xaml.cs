@@ -7,6 +7,7 @@ using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Sides;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,9 +24,23 @@ namespace PointOfSale.Sides
     /// <summary>
     /// Interaction logic for FriedMiraakCustomization.xaml
     /// </summary>
-    public partial class FriedMiraakCustomization : UserControl
+    public partial class FriedMiraakCustomization : UserControl, INotifyPropertyChanged
     {
         OrderComponent parent;
+        double _price;
+        private FriedMiraak _Item;
+        public FriedMiraak Item
+        {
+            get { return _Item; }
+            set
+            {
+                if (_Item != value)
+                {
+                    _Item = value;
+                    NotifyPropertyChanged("Item");
+                }
+            }
+        }
 
         /// <summary>
         /// imports the item and allows to to edit it or delete it
@@ -34,11 +49,11 @@ namespace PointOfSale.Sides
         /// <param name="item">add the inputed item in to the Customization</param>
         public FriedMiraakCustomization(OrderComponent orderComponent, FriedMiraak item)
         {
+            Item = item;
             this.parent = orderComponent;
+            DataContext = this;
             InitializeComponent();
-            if (item.Size == BleakwindBuffet.Data.Enums.Size.Small) _size.SelectedItem = _small;
-            if (item.Size == BleakwindBuffet.Data.Enums.Size.Medium) _size.SelectedItem = _meduim;
-            if (item.Size == BleakwindBuffet.Data.Enums.Size.Large) _size.SelectedItem = _large;
+            _price = item.Price;
         }
 
         /// <summary>
@@ -48,11 +63,9 @@ namespace PointOfSale.Sides
         /// <param name="e"></param>
         void customizationDone(object sender, RoutedEventArgs e)
         {
-            FriedMiraak item = new FriedMiraak();
-            if (_size.SelectedItem == _small) item.Size = BleakwindBuffet.Data.Enums.Size.Small;
-            if (_size.SelectedItem == _meduim) item.Size = BleakwindBuffet.Data.Enums.Size.Medium;
-            if (_size.SelectedItem == _large) item.Size = BleakwindBuffet.Data.Enums.Size.Large;
-            parent.order.Items[parent.currentListIndex] = item;
+            parent.order.Items[parent.currentListIndex] = Item;
+            parent._subTotal -= _price;
+            parent._subTotal += Item.Price;
             parent.showMenu();
         }
 
@@ -63,8 +76,19 @@ namespace PointOfSale.Sides
         /// <param name="e"></param>
         void customizationRemove(object sender, RoutedEventArgs e)
         {
+            parent._subTotal -= Item.Price;
             parent.order.Items.RemoveAt(parent.currentListIndex);
             parent.showMenu();
+        }
+
+        /// <summary>
+        /// Creats and event handler if a property has changed
+        /// </summary>
+        /// <param name="propertyName"> the property that changed </param>
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -22,15 +22,63 @@ using BleakwindBuffet.Data.Drinks;
 using PointOfSale.Entrees;
 using PointOfSale.Drinks;
 using PointOfSale.Sides;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace PointOfSale
 {
     /// <summary>
     /// Interaction logic for OrderComponent.xaml
     /// </summary>
-    public partial class OrderComponent : UserControl
+    public partial class OrderComponent : UserControl, INotifyPropertyChanged
     {
         public int currentListIndex = 0;
+        
+        private double _SubTotal = 0;
+        public double _subTotal
+        {
+            get { return _SubTotal; }
+            set
+            {
+                if (_SubTotal != value)
+                {
+                    _SubTotal = value;
+                    _tax = value * .0895;
+                    _total = value + (value * .0895);
+                    NotifyPropertyChanged("_subTotal");
+                }
+            }
+        }
+
+
+        private double _Tax;
+        public double _tax
+        {
+            get { return _Tax; }
+            set
+            {
+                if(_Tax != value)
+                {
+                    _Tax = value;
+                    NotifyPropertyChanged("_tax");
+                }
+            }
+        }
+        
+        private double _Total;
+        public double _total
+        {
+            get { return _Total; }
+            set
+            {
+                if (_Total != value)
+                {
+                    _Total = value;
+                    NotifyPropertyChanged("_total");
+                }
+            }
+        }
+
         
         /// <summary>
         /// creates the base and brings up the menu
@@ -38,6 +86,7 @@ namespace PointOfSale
         public OrderComponent()
         {
             InitializeComponent();
+            DataContext = this;
             showMenu();
         }
 
@@ -46,6 +95,7 @@ namespace PointOfSale
         /// </summary>
         public void showMenu()
         {
+            order.Items.Refresh();
             containerBorder.Child = new MenuSelectionComponent(this);
         }
 
@@ -130,6 +180,38 @@ namespace PointOfSale
         {
             currentListIndex = order.Items.IndexOf(item: order.SelectedItem);
             swapScreens();
+        }
+
+        /// <summary>
+        /// Cancles the current order and clears the order list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void cancelOrder(object sender, RoutedEventArgs e)
+        {
+            order.Items.Clear();
+            _subTotal = 0;
+            MessageBox.Show("Order Canceled", "Cancled");
+        }
+
+        /// <summary>
+        /// Sends the current order and clears the order list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void sendOrder(object sender, RoutedEventArgs e)
+        {
+            //Send order.Items here
+            order.Items.Clear();
+            _subTotal = 0;
+            MessageBox.Show("Order Sent", "Sent");
+            //didn't know where to send it so the comment and meesage box and a place holder
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

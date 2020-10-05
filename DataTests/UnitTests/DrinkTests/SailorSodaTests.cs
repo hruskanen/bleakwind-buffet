@@ -44,6 +44,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         }
 
         [Fact]
+        public void ChangingIceNotifiesIceProperty()
+        {
+            SailorSoda item = new SailorSoda();
+            Assert.PropertyChanged(item, "Ice", () => { item.Ice = false; });
+            Assert.PropertyChanged(item, "Ice", () => { item.Ice = true; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetSize()
         {
             SailorSoda item = new SailorSoda();
@@ -53,6 +61,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             Assert.Equal(Size.Medium, item.Size);
             item.Size = Size.Small;
             Assert.Equal(Size.Small, item.Size);
+        }
+
+        [Fact]
+        public void ChangingSizeNotifiesSizeProperty()
+        {
+            SailorSoda item = new SailorSoda();
+            Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Large; });
+            Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Medium; });
+            Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Small; });
         }
 
         [Fact]
@@ -71,6 +88,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             Assert.Equal(SodaFlavor.Peach, item.Flavor);
             item.Flavor = SodaFlavor.Watermelon;
             Assert.Equal(SodaFlavor.Watermelon, item.Flavor);
+        }
+
+        [Fact]
+        public void ChangingFlavorNotifiesFlavorProperty()
+        {
+            SailorSoda item = new SailorSoda();
+            Assert.PropertyChanged(item, "Flavor", () => { item.Flavor = SodaFlavor.Blackberry; });
+            Assert.PropertyChanged(item, "Flavor", () => { item.Flavor = SodaFlavor.Cherry; });
+            Assert.PropertyChanged(item, "Flavor", () => { item.Flavor = SodaFlavor.Grapefruit; });
+            Assert.PropertyChanged(item, "Flavor", () => { item.Flavor = SodaFlavor.Lemon; });
+            Assert.PropertyChanged(item, "Flavor", () => { item.Flavor = SodaFlavor.Peach; });
+            Assert.PropertyChanged(item, "Flavor", () => { item.Flavor = SodaFlavor.Watermelon; });
         }
 
         [Theory]

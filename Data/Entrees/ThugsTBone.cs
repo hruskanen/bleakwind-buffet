@@ -33,7 +33,6 @@ namespace BleakwindBuffet.Data.Entrees
 
         ///Unique
 
-
         /// <summary>
         /// Returns a description of the Thugs T-Bone
         /// </summary>

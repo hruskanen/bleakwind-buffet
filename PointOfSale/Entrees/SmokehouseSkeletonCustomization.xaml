@@ -23,9 +23,9 @@
         </Label>
 
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2">
-            <CheckBox Name="_sausageLink" Content="SausageLink" FontSize="20" Margin="5"/>
-            <CheckBox Name="_egg" Content="Egg" FontSize="20" Margin="5"/>
-            <CheckBox Name="_hashBrowns" Content="HashBrowns" FontSize="20" Margin="5"/>
+            <CheckBox Name="_sausageLink" Content="SausageLink" IsChecked="{Binding Path=Item.SausageLink, Mode=TwoWay}" FontSize="20" Margin="5"/>
+            <CheckBox Name="_egg" Content="Egg" IsChecked="{Binding Path=Item.Egg, Mode=TwoWay}" FontSize="20" Margin="5"/>
+            <CheckBox Name="_hashBrowns" Content="HashBrowns" IsChecked="{Binding Path=Item.HashBrowns, Mode=TwoWay}" FontSize="20" Margin="5"/>
         </StackPanel>
 
         <Button Grid.Row="1" Grid.Column="2" FontWeight="Bold" FontSize="35" Click="customizationDone" Height="75" VerticalAlignment="Bottom">

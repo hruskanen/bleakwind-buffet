@@ -5,6 +5,7 @@
 using BleakwindBuffet.Data.Entrees;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,9 +22,22 @@ namespace PointOfSale.Entrees
     /// <summary>
     /// Interaction logic for GardenOrcOmeletteCustomization.xaml
     /// </summary>
-    public partial class GardenOrcOmeletteCustomization : UserControl
+    public partial class GardenOrcOmeletteCustomization : UserControl, INotifyPropertyChanged
     {
         OrderComponent parent;
+        private GardenOrcOmelette _Item;
+        public GardenOrcOmelette Item
+        {
+            get { return _Item; }
+            set
+            {
+                if (_Item != value)
+                {
+                    _Item = value;
+                    NotifyPropertyChanged("Item");
+                }
+            }
+        }
 
         /// <summary>
         /// imports the item and allows to to edit it or delete it
@@ -32,12 +46,10 @@ namespace PointOfSale.Entrees
         /// <param name="item">add the inputed item in to the Customization</param>
         public GardenOrcOmeletteCustomization(OrderComponent orderComponent, GardenOrcOmelette item)
         {
+            Item = item;
             this.parent = orderComponent;
+            DataContext = this;
             InitializeComponent();
-            _broccoli.IsChecked = item.Broccoli;
-            _mushrooms.IsChecked = item.Mushrooms;
-            _tomato.IsChecked = item.Tomato;
-            _chedder.IsChecked = item.Cheddar;
         }
 
         /// <summary>
@@ -47,14 +59,7 @@ namespace PointOfSale.Entrees
         /// <param name="e"></param>
         void customizationDone(object sender, RoutedEventArgs e)
         {
-            GardenOrcOmelette item = new GardenOrcOmelette()
-            {
-                Broccoli = (bool)_broccoli.IsChecked,
-                Mushrooms = (bool)_mushrooms.IsChecked,
-                Tomato = (bool)_tomato.IsChecked,
-                Cheddar = (bool)_chedder.IsChecked
-            };
-            parent.order.Items[parent.currentListIndex] = item;
+            parent.order.Items[parent.currentListIndex] = Item;
             parent.showMenu();
         }
 
@@ -65,8 +70,19 @@ namespace PointOfSale.Entrees
         /// <param name="e"></param>
         void customizationRemove(object sender, RoutedEventArgs e)
         {
+            parent._subTotal -= Item.Price;
             parent.order.Items.RemoveAt(parent.currentListIndex);
             parent.showMenu();
+        }
+
+        /// <summary>
+        /// Creats and event handler if a property has changed
+        /// </summary>
+        /// <param name="propertyName"> the property that changed </param>
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

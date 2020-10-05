@@ -50,6 +50,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void ChangingBroccoliNotifiesBroccoliProperty()
+        {
+            GardenOrcOmelette item = new GardenOrcOmelette();
+            Assert.PropertyChanged(item, "Broccoli", () => { item.Broccoli = false; });
+            Assert.PropertyChanged(item, "Broccoli", () => { item.Broccoli = true; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetMushrooms()
         {
             GardenOrcOmelette item = new GardenOrcOmelette();
@@ -57,6 +65,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.False(item.Mushrooms);
             item.Mushrooms = true;
             Assert.True(item.Mushrooms);
+        }
+
+        [Fact]
+        public void ChangingMushroomsNotifiesMushroomsProperty()
+        {
+            GardenOrcOmelette item = new GardenOrcOmelette();
+            Assert.PropertyChanged(item, "Mushrooms", () => { item.Mushrooms = false; });
+            Assert.PropertyChanged(item, "Mushrooms", () => { item.Mushrooms = true; });
         }
 
         [Fact]
@@ -70,6 +86,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void ChangingTomatoNotifiesTomatoProperty()
+        {
+            GardenOrcOmelette item = new GardenOrcOmelette();
+            Assert.PropertyChanged(item, "Tomato", () => { item.Tomato = false; });
+            Assert.PropertyChanged(item, "Tomato", () => { item.Tomato = true; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetCheddar()
         {
             GardenOrcOmelette item = new GardenOrcOmelette();
@@ -77,6 +101,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.False(item.Cheddar);
             item.Cheddar = true;
             Assert.True(item.Cheddar);
+        }
+
+        [Fact]
+        public void ChangingBunNotifiesBunProperty()
+        {
+            GardenOrcOmelette item = new GardenOrcOmelette();
+            Assert.PropertyChanged(item, "Cheddar", () => { item.Cheddar = false; });
+            Assert.PropertyChanged(item, "Cheddar", () => { item.Cheddar = true; });
         }
 
         [Fact]

@@ -5,6 +5,7 @@
 using BleakwindBuffet.Data.Entrees;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,9 +22,22 @@ namespace PointOfSale.Entrees
     /// <summary>
     /// Interaction logic for DoubleDraugrCustomization.xaml
     /// </summary>
-    public partial class DoubleDraugrCustomization : UserControl
+    public partial class DoubleDraugrCustomization : UserControl, INotifyPropertyChanged
     {
         OrderComponent parent;
+        private DoubleDraugr _Item;
+        public DoubleDraugr Item
+        {
+            get { return _Item; }
+            set
+            {
+                if (_Item != value)
+                {
+                    _Item = value;
+                    NotifyPropertyChanged("Item");
+                }
+            }
+        }
 
         /// <summary>
         /// imports the item and allows to to edit it or delete it
@@ -32,16 +46,10 @@ namespace PointOfSale.Entrees
         /// <param name="item">add the inputed item in to the Customization</param>
         public DoubleDraugrCustomization(OrderComponent orderComponent, DoubleDraugr item)
         {
+            Item = item;
             this.parent = orderComponent;
+            DataContext = this;
             InitializeComponent();
-            _bun.IsChecked = item.Bun;
-            _ketchup.IsChecked = item.Ketchup;
-            _mustard.IsChecked = item.Mustard;
-            _pickle.IsChecked = item.Pickle;
-            _cheese.IsChecked = item.Cheese;
-            _tomato.IsChecked = item.Tomato;
-            _lettuce.IsChecked = item.Lettuce;
-            _mayo.IsChecked = item.Mayo;
         }
 
         /// <summary>
@@ -51,18 +59,7 @@ namespace PointOfSale.Entrees
         /// <param name="e"></param>
         void customizationDone(object sender, RoutedEventArgs e)
         {
-            DoubleDraugr item = new DoubleDraugr()
-            {
-                Bun = (bool)_bun.IsChecked,
-                Ketchup = (bool)_ketchup.IsChecked,
-                Mustard = (bool)_mustard.IsChecked,
-                Pickle = (bool)_pickle.IsChecked,
-                Cheese = (bool)_cheese.IsChecked,
-                Tomato = (bool)_tomato.IsChecked,
-                Lettuce = (bool)_lettuce.IsChecked,
-                Mayo = (bool)_mayo.IsChecked
-        };
-            parent.order.Items[parent.currentListIndex] = item;
+            parent.order.Items[parent.currentListIndex] = Item;
             parent.showMenu();
         }
 
@@ -73,8 +70,19 @@ namespace PointOfSale.Entrees
         /// <param name="e"></param>
         void customizationRemove(object sender, RoutedEventArgs e)
         {
+            parent._subTotal -= Item.Price;
             parent.order.Items.RemoveAt(parent.currentListIndex);
             parent.showMenu();
+        }
+
+        /// <summary>
+        /// Creats and event handler if a property has changed
+        /// </summary>
+        /// <param name="propertyName"> the property that changed </param>
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

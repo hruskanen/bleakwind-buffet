@@ -78,6 +78,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void ChangingBunNotifiesBunProperty()
+        {
+            DoubleDraugr item = new DoubleDraugr();
+            Assert.PropertyChanged(item, "Bun", () => { item.Bun = false; });
+            Assert.PropertyChanged(item, "Bun", () => { item.Bun = true; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetKetchup()
         {
             DoubleDraugr item = new DoubleDraugr();
@@ -85,6 +93,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.False(item.Ketchup);
             item.Ketchup = true;
             Assert.True(item.Ketchup);
+        }
+
+        [Fact]
+        public void ChangingKetchupNotifiesKetchupProperty()
+        {
+            DoubleDraugr item = new DoubleDraugr();
+            Assert.PropertyChanged(item, "Ketchup", () => { item.Ketchup = false; });
+            Assert.PropertyChanged(item, "Ketchup", () => { item.Ketchup = true; });
         }
 
         [Fact]
@@ -98,6 +114,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void ChangingMustardNotifiesMustardProperty()
+        {
+            DoubleDraugr item = new DoubleDraugr();
+            Assert.PropertyChanged(item, "Mustard", () => { item.Mustard = false; });
+            Assert.PropertyChanged(item, "Mustard", () => { item.Mustard = true; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetPickle()
         {
             DoubleDraugr item = new DoubleDraugr();
@@ -105,6 +129,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.False(item.Pickle);
             item.Pickle = true;
             Assert.True(item.Pickle);
+        }
+
+        [Fact]
+        public void ChangingPickleNotifiesPickleProperty()
+        {
+            DoubleDraugr item = new DoubleDraugr();
+            Assert.PropertyChanged(item, "Pickle", () => { item.Pickle = false; });
+            Assert.PropertyChanged(item, "Pickle", () => { item.Pickle = true; });
         }
 
         [Fact]
@@ -118,6 +150,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void ChangingCheeseNotifiesCheeseProperty()
+        {
+            DoubleDraugr item = new DoubleDraugr();
+            Assert.PropertyChanged(item, "Cheese", () => { item.Cheese = false; });
+            Assert.PropertyChanged(item, "Cheese", () => { item.Cheese = true; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetTomato()
         {
             DoubleDraugr item = new DoubleDraugr();
@@ -125,6 +165,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.False(item.Tomato);
             item.Tomato = true;
             Assert.True(item.Tomato);
+        }
+
+        [Fact]
+        public void ChangingTomatoNotifiesTomatoProperty()
+        {
+            DoubleDraugr item = new DoubleDraugr();
+            Assert.PropertyChanged(item, "Tomato", () => { item.Tomato = false; });
+            Assert.PropertyChanged(item, "Tomato", () => { item.Tomato = true; });
         }
 
         [Fact]
@@ -138,6 +186,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void ChangingLettuceNotifiesLettuceProperty()
+        {
+            DoubleDraugr item = new DoubleDraugr();
+            Assert.PropertyChanged(item, "Lettuce", () => { item.Lettuce = false; });
+            Assert.PropertyChanged(item, "Lettuce", () => { item.Lettuce = true; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetMayo()
         {
             DoubleDraugr item = new DoubleDraugr();
@@ -145,6 +201,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.False(item.Mayo);
             item.Mayo = true;
             Assert.True(item.Mayo);
+        }
+
+        [Fact]
+        public void ChangingMayoNotifiesMayoProperty()
+        {
+            DoubleDraugr item = new DoubleDraugr();
+            Assert.PropertyChanged(item, "Mayo", () => { item.Mayo = false; });
+            Assert.PropertyChanged(item, "Mayo", () => { item.Mayo = true; });
         }
 
         [Fact]

@@ -23,16 +23,16 @@
         </Label>
 
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2">
-            <CheckBox Name="_bun" Content="Bun" FontSize="20" Margin="3"/>
-            <CheckBox Name="_ketchup" Content="Ketchup" FontSize="20" Margin="3"/>
-            <CheckBox Name="_mustard" Content="Mustard" FontSize="20" Margin="3"/>
-            <CheckBox Name="_pickle" Content="Pickle" FontSize="20" Margin="3"/>
-            <CheckBox Name="_cheese" Content="Chesse" FontSize="20" Margin="3"/>
-            <CheckBox Name="_tomato" Content="Tomato" FontSize="20" Margin="3"/>
-            <CheckBox Name="_lettuce" Content="Lettuce" FontSize="20" Margin="3"/>
-            <CheckBox Name="_mayo" Content="Mayo" FontSize="20" Margin="3"/>
-            <CheckBox Name="_bacon" Content="Bacon" FontSize="20" Margin="3"/>
-            <CheckBox Name="_egg" Content="Egg" FontSize="20" Margin="3"/>
+            <CheckBox Name="_bun" Content="Bun" IsChecked="{Binding Path=Item.Bun, Mode=TwoWay}" FontSize="20" Margin="3"/>
+            <CheckBox Name="_ketchup" Content="Ketchup" IsChecked="{Binding Path=Item.Ketchup, Mode=TwoWay}" FontSize="20" Margin="3"/>
+            <CheckBox Name="_mustard" Content="Mustard" IsChecked="{Binding Path=Item.Mustard, Mode=TwoWay}" FontSize="20" Margin="3"/>
+            <CheckBox Name="_pickle" Content="Pickle" IsChecked="{Binding Path=Item.Pickle, Mode=TwoWay}" FontSize="20" Margin="3"/>
+            <CheckBox Name="_cheese" Content="Cheese" IsChecked="{Binding Path=Item.Cheese, Mode=TwoWay}" FontSize="20" Margin="3"/>
+            <CheckBox Name="_tomato" Content="Tomato" IsChecked="{Binding Path=Item.Tomato, Mode=TwoWay}" FontSize="20" Margin="3"/>
+            <CheckBox Name="_lettuce" Content="Lettuce" IsChecked="{Binding Path=Item.Lettuce, Mode=TwoWay}" FontSize="20" Margin="3"/>
+            <CheckBox Name="_mayo" Content="Mayo" IsChecked="{Binding Path=Item.Mayo, Mode=TwoWay}" FontSize="20" Margin="3"/>
+            <CheckBox Name="_bacon" Content="Bacon" IsChecked="{Binding Path=Item.Bacon, Mode=TwoWay}" FontSize="20" Margin="3"/>
+            <CheckBox Name="_egg" Content="Egg" IsChecked="{Binding Path=Item.Egg, Mode=TwoWay}" FontSize="20" Margin="3"/>
         </StackPanel>
 
         <Button Grid.Row="1" Grid.Column="2" FontWeight="Bold" FontSize="35" Click="customizationDone" Height="75" VerticalAlignment="Bottom">

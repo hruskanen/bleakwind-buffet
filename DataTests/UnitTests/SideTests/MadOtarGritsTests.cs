@@ -32,6 +32,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         }
 
         [Fact]
+        public void ChangingSizeNotifiesSizeProperty()
+        {
+            MadOtarGrits item = new MadOtarGrits();
+            Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Large; });
+            Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Medium; });
+            Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Small; });
+        }
+
+        [Fact]
         public void ShouldReturnCorrectStringOnSpecialInstructions()
         {
             MadOtarGrits item = new MadOtarGrits();

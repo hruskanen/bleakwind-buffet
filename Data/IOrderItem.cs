@@ -6,16 +6,17 @@
 using BleakwindBuffet.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BleakwindBuffet.Data
 {
-    public class IOrderItem
+    public class IOrderItem : INotifyPropertyChanged
     {
         /// <summary>
         /// The size of the drinks
         /// </summary>
-        Size Size { get; set; } = Size.Small;
+        Size Size { get; set; }
 
         /// <summary>
         /// The price of the drinks
@@ -32,5 +33,15 @@ namespace BleakwindBuffet.Data
         /// Special Instructions to prepare the drinks
         /// </summary>
         List<string> SpecialInstructions { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="propertyName"></param>
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

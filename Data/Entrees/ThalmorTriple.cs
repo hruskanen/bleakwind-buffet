@@ -61,7 +61,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                bun = value;
+                if (bun != value)
+                {
+                    bun = value;
+                    NotifyPropertyChanged("Bun");
+                }
             }
         }
 
@@ -77,7 +81,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                ketchup = value;
+                if (ketchup != value)
+                {
+                    ketchup = value;
+                    NotifyPropertyChanged("Ketchup");
+                }
             }
         }
 
@@ -93,12 +101,16 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                mustard = value;
+                if (mustard != value)
+                {
+                    mustard = value;
+                    NotifyPropertyChanged("Mustard");
+                }
             }
         }
 
         /// <summary>
-        /// Creates public and private bool pickle on if the pickles should be added
+        /// Creates public and private bool pickles on if the pickles should be added
         /// </summary>
         private bool pickle = true;
         public bool Pickle
@@ -109,7 +121,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                pickle = value;
+                if (pickle != value)
+                {
+                    pickle = value;
+                    NotifyPropertyChanged("Pickle");
+                }
             }
         }
 
@@ -125,12 +141,16 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                cheese = value;
+                if (cheese != value)
+                {
+                    cheese = value;
+                    NotifyPropertyChanged("Cheese");
+                }
             }
         }
 
         /// <summary>
-        /// Creates public and private bool tomato on if the tomatos should be added
+        /// Creates public and private bool tomatos on if the tomatos should be added
         /// </summary>
         private bool tomato = true;
         public bool Tomato
@@ -141,7 +161,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                tomato = value;
+                if (tomato != value)
+                {
+                    tomato = value;
+                    NotifyPropertyChanged("Tomato");
+                }
             }
         }
 
@@ -157,7 +181,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                lettuce = value;
+                if (lettuce != value)
+                {
+                    lettuce = value;
+                    NotifyPropertyChanged("Lettuce");
+                }
             }
         }
 
@@ -173,7 +201,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                mayo = value;
+                if (mayo != value)
+                {
+                    mayo = value;
+                    NotifyPropertyChanged("Mayo");
+                }
             }
         }
 
@@ -189,7 +221,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                bacon = value;
+                if (bacon != value)
+                {
+                    bacon = value;
+                    NotifyPropertyChanged("Bacon");
+                }
             }
         }
 
@@ -205,7 +241,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                egg = value;
+                if (egg != value)
+                {
+                    egg = value;
+                    NotifyPropertyChanged("Egg");
+                }
             }
         }
 

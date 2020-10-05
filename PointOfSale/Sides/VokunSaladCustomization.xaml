@@ -3,9 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PointOfSale.Sides"
+             xmlns:local="clr-namespace:BleakwindBuffet.Data.Enums;assembly=Data"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="375">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="size" ObjectType="system:Enum" MethodName="GetValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:Size"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
@@ -23,11 +31,7 @@
         </Label>
 
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" >
-            <ComboBox Name="_size" Text="Size">
-                <ComboBoxItem Name="_small">Small</ComboBoxItem>
-                <ComboBoxItem Name="_meduim">Medium</ComboBoxItem>
-                <ComboBoxItem Name="_large">Large</ComboBoxItem>
-            </ComboBox>
+            <ComboBox Name="_size" ItemsSource="{Binding Source={StaticResource size}}" SelectedItem="{Binding Path=Item.Size, Mode=TwoWay}" Text="Size"/>
         </StackPanel>
 
         <Button Grid.Row="1" Grid.Column="2" FontWeight="Bold" FontSize="35" Click="customizationDone" Height="75" VerticalAlignment="Bottom">

@@ -6,6 +6,7 @@ using BleakwindBuffet.Data.Drinks;
 using BleakwindBuffet.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,9 +23,24 @@ namespace PointOfSale.Drinks
     /// <summary>
     /// Interaction logic for CandlehearthCoffeeCustomization.xaml
     /// </summary>
-    public partial class CandlehearthCoffeeCustomization : UserControl
+    public partial class CandlehearthCoffeeCustomization : UserControl, INotifyPropertyChanged
     {
         OrderComponent parent;
+        double _price;
+        private CandlehearthCoffee _Item;
+        public CandlehearthCoffee Item
+        {
+            get { return _Item; }
+            set
+            {
+                if (_Item != value)
+                {
+                    _Item = value;
+                    NotifyPropertyChanged("Item");
+                }
+            }
+        }
+
 
         /// <summary>
         /// imports the item and allows to to edit it or delete it
@@ -33,14 +49,11 @@ namespace PointOfSale.Drinks
         /// <param name="item">add the inputed item in to the Customization</param>
         public CandlehearthCoffeeCustomization(OrderComponent orderComponent, CandlehearthCoffee item)
         {
+            Item = item;
             this.parent = orderComponent;
+            DataContext = this;
             InitializeComponent();
-            if (item.Size == BleakwindBuffet.Data.Enums.Size.Small) _size.SelectedItem = _small;
-            if (item.Size == BleakwindBuffet.Data.Enums.Size.Medium) _size.SelectedItem = _meduim;
-            if (item.Size == BleakwindBuffet.Data.Enums.Size.Large) _size.SelectedItem = _large;
-            _ice.IsChecked = item.Ice;
-            _roomForCream.IsChecked = item.RoomForCream;
-            _decaf.IsChecked = item.Decaf;
+            _price = item.Price;
         }
 
         /// <summary>
@@ -50,16 +63,9 @@ namespace PointOfSale.Drinks
         /// <param name="e"></param>
         void customizationDone(object sender, RoutedEventArgs e)
         {
-            CandlehearthCoffee item = new CandlehearthCoffee()
-            {
-                Ice = (bool)_ice.IsChecked,
-                RoomForCream = (bool)_roomForCream.IsChecked,
-                Decaf = (bool)_decaf.IsChecked
-            };
-            if (_size.SelectedItem == _small) item.Size = BleakwindBuffet.Data.Enums.Size.Small;
-            if (_size.SelectedItem == _meduim) item.Size = BleakwindBuffet.Data.Enums.Size.Medium;
-            if (_size.SelectedItem == _large) item.Size = BleakwindBuffet.Data.Enums.Size.Large;
-            parent.order.Items[parent.currentListIndex] = item;
+            parent.order.Items[parent.currentListIndex] = Item;
+            parent._subTotal -= _price;
+            parent._subTotal += Item.Price;
             parent.showMenu();
         }
 
@@ -70,8 +76,20 @@ namespace PointOfSale.Drinks
         /// <param name="e"></param>
         void customizationRemove(object sender, RoutedEventArgs e)
         {
+            parent._subTotal -= Item.Price;
             parent.order.Items.RemoveAt(parent.currentListIndex);
             parent.showMenu();
         }
+
+        /// <summary>
+        /// Creats and event handler if a property has changed
+        /// </summary>
+        /// <param name="propertyName"> the property that changed </param>
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
+

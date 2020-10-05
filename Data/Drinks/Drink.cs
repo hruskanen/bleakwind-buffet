@@ -6,6 +6,7 @@
 using BleakwindBuffet.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BleakwindBuffet.Data.Drinks
@@ -18,7 +19,22 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// The size of the drinks
         /// </summary>
-        public virtual Size Size { get; set; } = Size.Small;
+        private Size size = Size.Small;
+        public virtual Size Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                if (size != value)
+                {
+                    size = value;
+                    NotifyPropertyChanged("Size");
+                }
+            }
+        }
 
         /// <summary>
         /// The price of the drinks

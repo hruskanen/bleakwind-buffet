@@ -57,7 +57,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                bun = value;
+                if (bun != value)
+                {
+                    bun = value;
+                    NotifyPropertyChanged("Bun");
+                }
             } 
         }
 
@@ -73,7 +77,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                ketchup = value;
+                if (ketchup != value)
+                {
+                    ketchup = value;
+                    NotifyPropertyChanged("Ketchup");
+                }
             }
         }
 
@@ -89,7 +97,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                mustard = value;
+                if (mustard != value)
+                {
+                    mustard = value;
+                    NotifyPropertyChanged("Mustard");
+                }
             }
         }
 
@@ -105,8 +117,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                pickle = value;
-                SpecialInstructions.Add("Hold Pickle");
+                if (pickle != value)
+                {
+                    pickle = value;
+                    NotifyPropertyChanged("Pickle");
+                }
             }
         }
 
@@ -122,7 +137,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                cheese = value;
+                if (cheese != value)
+                {
+                    cheese = value;
+                    NotifyPropertyChanged("Cheese");
+                }
             }
         }
 

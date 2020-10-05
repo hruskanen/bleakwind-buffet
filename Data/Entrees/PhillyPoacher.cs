@@ -54,7 +54,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                sirloin = value;
+                if (sirloin != value)
+                {
+                    sirloin = value;
+                    NotifyPropertyChanged("Sirloin");
+                }
             }
         }
 
@@ -70,7 +74,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                onion = value;
+                if (onion != value)
+                {
+                    onion = value;
+                    NotifyPropertyChanged("Onion");
+                };
             }
         }
 
@@ -86,8 +94,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
-                roll = value;
-                SpecialInstructions.Add("Hold Roll");
+                if (roll != value)
+                {
+                    roll = value;
+                    NotifyPropertyChanged("Roll");
+                }
             }
         }
 

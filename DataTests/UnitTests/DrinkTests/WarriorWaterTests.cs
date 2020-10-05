@@ -44,6 +44,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         }
 
         [Fact]
+        public void ChangingIceNotifiesIceProperty()
+        {
+            WarriorWater item = new WarriorWater();
+            Assert.PropertyChanged(item, "Ice", () => { item.Ice = false; });
+            Assert.PropertyChanged(item, "Ice", () => { item.Ice = true; });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetLemon()
         {
             WarriorWater item = new WarriorWater();
@@ -51,6 +59,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             Assert.True(item.Lemon);
             item.Lemon = false;
             Assert.False(item.Lemon);
+        }
+
+        [Fact]
+        public void ChangingLemonNotifiesLemonProperty()
+        {
+            WarriorWater item = new WarriorWater();
+            Assert.PropertyChanged(item, "Lemon", () => { item.Lemon = true; });
+            Assert.PropertyChanged(item, "Lemon", () => { item.Lemon = false; });
         }
 
         [Fact]
@@ -63,6 +79,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             Assert.Equal(Size.Medium, item.Size);
             item.Size = Size.Small;
             Assert.Equal(Size.Small, item.Size);
+        }
+
+        [Fact]
+        public void ChangingSizeNotifiesSizeProperty()
+        {
+            WarriorWater item = new WarriorWater();
+            Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Large; });
+            Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Medium; });
+            Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Small; });
         }
 
         [Theory]
