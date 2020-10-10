@@ -6,6 +6,7 @@
 using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
@@ -55,6 +56,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             GardenOrcOmelette item = new GardenOrcOmelette();
             Assert.PropertyChanged(item, "Broccoli", () => { item.Broccoli = false; });
             Assert.PropertyChanged(item, "Broccoli", () => { item.Broccoli = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Broccoli = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Broccoli = true; });
         }
 
         [Fact]
@@ -73,6 +76,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             GardenOrcOmelette item = new GardenOrcOmelette();
             Assert.PropertyChanged(item, "Mushrooms", () => { item.Mushrooms = false; });
             Assert.PropertyChanged(item, "Mushrooms", () => { item.Mushrooms = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Mushrooms = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Mushrooms = true; });
         }
 
         [Fact]
@@ -91,6 +96,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             GardenOrcOmelette item = new GardenOrcOmelette();
             Assert.PropertyChanged(item, "Tomato", () => { item.Tomato = false; });
             Assert.PropertyChanged(item, "Tomato", () => { item.Tomato = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Tomato = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Tomato = true; });
         }
 
         [Fact]
@@ -109,6 +116,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             GardenOrcOmelette item = new GardenOrcOmelette();
             Assert.PropertyChanged(item, "Cheddar", () => { item.Cheddar = false; });
             Assert.PropertyChanged(item, "Cheddar", () => { item.Cheddar = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Cheddar = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Cheddar = true; });
         }
 
         [Fact]
@@ -172,6 +181,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         {
             GardenOrcOmelette item = new GardenOrcOmelette();
             Assert.IsAssignableFrom<IOrderItem>(item);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChangedClass()
+        {
+            GardenOrcOmelette item = new GardenOrcOmelette();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(item);
         }
     }
 }

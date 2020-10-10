@@ -7,6 +7,7 @@ using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Drinks;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
 {
@@ -56,6 +57,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             CandlehearthCoffee item = new CandlehearthCoffee();
             Assert.PropertyChanged(item, "Ice", () => { item.Ice = true; });
             Assert.PropertyChanged(item, "Ice", () => { item.Ice = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Ice = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Ice = false; });
         }
 
         [Fact]
@@ -72,6 +75,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             CandlehearthCoffee item = new CandlehearthCoffee();
             Assert.PropertyChanged(item, "Decaf", () => { item.Decaf = true; });
             Assert.PropertyChanged(item, "Decaf", () => { item.Decaf = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Decaf = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Decaf = false; });
         }
 
         [Fact]
@@ -88,6 +93,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             CandlehearthCoffee item = new CandlehearthCoffee();
             Assert.PropertyChanged(item, "RoomForCream", () => { item.RoomForCream = true; });
             Assert.PropertyChanged(item, "RoomForCream", () => { item.RoomForCream = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.RoomForCream = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.RoomForCream = false; });
         }
 
         [Fact]
@@ -109,6 +116,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Large; });
             Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Medium; });
             Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Small; });
+            Assert.PropertyChanged(item, "Price", () => { item.Size = Size.Large; });
+            Assert.PropertyChanged(item, "Price", () => { item.Size = Size.Medium; });
+            Assert.PropertyChanged(item, "Price", () => { item.Size = Size.Small; });
+            Assert.PropertyChanged(item, "Calories", () => { item.Size = Size.Large; });
+            Assert.PropertyChanged(item, "Calories", () => { item.Size = Size.Medium; });
+            Assert.PropertyChanged(item, "Calories", () => { item.Size = Size.Small; });
         }
 
         [Theory]
@@ -180,6 +193,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         {
             CandlehearthCoffee item = new CandlehearthCoffee();
             Assert.IsAssignableFrom<IOrderItem>(item);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChangedClass()
+        {
+            CandlehearthCoffee item = new CandlehearthCoffee();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(item);
         }
     }
 }

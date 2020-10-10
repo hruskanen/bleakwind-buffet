@@ -6,6 +6,7 @@
 using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
@@ -97,6 +98,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             ThalmorTriple item = new ThalmorTriple();
             Assert.PropertyChanged(item, "Bun", () => { item.Bun = false; });
             Assert.PropertyChanged(item, "Bun", () => { item.Bun = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Bun = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Bun = true; });
         }
 
         [Fact]
@@ -115,6 +118,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             ThalmorTriple item = new ThalmorTriple();
             Assert.PropertyChanged(item, "Ketchup", () => { item.Ketchup = false; });
             Assert.PropertyChanged(item, "Ketchup", () => { item.Ketchup = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Ketchup = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Ketchup = true; });
         }
 
         [Fact]
@@ -133,6 +138,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             ThalmorTriple item = new ThalmorTriple();
             Assert.PropertyChanged(item, "Mustard", () => { item.Mustard = false; });
             Assert.PropertyChanged(item, "Mustard", () => { item.Mustard = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Mustard = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Mustard = true; });
         }
 
         [Fact]
@@ -151,6 +158,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             ThalmorTriple item = new ThalmorTriple();
             Assert.PropertyChanged(item, "Pickle", () => { item.Pickle = false; });
             Assert.PropertyChanged(item, "Pickle", () => { item.Pickle = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Pickle = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Pickle = true; });
         }
 
         [Fact]
@@ -169,6 +178,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             ThalmorTriple item = new ThalmorTriple();
             Assert.PropertyChanged(item, "Cheese", () => { item.Cheese = false; });
             Assert.PropertyChanged(item, "Cheese", () => { item.Cheese = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Cheese = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Cheese = true; });
         }
 
         [Fact]
@@ -187,6 +198,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             ThalmorTriple item = new ThalmorTriple();
             Assert.PropertyChanged(item, "Tomato", () => { item.Tomato = false; });
             Assert.PropertyChanged(item, "Tomato", () => { item.Tomato = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Tomato = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Tomato = true; });
         }
 
         [Fact]
@@ -205,6 +218,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             ThalmorTriple item = new ThalmorTriple();
             Assert.PropertyChanged(item, "Lettuce", () => { item.Lettuce = false; });
             Assert.PropertyChanged(item, "Lettuce", () => { item.Lettuce = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Lettuce = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Lettuce = true; });
         }
 
         [Fact]
@@ -223,6 +238,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             ThalmorTriple item = new ThalmorTriple();
             Assert.PropertyChanged(item, "Mayo", () => { item.Mayo = false; });
             Assert.PropertyChanged(item, "Mayo", () => { item.Mayo = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Mayo = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Mayo = true; });
         }
 
         [Fact]
@@ -241,6 +258,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             ThalmorTriple item = new ThalmorTriple();
             Assert.PropertyChanged(item, "Bacon", () => { item.Bacon = false; });
             Assert.PropertyChanged(item, "Bacon", () => { item.Bacon = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Bacon = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Bacon = true; });
         }
 
         [Fact]
@@ -259,6 +278,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             ThalmorTriple item = new ThalmorTriple();
             Assert.PropertyChanged(item, "Egg", () => { item.Egg = false; });
             Assert.PropertyChanged(item, "Egg", () => { item.Egg = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Egg = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Egg = true; });
         }
 
         [Fact]
@@ -335,6 +356,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         {
             ThalmorTriple item = new ThalmorTriple();
             Assert.IsAssignableFrom<IOrderItem>(item);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChangedClass()
+        {
+            ThalmorTriple item = new ThalmorTriple();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(item);
         }
     }
 }

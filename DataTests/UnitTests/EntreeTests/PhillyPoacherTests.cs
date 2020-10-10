@@ -6,6 +6,7 @@
 using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
@@ -48,6 +49,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             PhillyPoacher item = new PhillyPoacher();
             Assert.PropertyChanged(item, "Sirloin", () => { item.Sirloin = false; });
             Assert.PropertyChanged(item, "Sirloin", () => { item.Sirloin = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Sirloin = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Sirloin = true; });
         }
 
         [Fact]
@@ -66,6 +69,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             PhillyPoacher item = new PhillyPoacher();
             Assert.PropertyChanged(item, "Onion", () => { item.Onion = false; });
             Assert.PropertyChanged(item, "Onion", () => { item.Onion = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Onion = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Onion = true; });
         }
 
         [Fact]
@@ -84,6 +89,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             PhillyPoacher item = new PhillyPoacher();
             Assert.PropertyChanged(item, "Roll", () => { item.Roll = false; });
             Assert.PropertyChanged(item, "Roll", () => { item.Roll = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Roll = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Roll = true; });
         }
 
         [Fact]
@@ -145,6 +152,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         {
             PhillyPoacher item = new PhillyPoacher();
             Assert.IsAssignableFrom<IOrderItem>(item);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChangedClass()
+        {
+            PhillyPoacher item = new PhillyPoacher();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(item);
         }
     }
 }

@@ -6,6 +6,7 @@
 using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
@@ -62,6 +63,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             BriarheartBurger item = new BriarheartBurger();
             Assert.PropertyChanged(item, "Bun", () => { item.Bun = false; });
             Assert.PropertyChanged(item, "Bun", () => { item.Bun = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Bun = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Bun = true; });
         }
 
         [Fact]
@@ -80,6 +83,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             BriarheartBurger item = new BriarheartBurger();
             Assert.PropertyChanged(item, "Ketchup", () => { item.Ketchup = false; });
             Assert.PropertyChanged(item, "Ketchup", () => { item.Ketchup = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Ketchup = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Ketchup = true; });
         }
 
         [Fact]
@@ -98,6 +103,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             BriarheartBurger item = new BriarheartBurger();
             Assert.PropertyChanged(item, "Mustard", () => { item.Mustard = false; });
             Assert.PropertyChanged(item, "Mustard", () => { item.Mustard = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Mustard = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Mustard = true; });
         }
 
         [Fact]
@@ -116,6 +123,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             BriarheartBurger item = new BriarheartBurger();
             Assert.PropertyChanged(item, "Pickle", () => { item.Pickle = false; });
             Assert.PropertyChanged(item, "Pickle", () => { item.Pickle = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Pickle = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Pickle = true; });
         }
 
         [Fact]
@@ -134,6 +143,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             BriarheartBurger item = new BriarheartBurger();
             Assert.PropertyChanged(item, "Cheese", () => { item.Cheese = false; });
             Assert.PropertyChanged(item, "Cheese", () => { item.Cheese = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Cheese = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Cheese = true; });
         }
 
         [Fact]
@@ -199,6 +210,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         {
             BriarheartBurger item = new BriarheartBurger();
             Assert.IsAssignableFrom<IOrderItem>(item);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChangedClass()
+        {
+            BriarheartBurger item = new BriarheartBurger();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(item);
         }
     }
 }

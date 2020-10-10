@@ -25,9 +25,8 @@
         <TextBlock Grid.Row="0" Grid.ColumnSpan="3" TextAlignment="Center" VerticalAlignment="Center" FontSize="33" FontWeight="Bold">
             Bleakwind Buffet Menu
         </TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" TextAlignment="Center" VerticalAlignment="Bottom" FontSize="25">
-            Total
-        </TextBlock>
+        <Label Content="{Binding Path=_orderNumber}" ContentStringFormat="Order #{0}" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="25"/>
+
 
         <Border Name="containerBorder" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2"></Border>
 

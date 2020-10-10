@@ -6,6 +6,7 @@
 using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
@@ -55,6 +56,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             SmokehouseSkeleton item = new SmokehouseSkeleton();
             Assert.PropertyChanged(item, "SausageLink", () => { item.SausageLink = false; });
             Assert.PropertyChanged(item, "SausageLink", () => { item.SausageLink = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.SausageLink = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.SausageLink = true; });
         }
 
         [Fact]
@@ -73,6 +76,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             SmokehouseSkeleton item = new SmokehouseSkeleton();
             Assert.PropertyChanged(item, "Egg", () => { item.Egg = false; });
             Assert.PropertyChanged(item, "Egg", () => { item.Egg = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Egg = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Egg = true; });
         }
 
         [Fact]
@@ -91,6 +96,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             SmokehouseSkeleton item = new SmokehouseSkeleton();
             Assert.PropertyChanged(item, "HashBrowns", () => { item.HashBrowns = false; });
             Assert.PropertyChanged(item, "HashBrowns", () => { item.HashBrowns = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.HashBrowns = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.HashBrowns = true; });
         }
 
         [Fact]
@@ -109,6 +116,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             SmokehouseSkeleton item = new SmokehouseSkeleton();
             Assert.PropertyChanged(item, "Pancake", () => { item.Pancake = false; });
             Assert.PropertyChanged(item, "Pancake", () => { item.Pancake = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Pancake = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Pancake = true; });
         }
 
         [Fact]
@@ -172,6 +181,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         {
             SmokehouseSkeleton item = new SmokehouseSkeleton();
             Assert.IsAssignableFrom<IOrderItem>(item);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChangedClass()
+        {
+            SmokehouseSkeleton item = new SmokehouseSkeleton();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(item);
         }
     }
 }

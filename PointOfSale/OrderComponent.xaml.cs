@@ -32,6 +32,21 @@ namespace PointOfSale
     /// </summary>
     public partial class OrderComponent : UserControl, INotifyPropertyChanged
     {
+        private double _OrderNumber = 0;
+        public double _orderNumber
+        {
+            get { return _OrderNumber; }
+            set
+            {
+                if (_OrderNumber != value)
+                {
+                    _OrderNumber = value;
+                    NotifyPropertyChanged("_orderNumber");
+                }
+            }
+        }
+
+
         public int currentListIndex = 0;
         
         private double _SubTotal = 0;
@@ -204,6 +219,7 @@ namespace PointOfSale
             //Send order.Items here
             order.Items.Clear();
             _subTotal = 0;
+            _orderNumber++;
             MessageBox.Show("Order Sent", "Sent");
             //didn't know where to send it so the comment and meesage box and a place holder
         }

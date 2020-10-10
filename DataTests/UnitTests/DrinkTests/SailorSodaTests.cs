@@ -7,6 +7,7 @@ using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Drinks;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
 {
@@ -49,6 +50,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             SailorSoda item = new SailorSoda();
             Assert.PropertyChanged(item, "Ice", () => { item.Ice = false; });
             Assert.PropertyChanged(item, "Ice", () => { item.Ice = true; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Ice = false; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Ice = true; });
         }
 
         [Fact]
@@ -70,6 +73,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Large; });
             Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Medium; });
             Assert.PropertyChanged(item, "Size", () => { item.Size = Size.Small; });
+            Assert.PropertyChanged(item, "Price", () => { item.Size = Size.Large; });
+            Assert.PropertyChanged(item, "Price", () => { item.Size = Size.Medium; });
+            Assert.PropertyChanged(item, "Price", () => { item.Size = Size.Small; });
+            Assert.PropertyChanged(item, "Calories", () => { item.Size = Size.Large; });
+            Assert.PropertyChanged(item, "Calories", () => { item.Size = Size.Medium; });
+            Assert.PropertyChanged(item, "Calories", () => { item.Size = Size.Small; });
         }
 
         [Fact]
@@ -100,6 +109,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             Assert.PropertyChanged(item, "Flavor", () => { item.Flavor = SodaFlavor.Lemon; });
             Assert.PropertyChanged(item, "Flavor", () => { item.Flavor = SodaFlavor.Peach; });
             Assert.PropertyChanged(item, "Flavor", () => { item.Flavor = SodaFlavor.Watermelon; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Flavor = SodaFlavor.Blackberry; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Flavor = SodaFlavor.Cherry; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Flavor = SodaFlavor.Grapefruit; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Flavor = SodaFlavor.Lemon; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Flavor = SodaFlavor.Peach; });
+            Assert.PropertyChanged(item, "SpecialInstructions", () => { item.Flavor = SodaFlavor.Watermelon; });
         }
 
         [Theory]
@@ -180,6 +195,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         {
             SailorSoda item = new SailorSoda();
             Assert.IsAssignableFrom<IOrderItem>(item);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChangedClass()
+        {
+            SailorSoda item = new SailorSoda();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(item);
         }
     }
 }
