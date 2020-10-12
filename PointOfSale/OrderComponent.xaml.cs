@@ -50,6 +50,7 @@ namespace PointOfSale
         /// </summary>
         public void showMenu()
         {
+            SendButt.IsEnabled = curentOrder.orders.Count != 0;
             DataContext = this;
             order.Items.Refresh();
             containerBorder.Child = new MenuSelectionComponent(curentOrder);
@@ -141,6 +142,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         private void changeItem(object sender, MouseButtonEventArgs e)
         {
+            SendButt.IsEnabled = false;
             curentOrder.currentListIndex = curentOrder.orders.IndexOf(item: (object)order.SelectedItem);
             swapScreens();
         }

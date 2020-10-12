@@ -148,7 +148,6 @@ namespace PointOfSale
         public void Add(IOrderItem item)
         {
             currentListIndex = orders.Count;
-            parent.CancelButt.IsEnabled = false;
             parent.SendButt.IsEnabled = false;
             orders.Add(item);
             _subTotal += item.Price;
@@ -169,8 +168,6 @@ namespace PointOfSale
             NotifyPropertyChanged("_total");
             NotifyPropertyChanged("_totalCalories");
             orders.RemoveAt(currentListIndex);
-            parent.CancelButt.IsEnabled = true;
-            parent.SendButt.IsEnabled = true;
 
             parent.showMenu();
         }
@@ -181,7 +178,6 @@ namespace PointOfSale
         public void Change(IOrderItem item, double orgPrice, uint orgCalories)
         {
             orders[currentListIndex] = item;
-
             if (item.Price != orgPrice)
             {
                 _subTotal -= orgPrice;
@@ -196,8 +192,6 @@ namespace PointOfSale
                 _totalCalories += item.Calories;
                 NotifyPropertyChanged("_totalCalories");
             }
-            parent.CancelButt.IsEnabled = true;
-            parent.SendButt.IsEnabled = true;
 
             parent.showMenu();
         }
