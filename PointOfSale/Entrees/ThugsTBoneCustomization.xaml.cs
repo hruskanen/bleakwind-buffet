@@ -24,7 +24,9 @@ namespace PointOfSale.Entrees
     /// </summary>
     public partial class ThugsTBoneCustomization : UserControl, INotifyPropertyChanged
     {
-        OrderComponent parent;
+        Order curentOrder;
+        double orgPrice;
+        uint orgCalories;
         private ThugsTBone _Item;
         public ThugsTBone Item
         {
@@ -44,10 +46,12 @@ namespace PointOfSale.Entrees
         /// </summary>
         /// <param name="orderComponent"> creates the parent</param>
         /// <param name="item">add the inputed item in to the Customization</param>
-        public ThugsTBoneCustomization(OrderComponent orderComponent, ThugsTBone item)
+        public ThugsTBoneCustomization(Order order, ThugsTBone item)
         {
             Item = item;
-            this.parent = orderComponent;
+            orgPrice = item.Price;
+            orgCalories = item.Calories;
+            this.curentOrder = order;
             DataContext = this;
             InitializeComponent();
         }
@@ -59,8 +63,7 @@ namespace PointOfSale.Entrees
         /// <param name="e"></param>
         void customizationDone(object sender, RoutedEventArgs e)
         {
-            parent.order.Items[parent.currentListIndex] = Item;
-            parent.showMenu();
+            curentOrder.Change(Item, orgPrice, orgCalories);
         }
 
         /// <summary>
@@ -70,9 +73,7 @@ namespace PointOfSale.Entrees
         /// <param name="e"></param>
         void customizationRemove(object sender, RoutedEventArgs e)
         {
-            parent._subTotal -= Item.Price;
-            parent.order.Items.RemoveAt(parent.currentListIndex);
-            parent.showMenu();
+            curentOrder.Remove(orgPrice, orgCalories);
         }
 
         /// <summary>

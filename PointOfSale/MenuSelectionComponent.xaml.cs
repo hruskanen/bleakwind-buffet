@@ -29,14 +29,16 @@ namespace PointOfSale
     public partial class MenuSelectionComponent : UserControl
     {
         OrderComponent parent;
+        Order curentOrder;
 
         /// <summary>
         /// creates the menu and assigns the parent class
         /// </summary>
         /// <param name="orderComponent"></param>
-        public MenuSelectionComponent(OrderComponent orderComponent)
+        public MenuSelectionComponent(OrderComponent orderComponent, Order order)
         {
             this.parent = orderComponent;
+            this.curentOrder = order;
             InitializeComponent();
         }
 
@@ -47,11 +49,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addBriarheartBurger(object sender, RoutedEventArgs e)
         {
-            BriarheartBurger item = new BriarheartBurger();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new BriarheartBurger());            
         }
 
         /// <summary>
@@ -61,11 +59,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addDoubleDraugr(object sender, RoutedEventArgs e)
         {
-            DoubleDraugr item = new DoubleDraugr();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new DoubleDraugr());
         }
 
         /// <summary>
@@ -75,11 +69,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addThalmorTriple(object sender, RoutedEventArgs e)
         {
-            ThalmorTriple item = new ThalmorTriple();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new ThalmorTriple());
         }
 
         /// <summary>
@@ -89,11 +79,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addSmokehouseSkeleton(object sender, RoutedEventArgs e)
         {
-            SmokehouseSkeleton item = new SmokehouseSkeleton();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new SmokehouseSkeleton());
         }
 
         /// <summary>
@@ -103,11 +89,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addGardenOrcOmelette(object sender, RoutedEventArgs e)
         {
-            GardenOrcOmelette item = new GardenOrcOmelette();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new GardenOrcOmelette());
         }
 
         /// <summary>
@@ -117,11 +99,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addPhillyPoacher(object sender, RoutedEventArgs e)
         {
-            PhillyPoacher item = new PhillyPoacher();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new PhillyPoacher());
         }
 
         /// <summary>
@@ -131,11 +109,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addThugsTBone(object sender, RoutedEventArgs e)
         {
-            ThugsTBone item = new ThugsTBone();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new ThugsTBone());
         }
 
         /// <summary>
@@ -145,11 +119,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addSailorSoda(object sender, RoutedEventArgs e)
         {
-            SailorSoda item = new SailorSoda();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new SailorSoda());
         }
 
         /// <summary>
@@ -159,11 +129,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addMarkarthMilk(object sender, RoutedEventArgs e)
         {
-            MarkarthMilk item = new MarkarthMilk();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new MarkarthMilk());
         }
 
         /// <summary>
@@ -173,11 +139,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addAretinoAppleJuice(object sender, RoutedEventArgs e)
         {
-            AretinoAppleJuice item = new AretinoAppleJuice();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new AretinoAppleJuice());
         }
 
         /// <summary>
@@ -187,11 +149,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addCandlehearthCoffee(object sender, RoutedEventArgs e)
         {
-            CandlehearthCoffee item = new CandlehearthCoffee();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new CandlehearthCoffee());
         }
 
         /// <summary>
@@ -201,11 +159,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addWarriorWater(object sender, RoutedEventArgs e)
         {
-            WarriorWater item = new WarriorWater();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new WarriorWater());
         }
 
         /// <summary>
@@ -215,11 +169,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addVokunSalad(object sender, RoutedEventArgs e)
         {
-            VokunSalad item = new VokunSalad();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new VokunSalad());
         }
 
         /// <summary>
@@ -229,11 +179,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addFriedMiraak(object sender, RoutedEventArgs e)
         {
-            FriedMiraak item = new FriedMiraak();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new FriedMiraak());
         }
 
         /// <summary>
@@ -243,11 +189,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addMadOtarGrits(object sender, RoutedEventArgs e)
         {
-            MadOtarGrits item = new MadOtarGrits();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new MadOtarGrits());
         }
 
         /// <summary>
@@ -257,11 +199,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void addDragonbornWaffleFries(object sender, RoutedEventArgs e)
         {
-            DragonbornWaffleFries item = new DragonbornWaffleFries();
-            parent.currentListIndex = parent.order.Items.Count;
-            parent.order.Items.Add(item);
-            parent._subTotal += item.Price;
-            parent.swapScreens();
+            curentOrder.Add(new DragonbornWaffleFries());
         }
     }
 }

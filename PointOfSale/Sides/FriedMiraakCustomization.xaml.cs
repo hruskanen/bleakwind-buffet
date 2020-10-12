@@ -26,8 +26,9 @@ namespace PointOfSale.Sides
     /// </summary>
     public partial class FriedMiraakCustomization : UserControl, INotifyPropertyChanged
     {
-        OrderComponent parent;
-        double _price;
+        Order curentOrder;
+        double orgPrice;
+        uint orgCalories;
         private FriedMiraak _Item;
         public FriedMiraak Item
         {
@@ -47,13 +48,14 @@ namespace PointOfSale.Sides
         /// </summary>
         /// <param name="orderComponent"> creates the parent</param>
         /// <param name="item">add the inputed item in to the Customization</param>
-        public FriedMiraakCustomization(OrderComponent orderComponent, FriedMiraak item)
+        public FriedMiraakCustomization(Order order, FriedMiraak item)
         {
             Item = item;
-            this.parent = orderComponent;
+            orgPrice = item.Price;
+            orgCalories = item.Calories;
+            this.curentOrder = order;
             DataContext = this;
             InitializeComponent();
-            _price = item.Price;
         }
 
         /// <summary>
@@ -63,10 +65,7 @@ namespace PointOfSale.Sides
         /// <param name="e"></param>
         void customizationDone(object sender, RoutedEventArgs e)
         {
-            parent.order.Items[parent.currentListIndex] = Item;
-            parent._subTotal -= _price;
-            parent._subTotal += Item.Price;
-            parent.showMenu();
+            curentOrder.Change(Item, orgPrice, orgCalories);
         }
 
         /// <summary>
@@ -76,9 +75,7 @@ namespace PointOfSale.Sides
         /// <param name="e"></param>
         void customizationRemove(object sender, RoutedEventArgs e)
         {
-            parent._subTotal -= Item.Price;
-            parent.order.Items.RemoveAt(parent.currentListIndex);
-            parent.showMenu();
+            curentOrder.Remove(orgPrice, orgCalories);
         }
 
         /// <summary>

@@ -9,6 +9,7 @@ using BleakwindBuffet.Data.Sides;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Printing;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
@@ -28,8 +29,9 @@ namespace PointOfSale.Drinks
     /// </summary>
     public partial class AretinoAppleJuiceCustomization : UserControl, INotifyPropertyChanged
     {
-        OrderComponent parent;
-        double _price;
+        Order curentOrder;
+        double orgPrice;
+        uint orgCalories;
         private AretinoAppleJuice _Item;
         public AretinoAppleJuice Item
         {
@@ -43,19 +45,20 @@ namespace PointOfSale.Drinks
                 }
             }
         }
-
+        
         /// <summary>
         /// imports the item and allows to to edit it or delete it
         /// </summary>
         /// <param name="orderComponent"> creates the parent</param>
         /// <param name="item">add the inputed item in to the Customization</param>
-        public AretinoAppleJuiceCustomization(OrderComponent orderComponent, AretinoAppleJuice item)
+        public AretinoAppleJuiceCustomization(Order order, AretinoAppleJuice item)
         {
             Item = item;
-            this.parent = orderComponent;
+            orgPrice = item.Price;
+            orgCalories = item.Calories;
+            this.curentOrder = order;
             DataContext = this;
             InitializeComponent();
-            _price = item.Price;
         }
 
         /// <summary>
@@ -65,12 +68,10 @@ namespace PointOfSale.Drinks
         /// <param name="e"></param>
         void customizationDone(object sender, RoutedEventArgs e)
         {
-            parent.order.Items[parent.currentListIndex] = Item;
-            parent._subTotal -= _price;
-            parent._subTotal += Item.Price;
-            parent.showMenu();
+            curentOrder.Change(Item, orgPrice, orgCalories);
+            curentOrder.parent.showMenu();
         }
-        
+
         /// <summary>
         /// Deletes the item from the order
         /// </summary>
@@ -78,9 +79,7 @@ namespace PointOfSale.Drinks
         /// <param name="e"></param>
         void customizationRemove(object sender, RoutedEventArgs e)
         {
-            parent._subTotal -= Item.Price;
-            parent.order.Items.RemoveAt(parent.currentListIndex);
-            parent.showMenu();
+            curentOrder.Remove(orgPrice, orgCalories);
         }
 
         /// <summary>
