@@ -31,6 +31,10 @@
             <ColumnDefinition Width="125"/>
         </Grid.ColumnDefinitions>
 
+        <Canvas>
+            <Rectangle Width="{Binding Path=ActualWidth}" Height="{Binding Path=ActualHeight}" Fill="White" />
+        </Canvas>
+
         <Label Name="_item" VerticalAlignment="Top" FontWeight="Bold" FontSize="35" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3">
             Sailor Soda
         </Label>

@@ -26,7 +26,8 @@ namespace PointOfSale.Sides
     /// </summary>
     public partial class DragonbornWaffleFriesCustomization : UserControl, INotifyPropertyChanged
     {
-        Order curentOrder;
+        Order curentOrder = null;
+        Combo curentCombo = null;
         double orgPrice;
         uint orgCalories;
         private DragonbornWaffleFries _Item;
@@ -57,6 +58,20 @@ namespace PointOfSale.Sides
             DataContext = this;
             InitializeComponent();
         }
+        /// <summary>
+        /// imports the item and allows to to edit it or delete it
+        /// </summary>
+        /// <param name="combo"> creates the combo parent</param>
+        /// <param name="item">add the inputed item in to the Customization</param>
+        public DragonbornWaffleFriesCustomization(Combo combo, DragonbornWaffleFries item)
+        {
+            Item = item;
+            orgPrice = item.Price;
+            orgCalories = item.Calories;
+            this.curentCombo = combo;
+            DataContext = this;
+            InitializeComponent();
+        }
 
         /// <summary>
         /// sends the item back to the OrderComponent
@@ -65,7 +80,14 @@ namespace PointOfSale.Sides
         /// <param name="e"></param>
         void customizationDone(object sender, RoutedEventArgs e)
         {
-            curentOrder.Change(Item, orgPrice, orgCalories);
+            if (curentOrder != null)
+            {
+                curentOrder.Change(Item, orgPrice, orgCalories);
+            }
+            else
+            {
+                curentCombo.updateItem(Item, 3, orgPrice, orgCalories);
+            }
         }
 
         /// <summary>
@@ -75,7 +97,14 @@ namespace PointOfSale.Sides
         /// <param name="e"></param>
         void customizationRemove(object sender, RoutedEventArgs e)
         {
-            curentOrder.Remove(orgPrice, orgCalories);
+            if (curentOrder != null)
+            {
+                curentOrder.Remove(orgPrice, orgCalories);
+            }
+            else
+            {
+                curentCombo.removeItem(3, orgPrice, orgCalories);
+            }
         }
 
         /// <summary>

@@ -11,13 +11,13 @@ using System.Collections.ObjectModel;
 
 namespace PointOfSale
 {
-    public class Order : ObservableCollection<IOrderItem>
+    public class Order : ObservableCollection<object>
     {
         public int currentListIndex = 0;
 
 
-        private ObservableCollection<IOrderItem> Orders = new ObservableCollection<IOrderItem>();
-        public ObservableCollection<IOrderItem> orders
+        private ObservableCollection<object> Orders = new ObservableCollection<object>();
+        public ObservableCollection<object> orders
         {
             get { return Orders; }
             set
@@ -109,7 +109,6 @@ namespace PointOfSale
         {
             this.parent = orderComponent;
             orders.CollectionChanged += CollectionChangedListener;
-
         }
 
         void CollectionChangedListener(object sender, NotifyCollectionChangedEventArgs e)
@@ -120,15 +119,16 @@ namespace PointOfSale
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    foreach (IOrderItem item in e.NewItems)
+
+                    foreach (object item in e.NewItems)
                     {
-                        item.PropertyChanged += CollectionItemChangedListener;
+                        PropertyChanged += CollectionItemChangedListener;
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    foreach (IOrderItem item in e.OldItems)
+                    foreach (object item in e.OldItems)
                     {
-                        item.PropertyChanged -= CollectionItemChangedListener;
+                        PropertyChanged -= CollectionItemChangedListener;
                     }
                     break;
             }
@@ -145,7 +145,7 @@ namespace PointOfSale
         }
 
 
-        public new void Add(IOrderItem item)
+        public void Add(IOrderItem item)
         {
             currentListIndex = orders.Count;
             parent.CancelButt.IsEnabled = false;
@@ -225,6 +225,43 @@ namespace PointOfSale
             _subTotal = 0;
             orders.Clear();
             MessageBox.Show("Order Canceled", "Cancled");
+            parent.showMenu();
+        }
+
+        /// <summary>
+        /// creates a combo
+        /// </summary>
+        public void createCombo(IOrderItem comboEntree, IOrderItem comboDrink, IOrderItem comboSide, double _comboTotal, uint _comboCalories, double orgPrice, uint orgCalories, bool newCombo)
+        {
+            List<IOrderItem> combo = new List<IOrderItem>() { comboEntree, comboDrink, comboSide };
+            if (newCombo)
+            {
+                _subTotal += _comboTotal;
+                _totalCalories += _comboCalories;
+                orders.Add(combo);
+            }
+            else
+            {
+                _subTotal -= _comboTotal;
+                _subTotal += orgPrice;
+                _totalCalories -= orgCalories;
+                _totalCalories += _comboCalories;
+                orders[currentListIndex] = combo;
+            }
+            parent.showMenu();
+        }
+
+        /// <summary>
+        /// creates a combo
+        /// </summary>
+        public void removeCombo(double orgPrice, uint orgCalories, bool newCombo)
+        {
+            if(!newCombo)
+            {
+                _subTotal -= orgPrice;
+                _totalCalories -= orgCalories;
+                orders.RemoveAt(currentListIndex);
+            }
             parent.showMenu();
         }
 

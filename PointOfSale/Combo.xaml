@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="PointOfSale.Combo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        
+        <Border Name="entreeBorder" Grid.Column="0" Grid.Row="1" Grid.RowSpan="7"></Border>
+        <Border Name="drinkBorder" Grid.Column="1" Grid.Row="1" Grid.RowSpan="7"></Border>
+        <Border Name="sideBorder" Grid.Column="2" Grid.Row="1" Grid.RowSpan="5"></Border>
+
+        <Button Name="b1" Grid.Row="0" Grid.Column="0" Margin="5" Content="Edit&#xD;&#xA;Entree" Click="editEntree"/>
+        <Button Name="b2" Grid.Row="0" Grid.Column="1" Margin="5" Content="Edit&#xD;&#xA;Drink" Click="editDrink"/>
+        <Button Name="b3" Grid.Row="0" Grid.Column="2" Margin="5" Content="Edit&#xD;&#xA;Side" Click="editSide"/>
+
+        <TextBlock FontWeight="Bold" FontSize="30" Grid.Row="1" Grid.Column="0" Text="{Binding entreeName}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock FontSize="20" Grid.Row="1" Grid.Column="0" Text="{Binding comboEntree.Price, StringFormat='{}{0:C}'}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <ListBox FontSize="20" Grid.Row="2" Grid.RowSpan="7" Grid.Column="0" IsHitTestVisible="False" ItemsSource="{Binding comboEntree.SpecialInstructions}" HorizontalAlignment="Left" BorderThickness="0" ItemStringFormat="- {0}" >
+            <ListBox.Style>
+                <Style TargetType="ListBox">
+                    <Style.Triggers>
+                        <Trigger Property="HasItems" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.Style>
+        </ListBox>
+
+        <TextBlock FontWeight="Bold" FontSize="30" Grid.Row="1" Grid.Column="1" Text="{Binding drinkName}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock FontSize="20" Grid.Row="1" Grid.Column="1" Text="{Binding comboDrink.Price, StringFormat='{}{0:C}'}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <ListBox FontSize="20"  Grid.Row="2" Grid.RowSpan="7" Grid.Column="1" IsHitTestVisible="False" ItemsSource="{Binding comboDrink.SpecialInstructions}" HorizontalAlignment="Left" BorderThickness="0" ItemStringFormat="- {0}" >
+            <ListBox.Style>
+                <Style TargetType="ListBox">
+                    <Style.Triggers>
+                        <Trigger Property="HasItems" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.Style>
+        </ListBox>
+
+        <TextBlock FontWeight="Bold" FontSize="30" Grid.Row="1" Grid.Column="2" Text="{Binding sideName}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock FontSize="20" Grid.Row="1" Grid.Column="2" Text="{Binding comboSide.Price, StringFormat='{}{0:C}'}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+
+        <Label FontSize="15" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="2">
+            Combo Total:
+        </Label>
+        <Label Content="{Binding Path=_comboTotal}" ContentStringFormat="${0:F2}" FontSize="15" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="5" Grid.Column="2"/>
+        <Button Name="reco" Grid.Row="6" Grid.Column="2" Margin="5" Content="Remove&#xD;&#xA;Combo" Click="removeCombo"/>
+        <Button Name="coco" Grid.Row="7" Grid.Column="2" Margin="5" Content="Confirm&#xD;&#xA;Combo" Click="confirmCombo"/>
+        <Border Name="editBorder" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="7"></Border>
+    </Grid>
+</UserControl>

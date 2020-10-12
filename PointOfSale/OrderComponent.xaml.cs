@@ -52,7 +52,7 @@ namespace PointOfSale
         {
             DataContext = this;
             order.Items.Refresh();
-            containerBorder.Child = new MenuSelectionComponent(this , curentOrder);
+            containerBorder.Child = new MenuSelectionComponent(curentOrder);
         }
 
         /// <summary>
@@ -125,6 +125,13 @@ namespace PointOfSale
             {
                 containerBorder.Child = new DragonbornWaffleFriesCustomization(curentOrder, (DragonbornWaffleFries)curentOrder.orders[curentOrder.currentListIndex]);
             }
+            //Combos
+            else if (curentOrder.orders[curentOrder.currentListIndex].GetType() == typeof(List<IOrderItem>))
+            {
+                
+                containerBorder.Child = new Combo(curentOrder, (List<IOrderItem>)curentOrder.orders[curentOrder.currentListIndex]);
+            }
+
         }
 
         /// <summary>
@@ -134,7 +141,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         private void changeItem(object sender, MouseButtonEventArgs e)
         {
-            curentOrder.currentListIndex = curentOrder.orders.IndexOf(item: (IOrderItem)order.SelectedItem);
+            curentOrder.currentListIndex = curentOrder.orders.IndexOf(item: (object)order.SelectedItem);
             swapScreens();
         }
 
@@ -146,7 +153,6 @@ namespace PointOfSale
         void cancelOrder(object sender, RoutedEventArgs e)
         {
             curentOrder.cancelOrder();
-            
         }
 
         /// <summary>
@@ -157,6 +163,16 @@ namespace PointOfSale
         void sendOrder(object sender, RoutedEventArgs e)
         {
             curentOrder.sendOrder();
+        }
+
+        /// <summary>
+        /// creates combo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void createCombo(object sender, RoutedEventArgs e)
+        {
+            containerBorder.Child = new Combo(curentOrder, new List<IOrderItem>() { null, null, null });
         }
     }
 }

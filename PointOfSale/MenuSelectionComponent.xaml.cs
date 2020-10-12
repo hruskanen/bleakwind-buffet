@@ -28,16 +28,14 @@ namespace PointOfSale
     /// </summary>
     public partial class MenuSelectionComponent : UserControl
     {
-        OrderComponent parent;
         Order curentOrder;
 
         /// <summary>
         /// creates the menu and assigns the parent class
         /// </summary>
         /// <param name="orderComponent"></param>
-        public MenuSelectionComponent(OrderComponent orderComponent, Order order)
+        public MenuSelectionComponent(Order order)
         {
-            this.parent = orderComponent;
             this.curentOrder = order;
             InitializeComponent();
         }

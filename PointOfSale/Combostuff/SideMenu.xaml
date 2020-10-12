@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="PointOfSale.Combostuff.SideMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale.Combostuff"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Grid.Column="2" Margin="5" Click="addVokunSalad">
+            Vokun Salad
+        </Button>
+        <Button Grid.Row="1" Grid.Column="2" Margin="5" Click="addMadOtarGrits">
+            Mad Otar Grits
+        </Button>
+        <Button Grid.Row="2" Grid.Column="2" Margin="5" Click="addFriedMiraak">
+            Fried Miraak
+        </Button>
+        <Button Grid.Row="3" Grid.Column="2" Margin="5" Click="addDragonbornWaffleFries">
+            Dragonborn Waffle&#xD;&#xA;Fries
+        </Button>
+
+    </Grid>
+</UserControl>

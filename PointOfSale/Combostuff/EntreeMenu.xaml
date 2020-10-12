@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="PointOfSale.Combostuff.EntreeMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale.Combostuff"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Grid.Column="0" Margin="5" Click="addBriarheartBurger">
+            Briarheart Burger
+        </Button>
+        <Button Grid.Row="1" Grid.Column="0" Margin="5" Click="addDoubleDraugr">
+            Double Draugr
+        </Button>
+        <Button Grid.Row="2" Grid.Column="0" Margin="5" Click="addThalmorTriple">
+            Thalmor Triple
+        </Button>
+        <Button Grid.Row="3" Grid.Column="0" Margin="5" Click="addSmokehouseSkeleton">
+            Smokehouse Skeleton
+        </Button>
+        <Button Grid.Row="4" Grid.Column="0" Margin="5" Click="addGardenOrcOmelette">
+            Garden Orc Omelette
+        </Button>
+        <Button Grid.Row="5" Grid.Column="0" Margin="5" Click="addPhillyPoacher">
+            Philly Poacher
+        </Button>
+        <Button Grid.Row="6" Grid.Column="0" Margin="5" Click="addThugsTBone">
+            Thugs T-Bone
+        </Button>
+
+    </Grid>
+</UserControl>

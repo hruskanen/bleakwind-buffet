@@ -24,7 +24,8 @@ namespace PointOfSale.Entrees
     /// </summary>
     public partial class ThugsTBoneCustomization : UserControl, INotifyPropertyChanged
     {
-        Order curentOrder;
+        Order curentOrder = null;
+        Combo curentCombo = null;
         double orgPrice;
         uint orgCalories;
         private ThugsTBone _Item;
@@ -55,6 +56,20 @@ namespace PointOfSale.Entrees
             DataContext = this;
             InitializeComponent();
         }
+        /// <summary>
+        /// imports the item and allows to to edit it or delete it
+        /// </summary>
+        /// <param name="combo"> creates the combo parent</param>
+        /// <param name="item">add the inputed item in to the Customization</param>
+        public ThugsTBoneCustomization(Combo combo, ThugsTBone item)
+        {
+            Item = item;
+            orgPrice = item.Price;
+            orgCalories = item.Calories;
+            this.curentCombo = combo;
+            DataContext = this;
+            InitializeComponent();
+        }
 
         /// <summary>
         /// sends the item back to the OrderComponent
@@ -63,7 +78,14 @@ namespace PointOfSale.Entrees
         /// <param name="e"></param>
         void customizationDone(object sender, RoutedEventArgs e)
         {
-            curentOrder.Change(Item, orgPrice, orgCalories);
+            if (curentOrder != null)
+            {
+                curentOrder.Change(Item, orgPrice, orgCalories);
+            }
+            else
+            {
+                curentCombo.updateItem(Item, 1, orgPrice, orgCalories);
+            }
         }
 
         /// <summary>
@@ -73,7 +95,14 @@ namespace PointOfSale.Entrees
         /// <param name="e"></param>
         void customizationRemove(object sender, RoutedEventArgs e)
         {
-            curentOrder.Remove(orgPrice, orgCalories);
+            if (curentOrder != null)
+            {
+                curentOrder.Remove(orgPrice, orgCalories);
+            }
+            else
+            {
+                curentCombo.removeItem(1, orgPrice, orgCalories);
+            }
         }
 
         /// <summary>
