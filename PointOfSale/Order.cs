@@ -14,8 +14,10 @@ namespace PointOfSale
     public class Order : ObservableCollection<IOrderItem>
     {
         public int currentListIndex = 0;
-        private List<IOrderItem> Orders = new List<IOrderItem>();
-        public List<IOrderItem> orders
+
+
+        private ObservableCollection<IOrderItem> Orders = new ObservableCollection<IOrderItem>();
+        public ObservableCollection<IOrderItem> orders
         {
             get { return Orders; }
             set
@@ -106,16 +108,15 @@ namespace PointOfSale
         public Order(OrderComponent orderComponent)
         {
             this.parent = orderComponent;
-            //CollectionChanged += CollectionChangedListener;
+            orders.CollectionChanged += CollectionChangedListener;
+
         }
 
-        /// <summary>
-        /// listens if the tasks completion has changed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         void CollectionChangedListener(object sender, NotifyCollectionChangedEventArgs e)
         {
+            OnPropertyChanged(new PropertyChangedEventArgs("_subTotal"));
+            OnPropertyChanged(new PropertyChangedEventArgs("_tax"));
+            OnPropertyChanged(new PropertyChangedEventArgs("_total"));
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
@@ -125,36 +126,30 @@ namespace PointOfSale
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    foreach (IOrderItem item in e.NewItems)
+                    foreach (IOrderItem item in e.OldItems)
                     {
                         item.PropertyChanged -= CollectionItemChangedListener;
                     }
                     break;
-                case NotifyCollectionChangedAction.Reset:
-                    throw new NotImplementedException("NotifyCollectionChangedAction.Reset not supported");
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        /// <summary>
+        /// changes the count as needed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void CollectionItemChangedListener(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(new PropertyChangedEventArgs("orders"));
+        }
 
 
         public new void Add(IOrderItem item)
         {
             currentListIndex = orders.Count;
+            parent.CancelButt.IsEnabled = false;
+            parent.SendButt.IsEnabled = false;
             orders.Add(item);
             _subTotal += item.Price;
             _totalCalories += item.Calories;
@@ -174,6 +169,9 @@ namespace PointOfSale
             NotifyPropertyChanged("_total");
             NotifyPropertyChanged("_totalCalories");
             orders.RemoveAt(currentListIndex);
+            parent.CancelButt.IsEnabled = true;
+            parent.SendButt.IsEnabled = true;
+
             parent.showMenu();
         }
 
@@ -198,7 +196,9 @@ namespace PointOfSale
                 _totalCalories += item.Calories;
                 NotifyPropertyChanged("_totalCalories");
             }
-            
+            parent.CancelButt.IsEnabled = true;
+            parent.SendButt.IsEnabled = true;
+
             parent.showMenu();
         }
 
@@ -213,6 +213,7 @@ namespace PointOfSale
             _orderNumber++;
             orders.Clear();
             MessageBox.Show("Order Sent", "Sent");
+            parent.showMenu();
             //didn't know where to send it so the comment and meesage box and a place holder
         }
 
@@ -224,6 +225,7 @@ namespace PointOfSale
             _subTotal = 0;
             orders.Clear();
             MessageBox.Show("Order Canceled", "Cancled");
+            parent.showMenu();
         }
 
 

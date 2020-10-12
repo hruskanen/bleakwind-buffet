@@ -40,7 +40,7 @@ namespace PointOfSale
         /// </summary>
         public OrderComponent()
         {
-            this.curentOrder = new Order(this);
+            curentOrder = new Order(this);
             InitializeComponent();
             showMenu();
         }
@@ -51,6 +51,7 @@ namespace PointOfSale
         public void showMenu()
         {
             DataContext = this;
+            order.Items.Refresh();
             containerBorder.Child = new MenuSelectionComponent(this , curentOrder);
         }
 
@@ -145,7 +146,7 @@ namespace PointOfSale
         void cancelOrder(object sender, RoutedEventArgs e)
         {
             curentOrder.cancelOrder();
-            this.curentOrder = new Order(this);
+            
         }
 
         /// <summary>
@@ -156,7 +157,6 @@ namespace PointOfSale
         void sendOrder(object sender, RoutedEventArgs e)
         {
             curentOrder.sendOrder();
-            this.curentOrder = new Order(this);
         }
     }
 }

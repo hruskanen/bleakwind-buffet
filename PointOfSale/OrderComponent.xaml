@@ -82,8 +82,8 @@
         </Label>
         <Label Content="{Binding curentOrder._total}" ContentStringFormat="${0:F2}" FontSize="15" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="4">
         </Label>
-        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Content="Cancel&#xD;&#xA;Order" Click="cancelOrder"/>
-        <Button Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="5" Content="Send&#xD;&#xA;Order" Click="sendOrder"/>
+        <Button Name="CancelButt" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Content="Cancel&#xD;&#xA;Order" Click="cancelOrder"/>
+        <Button Name="SendButt" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="5" Content="Send&#xD;&#xA;Order" Click="sendOrder"/>
     </Grid>
 
 </UserControl>
