@@ -15,7 +15,9 @@ namespace PointOfSale
     {
         public int currentListIndex = 0;
 
-
+        /// <summary>
+        /// the list of items and combos
+        /// </summary>
         private ObservableCollection<object> Orders = new ObservableCollection<object>();
         public ObservableCollection<object> orders
         {
@@ -44,6 +46,9 @@ namespace PointOfSale
             }
         }
 
+        /// <summary>
+        /// the curent subtotal for the combo
+        /// </summary>
         private double _SubTotal = 0;
         public double _subTotal
         {
@@ -60,6 +65,9 @@ namespace PointOfSale
             }
         }
 
+        /// <summary>
+        /// the curent tax for the combo
+        /// </summary>
         private double _Tax;
         public double _tax
         {
@@ -74,6 +82,9 @@ namespace PointOfSale
             }
         }
 
+        /// <summary>
+        /// the curent total for the combo
+        /// </summary>
         private double _Total;
         public double _total
         {
@@ -88,6 +99,9 @@ namespace PointOfSale
             }
         }
 
+        /// <summary>
+        /// the curent calories for the combo
+        /// </summary>
         private uint _TotalCalories = 0;
         public uint _totalCalories
         {
@@ -102,9 +116,16 @@ namespace PointOfSale
             }
         }
 
-
+        /// <summary>
+        /// the access to the perent
+        /// </summary>
         public OrderComponent parent;
 
+
+        /// <summary>
+        /// the constructor
+        /// </summary>
+        /// <param name="orderComponent"></param>
         public Order(OrderComponent orderComponent)
         {
             this.parent = orderComponent;
@@ -144,7 +165,10 @@ namespace PointOfSale
             OnPropertyChanged(new PropertyChangedEventArgs("orders"));
         }
 
-
+        /// <summary>
+        /// adds items to the order
+        /// </summary>
+        /// <param name="item"> the item being added</param>
         public void Add(IOrderItem item)
         {
             currentListIndex = orders.Count;
@@ -158,7 +182,12 @@ namespace PointOfSale
             NotifyPropertyChanged("_totalCalories");
             parent.swapScreens();
         }
-            
+
+        /// <summary>
+        /// removes an item from the the order
+        /// </summary>
+        /// <param name="orgPrice"> the orignal price for the item</param>
+        /// <param name="orgCalories"> the orignal calories for the item </param>
         public void Remove(double orgPrice, uint orgCalories)
         {
             _subTotal -= orgPrice;

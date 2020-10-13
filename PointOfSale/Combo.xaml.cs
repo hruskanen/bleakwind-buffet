@@ -27,8 +27,14 @@ namespace PointOfSale
     /// </summary>
     public partial class Combo : UserControl, INotifyPropertyChanged
     {
+        /// <summary>
+        /// access back to the current order class
+        /// </summary>
         Order curentOrder;
 
+        /// <summary>
+        /// the entree for the combo
+        /// </summary>
         private IOrderItem ComboEntree = null;
         public IOrderItem comboEntree
         {
@@ -64,6 +70,9 @@ namespace PointOfSale
             }
         }
 
+        /// <summary>
+        /// the drink for the combo
+        /// </summary>
         private IOrderItem ComboDrink = null;
         public IOrderItem comboDrink
         {
@@ -100,6 +109,9 @@ namespace PointOfSale
             }
         }
 
+        /// <summary>
+        /// the side for the combo
+        /// </summary>
         private IOrderItem ComboSide = null;
         public IOrderItem comboSide
         {
@@ -136,6 +148,9 @@ namespace PointOfSale
         }
 
 
+        /// <summary>
+        /// the curent price and calories for the combo
+        /// </summary>
         private double _ComboTotal = 0;
         public double _comboTotal
         {
@@ -163,10 +178,22 @@ namespace PointOfSale
             }
         }
 
+        /// <summary>
+        /// if the combo is new or not
+        /// </summary>
         bool newCombo = true;
+
+        /// <summary>
+        /// the original price and calories
+        /// </summary>
         double orgPrice;
         uint orgCalories;
 
+        /// <summary>
+        /// the constructor
+        /// </summary>
+        /// <param name="order">the access back to the order class</param>
+        /// <param name="combo"> the combo list</param>
         public Combo(Order order, List<IOrderItem> combo)
         {
             if (combo[0] != null && combo[1] != null && combo[2] != null)
@@ -191,6 +218,9 @@ namespace PointOfSale
             showCombo();
         }
 
+        /// <summary>
+        /// shows the combo screen
+        /// </summary>
         public void showCombo()
         {
             coco.IsEnabled = (comboEntree != null && comboDrink != null && comboSide != null);
@@ -205,6 +235,13 @@ namespace PointOfSale
             if (comboSide == null) sideBorder.Child = new SideMenu(this);
         }
 
+        /// <summary>
+        /// updating the current combo
+        /// </summary>
+        /// <param name="item"> the item beinmg tested</param>
+        /// <param name="x">if the combo is new</param>
+        /// <param name="orgPrice"> the orignial combo price</param>
+        /// <param name="orgCalories"> the orignial combo calories</param>
         public void updateItem(IOrderItem item, int x, double orgPrice, uint orgCalories)
         {
             if (item.Price != orgPrice)
@@ -242,6 +279,11 @@ namespace PointOfSale
             showCombo();
         }
 
+        /// <summary>
+        /// adds the three things to combo
+        /// </summary>
+        /// <param name="item"> the item being added</param>
+        /// <param name="x"> if the combo is new </param>
         public void addItem(IOrderItem item, int x)
         {
             _comboTotal += item.Price;
@@ -271,6 +313,12 @@ namespace PointOfSale
             editItem(item);
         }
 
+        /// <summary>
+        /// removes items from the combo
+        /// </summary>
+        /// <param name="x"> if the comob is new </param>
+        /// <param name="orgPrice"> the original price for the item </param>
+        /// <param name="orgCalories"> the original caloires for the item</param>
         public void removeItem(int x, double orgPrice, uint orgCalories)
         {
             _comboTotal -= orgPrice;
@@ -300,6 +348,10 @@ namespace PointOfSale
             showCombo();
         }
 
+        /// <summary>
+        /// edits the item in the combo
+        /// </summary>
+        /// <param name="item"> said item to change </param>
         public void editItem(IOrderItem item)
         {
             entreeBorder.Child = null;
