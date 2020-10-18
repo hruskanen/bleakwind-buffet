@@ -101,14 +101,14 @@ namespace PointOfSale
         {
             amountDue.Content = "$0.00";
             PaymentOptions.Child = null;
-            RecieptPrinter.PrintLine(currentOrder._orderNumber.ToString());
+            RecieptPrinter.PrintLine("Order #" + currentOrder._orderNumber.ToString());
             RecieptPrinter.PrintLine("10/15/2020 12:36");
             foreach (object temp in currentOrder.orders)
             {
                 if(temp is Combo item)
                 {
                     RecieptPrinter.PrintLine(item.ToString());
-                    RecieptPrinter.PrintLine(item.Price.ToString());
+                    RecieptPrinter.PrintLine("Price: $" + Math.Round(item.Price, 2, MidpointRounding.AwayFromZero));
                     foreach(string thing in item.SpecialInstructions)
                     {
                         RecieptPrinter.PrintLine("- " + thing);
@@ -118,18 +118,18 @@ namespace PointOfSale
                 {
                     IOrderItem orderItem = (IOrderItem)temp;
                     RecieptPrinter.PrintLine(orderItem.ToString());
-                    RecieptPrinter.PrintLine(orderItem.Price.ToString());
+                    RecieptPrinter.PrintLine("Price: $" + orderItem.Price.ToString());
                     foreach (string thing in orderItem.SpecialInstructions)
                     {
                         RecieptPrinter.PrintLine("- " + thing);
                     }
                 }
             }
-            RecieptPrinter.PrintLine(currentOrder._subTotal.ToString());
-            RecieptPrinter.PrintLine(Math.Round(currentOrder._tax, 2, MidpointRounding.AwayFromZero).ToString());
-            RecieptPrinter.PrintLine(currentOrder._total.ToString());
-            RecieptPrinter.PrintLine(x);
-            RecieptPrinter.PrintLine(changeDue.ToString());
+            RecieptPrinter.PrintLine("Subtotal: $" + Math.Round(currentOrder._subTotal, 2, MidpointRounding.AwayFromZero).ToString());
+            RecieptPrinter.PrintLine("Tax: $" + Math.Round(currentOrder._tax, 2, MidpointRounding.AwayFromZero).ToString());
+            RecieptPrinter.PrintLine("Total: $" + Math.Round(currentOrder._total, 2, MidpointRounding.AwayFromZero).ToString());
+            RecieptPrinter.PrintLine("Payment in " + x);
+            RecieptPrinter.PrintLine("Change $" + Math.Round(changeDue, 2, MidpointRounding.AwayFromZero).ToString());
             RecieptPrinter.CutTape();
 
             currentOrder.parent.overrideBorder.Child = null;

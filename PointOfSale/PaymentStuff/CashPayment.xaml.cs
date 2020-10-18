@@ -467,6 +467,7 @@ namespace PointOfSale.PaymentStuff
         public void endCash(object sender, RoutedEventArgs e)
         {
             total = Math.Round(total - paymentScreen.currentOrder._total, 2, MidpointRounding.AwayFromZero);
+            paymentScreen.changeDue = total;
             string change = "Change: $" + total.ToString() + "\n";
 
             if (((int)(total / 100)) != 0) change += ((int)(total / 100)).ToString() + " Hundred(s)\n";
@@ -490,7 +491,6 @@ namespace PointOfSale.PaymentStuff
             if (((int)(total / .01)) != 0) change += ((int)(total / .01)).ToString() + " Penny(s)";
 
             MessageBox.Show(change);
-            paymentScreen.changeDue = total;
             paymentScreen.endPayment("Cash");
         }
         
