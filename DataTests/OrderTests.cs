@@ -18,6 +18,26 @@ namespace BleakwindBuffet.DataTests
 {
     public class OrderTests
     {
+        List<IOrderItem> fullMenu = new List<IOrderItem>()
+        {
+            new AretinoAppleJuice(),
+            new CandlehearthCoffee(),
+            new MarkarthMilk(),
+            new SailorSoda(),
+            new WarriorWater(),
+            new BriarheartBurger(),
+            new DoubleDraugr(),
+            new GardenOrcOmelette(),
+            new PhillyPoacher(),
+            new SmokehouseSkeleton(),
+            new ThalmorTriple(),
+            new ThugsTBone(),
+            new DragonbornWaffleFries(),
+            new FriedMiraak(),
+            new MadOtarGrits(),
+            new VokunSalad()
+        };
+
         [Fact]
         public void ShouldBeAssignableToAbstractObservableCollection()
         {
@@ -36,66 +56,83 @@ namespace BleakwindBuffet.DataTests
         public void listGrowsWhenAddingAnItem()
         {
             Order order = new Order(new OrderComponent());
-            order.Add(new BriarheartBurger());
-            Assert.Single(order.orders);
+            for(int i = 0; i < fullMenu.Count; i++)
+            {
+                order.Add(fullMenu[i]);
+                Assert.Equal(order.orders.Count, i + 1);
+            }
         }
 
         [Fact]
         public void listShrinkWhenRemovingAnItem()
         {
             Order order = new Order(new OrderComponent());
-            BriarheartBurger item = new BriarheartBurger();
-            order.Add(item);
-            order.Remove(item.Price, item.Calories);
-            Assert.Empty(order.orders);
+            for (int i = 0; i < fullMenu.Count; i++)
+            {
+                order.Add(fullMenu[i]);
+                order.Remove(fullMenu[i].Price, fullMenu[i].Calories);
+                Assert.Empty(order.orders);
+            }
         }
 
         [Fact]
         public void listStaysWhenChangingAnItem()
         {
             Order order = new Order(new OrderComponent());
-            BriarheartBurger item = new BriarheartBurger();
-            order.Add(new BriarheartBurger());
-            order.Change(item, item.Price, item.Calories);
-            order.Remove(item.Price, item.Calories);
-            Assert.Empty(order.orders);
+            for (int i = 0; i < fullMenu.Count; i++)
+            {
+                order.Add(fullMenu[i]);
+                order.Change(fullMenu[i], fullMenu[i].Price, fullMenu[i].Calories);
+                Assert.Equal(order.orders.Count, i + 1);
+            }
         }
 
         [Fact]
         public void totalsChangeWhenAddingAnItem()
         {
             Order order = new Order(new OrderComponent());
-            BriarheartBurger item = new BriarheartBurger();
-            order.Add(item);
-            Assert.Equal(order._subTotal, item.Price);
-            Assert.Equal(order._tax, item.Price * .12);
-            Assert.Equal(order._total, item.Price + item.Price * .12);
+            for (int i = 0; i < fullMenu.Count; i++)
+            {
+                order.Add(fullMenu[i]);
+                order.Change(fullMenu[i], fullMenu[i].Price, fullMenu[i].Calories);
+                Assert.Equal(order._subTotal, fullMenu[i].Price);
+                Assert.Equal(order._tax, fullMenu[i].Price * .12);
+                Assert.Equal(order._total, fullMenu[i].Price + fullMenu[i].Price * .12);
+                order.Remove(fullMenu[i].Price, fullMenu[i].Calories);
+            }
         }
 
         [Fact]
-        public void addingNotifysFourThing()
+        public void addingNotifysFiveThing()
         {
             Order order = new Order(new OrderComponent());
-            BriarheartBurger item = new BriarheartBurger();
-            Assert.PropertyChanged(item, "_subTotal", () => { order.Add(item); });
-            Assert.PropertyChanged(item, "_tax", () => { order.Add(item); });
-            Assert.PropertyChanged(item, "_total", () => { order.Add(item); });
-            Assert.PropertyChanged(item, "_totalCalories", () => { order.Add(item); });
+            for (int i = 0; i < fullMenu.Count; i++)
+            {
+                Assert.PropertyChanged(order, "orders", () => { order.Add(fullMenu[i]); });
+                Assert.PropertyChanged(order, "_subTotal", () => { order.Add(fullMenu[i]); });
+                Assert.PropertyChanged(order, "_tax", () => { order.Add(fullMenu[i]); });
+                Assert.PropertyChanged(order, "_total", () => { order.Add(fullMenu[i]); });
+                Assert.PropertyChanged(order, "_totalCalories", () => { order.Add(fullMenu[i]); });
+            }
         }
 
         [Fact]
-        public void removingNotifysFourThing()
+        public void removingNotifysFiveThing()
         {
             Order order = new Order(new OrderComponent());
-            BriarheartBurger item = new BriarheartBurger();
-            Assert.PropertyChanged(item, "_subTotal", () => { order.Add(item); });
-            Assert.PropertyChanged(item, "_tax", () => { order.Add(item); });
-            Assert.PropertyChanged(item, "_total", () => { order.Add(item); });
-            Assert.PropertyChanged(item, "_totalCalories", () => { order.Add(item); });
+            for (int i = 0; i < fullMenu.Count; i++)
+            {
+                order.Add(fullMenu[i]);
+                Assert.PropertyChanged(order, "orders", () => { order.Remove(fullMenu[i]); });
+                order.Add(fullMenu[i]);
+                Assert.PropertyChanged(order, "_subTotal", () => { order.Remove(fullMenu[i]); });
+                order.Add(fullMenu[i]);
+                Assert.PropertyChanged(order, "_tax", () => { order.Remove(fullMenu[i]); });
+                order.Add(fullMenu[i]);
+                Assert.PropertyChanged(order, "_total", () => { order.Remove(fullMenu[i]); });
+                order.Add(fullMenu[i]);
+                Assert.PropertyChanged(order, "_totalCalories", () => { order.Remove(fullMenu[i]); });
+            }
         }
-        
-
-
-
     }
 }

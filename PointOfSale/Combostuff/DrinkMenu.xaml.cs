@@ -1,4 +1,9 @@
-﻿using System;
+﻿/* Hunter Ruskanen
+ * DrinkMenu.xaml.cs
+ * menu for the drinks
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;

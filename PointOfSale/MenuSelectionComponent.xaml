@@ -73,6 +73,8 @@
             <Button Grid.Row="3" Grid.Column="2" Margin="5" Click="addDragonbornWaffleFries">
                 Dragonborn Waffle&#xD;&#xA;Fries
             </Button>
+
+            <Button Name="ComboButt" Grid.Row="6" Grid.Column="2" Margin="5" Content="Create Combo" Click="createCombo"/>
     </Grid>
 
 </UserControl>

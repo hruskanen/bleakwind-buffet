@@ -199,5 +199,15 @@ namespace PointOfSale
         {
             curentOrder.Add(new DragonbornWaffleFries());
         }
+
+        /// <summary>
+        /// creates combo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void createCombo(object sender, RoutedEventArgs e)
+        {
+            curentOrder.parent.containerBorder.Child = new Combo(curentOrder, null, null, null );
+        }
     }
 }

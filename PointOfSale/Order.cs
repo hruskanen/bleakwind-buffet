@@ -1,4 +1,9 @@
-﻿using BleakwindBuffet.Data;
+﻿/* Hunter Ruskanen
+ * OrderComponent.xaml.cs
+ * The base of the Order
+*/
+
+using BleakwindBuffet.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -32,6 +37,9 @@ namespace PointOfSale
             }
         }
 
+        /// <summary>
+        /// the order number
+        /// </summary>
         private int _OrderNumber = 1;
         public int _orderNumber
         {
@@ -59,7 +67,7 @@ namespace PointOfSale
                 {
                     _SubTotal = value;
                     _tax = value * .12;
-                    _total = value + (value * .12);
+                    _total = Math.Round(value + (value * .12), 2, MidpointRounding.AwayFromZero);
                     NotifyPropertyChanged("_subTotal");
                 }
             }
@@ -132,6 +140,11 @@ namespace PointOfSale
             orders.CollectionChanged += CollectionChangedListener;
         }
 
+        /// <summary>
+        /// listener for collection change
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void CollectionChangedListener(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged(new PropertyChangedEventArgs("_subTotal"));
@@ -226,37 +239,30 @@ namespace PointOfSale
         }
 
         /// <summary>
-        /// Sends the current order and clears the order list
+        /// resets the order
         /// </summary>
-        public void sendOrder()
+        public void resetOrder()
         {
-            //Send order.Items here
-
             _subTotal = 0;
             _orderNumber++;
             orders.Clear();
-            MessageBox.Show("Order Sent", "Sent");
-            parent.showMenu();
-            //didn't know where to send it so the comment and meesage box and a place holder
-        }
-
-        /// <summary>
-        /// Cancles the current order and clears the order list
-        /// </summary>
-        public void cancelOrder()
-        {
-            _subTotal = 0;
-            orders.Clear();
-            MessageBox.Show("Order Canceled", "Cancled");
             parent.showMenu();
         }
 
         /// <summary>
-        /// creates a combo
+        /// adds the new combo to the list
         /// </summary>
+        /// <param name="comboEntree"> combos entree </param>
+        /// <param name="comboDrink"> combos drink </param>
+        /// <param name="comboSide"> combos side </param>
+        /// <param name="_comboTotal"> combos total price </param>
+        /// <param name="_comboCalories"> combos total calories </param>
+        /// <param name="orgPrice"> combos original price </param>
+        /// <param name="orgCalories"> combos original calories </param>
+        /// <param name="newCombo"> is this was a new combo or not </param>
         public void createCombo(IOrderItem comboEntree, IOrderItem comboDrink, IOrderItem comboSide, double _comboTotal, uint _comboCalories, double orgPrice, uint orgCalories, bool newCombo)
         {
-            List<IOrderItem> combo = new List<IOrderItem>() { comboEntree, comboDrink, comboSide };
+            Combo combo = new Combo(this, comboEntree, comboDrink, comboSide);
             if (newCombo)
             {
                 _subTotal += _comboTotal;
@@ -271,11 +277,12 @@ namespace PointOfSale
                 _totalCalories += _comboCalories;
                 orders[currentListIndex] = combo;
             }
+
             parent.showMenu();
         }
 
         /// <summary>
-        /// creates a combo
+        /// remove a combo from the list
         /// </summary>
         public void removeCombo(double orgPrice, uint orgCalories, bool newCombo)
         {
@@ -290,7 +297,7 @@ namespace PointOfSale
 
 
         /// <summary>
-        /// 
+        ///  porpert changed
         /// </summary>
         /// <param name="propertyName"></param>
         protected override event PropertyChangedEventHandler PropertyChanged;

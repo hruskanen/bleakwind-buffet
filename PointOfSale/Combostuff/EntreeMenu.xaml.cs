@@ -1,4 +1,9 @@
-﻿using System;
+﻿/* Hunter Ruskanen
+ * EntreeMenu.xaml.cs
+ * menu for the Entree
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;

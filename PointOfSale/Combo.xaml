@@ -66,7 +66,7 @@
         <Label FontSize="15" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="2">
             Combo Total:
         </Label>
-        <Label Content="{Binding Path=_comboTotal}" ContentStringFormat="${0:F2}" FontSize="15" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="5" Grid.Column="2"/>
+        <Label Content="{Binding Path=Price}" ContentStringFormat="${0:F2}" FontSize="15" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="5" Grid.Column="2"/>
         <Button Name="reco" Grid.Row="6" Grid.Column="2" Margin="5" Content="Remove&#xD;&#xA;Combo" Click="removeCombo"/>
         <Button Name="coco" Grid.Row="7" Grid.Column="2" Margin="5" Content="Confirm&#xD;&#xA;Combo" Click="confirmCombo"/>
         <Border Name="editBorder" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="7"></Border>

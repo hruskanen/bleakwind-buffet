@@ -32,7 +32,9 @@ namespace PointOfSale
     /// </summary>
     public partial class OrderComponent : UserControl
     {
-        
+        /// <summary>
+        /// the current order
+        /// </summary>
         public Order curentOrder { get; set; }
 
         /// <summary>
@@ -42,6 +44,7 @@ namespace PointOfSale
         {
             curentOrder = new Order(this);
             InitializeComponent();
+            //overrideBorder.Child = new Payment(curentOrder);
             showMenu();
         }
 
@@ -127,10 +130,9 @@ namespace PointOfSale
                 containerBorder.Child = new DragonbornWaffleFriesCustomization(curentOrder, (DragonbornWaffleFries)curentOrder.orders[curentOrder.currentListIndex]);
             }
             //Combos
-            else if (curentOrder.orders[curentOrder.currentListIndex].GetType() == typeof(List<IOrderItem>))
+            else if (curentOrder.orders[curentOrder.currentListIndex].GetType() == typeof(Combo))
             {
-                
-                containerBorder.Child = new Combo(curentOrder, (List<IOrderItem>)curentOrder.orders[curentOrder.currentListIndex]);
+                containerBorder.Child = new Combo(curentOrder, ((Combo)curentOrder.orders[curentOrder.currentListIndex]).comboEntree, ((Combo)curentOrder.orders[curentOrder.currentListIndex]).comboDrink, ((Combo)curentOrder.orders[curentOrder.currentListIndex]).comboSide);
             }
 
         }
@@ -154,7 +156,8 @@ namespace PointOfSale
         /// <param name="e"></param>
         void cancelOrder(object sender, RoutedEventArgs e)
         {
-            curentOrder.cancelOrder();
+            MessageBox.Show("Order Canceled", "Cancled");
+            curentOrder.resetOrder();
         }
 
         /// <summary>
@@ -164,17 +167,7 @@ namespace PointOfSale
         /// <param name="e"></param>
         void sendOrder(object sender, RoutedEventArgs e)
         {
-            curentOrder.sendOrder();
-        }
-
-        /// <summary>
-        /// creates combo
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void createCombo(object sender, RoutedEventArgs e)
-        {
-            containerBorder.Child = new Combo(curentOrder, new List<IOrderItem>() { null, null, null });
+            overrideBorder.Child = new Payment(curentOrder);
         }
     }
 }

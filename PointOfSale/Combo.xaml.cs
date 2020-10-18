@@ -1,4 +1,9 @@
-﻿using BleakwindBuffet.Data;
+﻿/* Hunter Ruskanen
+ * Combo.xaml.cs
+ * Handles the cobos for the menu
+*/
+
+using BleakwindBuffet.Data;
 using PointOfSale.Combostuff;
 using System;
 using System.Collections.Generic;
@@ -151,16 +156,16 @@ namespace PointOfSale
         /// <summary>
         /// the curent price and calories for the combo
         /// </summary>
-        private double _ComboTotal = 0;
-        public double _comboTotal
+        private double price = 0;
+        public double Price
         {
-            get { return _ComboTotal; }
+            get { return price; }
             set
             {
-                if (_ComboTotal != value)
+                if (price != value)
                 {
-                    _ComboTotal = value;
-                    NotifyPropertyChanged("_comboTotal");
+                    price = value;
+                    NotifyPropertyChanged("Price");
                 }
             }
         }
@@ -181,7 +186,7 @@ namespace PointOfSale
         /// <summary>
         /// if the combo is new or not
         /// </summary>
-        bool newCombo = true;
+        public bool newCombo = true;
 
         /// <summary>
         /// the original price and calories
@@ -194,23 +199,23 @@ namespace PointOfSale
         /// </summary>
         /// <param name="order">the access back to the order class</param>
         /// <param name="combo"> the combo list</param>
-        public Combo(Order order, List<IOrderItem> combo)
+        public Combo(Order order, IOrderItem entree, IOrderItem drink, IOrderItem side)
         {
-            if (combo[0] != null && combo[1] != null && combo[2] != null)
+            if (entree != null && drink != null && side != null)
             {
-                orgPrice = combo[0].Price + combo[1].Price + combo[2].Price;
-                _comboTotal = combo[0].Price + combo[1].Price + combo[2].Price;
-                NotifyPropertyChanged("_comboTotal");
-                orgCalories = combo[0].Calories + combo[1].Calories + combo[2].Calories;
-                _comboCalories = combo[0].Calories + combo[1].Calories + combo[2].Calories;
+                orgPrice = entree.Price + drink.Price + side.Price;
+                Price = entree.Price + drink.Price + side.Price;
+                NotifyPropertyChanged("Price");
+                orgCalories = entree.Calories + drink.Calories + side.Calories;
+                _comboCalories = entree.Calories + drink.Calories + side.Calories;
                 NotifyPropertyChanged("_comboCalories");
                 newCombo = false;
             }
-            comboEntree = combo[0];
+            comboEntree = entree;
             NotifyPropertyChanged("comboEntree");
-            comboDrink = combo[1];
+            comboDrink = drink;
             NotifyPropertyChanged("comboDrink");
-            comboSide = combo[2];
+            comboSide = side;
             NotifyPropertyChanged("comboSide");
 
             this.curentOrder = order;
@@ -246,9 +251,9 @@ namespace PointOfSale
         {
             if (item.Price != orgPrice)
             {
-                _comboTotal -= orgPrice;
-                _comboTotal += item.Price;
-                NotifyPropertyChanged("_comboTotal");
+                Price -= orgPrice;
+                Price += item.Price;
+                NotifyPropertyChanged("Price");
             }
             if (item.Calories != orgCalories)
             {
@@ -286,8 +291,8 @@ namespace PointOfSale
         /// <param name="x"> if the combo is new </param>
         public void addItem(IOrderItem item, int x)
         {
-            _comboTotal += item.Price;
-            NotifyPropertyChanged("_comboTotal");
+            Price += item.Price;
+            NotifyPropertyChanged("Price");
             _comboCalories += item.Calories;
             NotifyPropertyChanged("_totalCalories");
 
@@ -321,8 +326,8 @@ namespace PointOfSale
         /// <param name="orgCalories"> the original caloires for the item</param>
         public void removeItem(int x, double orgPrice, uint orgCalories)
         {
-            _comboTotal -= orgPrice;
-            NotifyPropertyChanged("_comboTotal");
+            Price -= orgPrice;
+            NotifyPropertyChanged("Price");
             _comboCalories -= orgCalories;
             NotifyPropertyChanged("_totalCalories");
 
@@ -478,11 +483,48 @@ namespace PointOfSale
         /// <param name="e"></param>
         void confirmCombo(object sender, RoutedEventArgs e)
         {
-            curentOrder.createCombo(comboEntree, comboDrink, comboSide, _comboTotal, _comboCalories, orgPrice, orgCalories, newCombo);
+            curentOrder.createCombo(comboEntree, comboDrink, comboSide, Price, _comboCalories, orgPrice, orgCalories, newCombo);
         }
 
         /// <summary>
-        /// 
+        /// overrides the tostring to just say combo
+        /// </summary>
+        /// <returns> "Combo" </returns>
+        public override string ToString()
+        {
+            return "Combo";
+        }
+
+        /// <summary>
+        /// property of the combo
+        /// </summary>
+        public List<string> SpecialInstructions
+        {
+            get
+            {
+                List<string> everything = new List<string>();
+                everything.Add(comboEntree.ToString());
+                foreach (string change in comboEntree.SpecialInstructions)
+                {
+                    everything.Add("-" + change);
+                }
+                everything.Add(comboDrink.ToString());
+                foreach (string change in comboDrink.SpecialInstructions)
+                {
+                    everything.Add("-" + change);
+                }
+                everything.Add(comboSide.ToString());
+                foreach (string change in comboSide.SpecialInstructions)
+                {
+                    everything.Add("-" + change);
+                }
+                return everything;
+            }
+        }
+
+
+        /// <summary>
+        /// propery change
         /// </summary>
         /// <param name="propertyName"></param>
         public event PropertyChangedEventHandler PropertyChanged;

@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="PointOfSale.PaymentStuff.CashPayment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale.PaymentStuff"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Name="grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Canvas>
+            <Rectangle Width="{Binding Path=ActualWidth}" Height="{Binding Path=ActualHeight}" Fill="White" />
+        </Canvas>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="$100" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="hundredUp" Grid.Row="0" Grid.Column="1" FontSize="40" Margin="5" Tag="100" Click="onNumberPress">+</Button>
+        <Label Grid.Row="0" Grid.Column="2" Content="{Binding hundreds}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="hundredDown" Grid.Row="0" Grid.Column="3" FontSize="40" Margin="5" Tag="100" Click="onNumberPress">-</Button>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="$50" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="fiftyUp" Grid.Row="1" Grid.Column="1" FontSize="40" Margin="5" Tag="50" Click="onNumberPress">+</Button>
+        <Label Grid.Row="1" Grid.Column="2" Content="{Binding fifties}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="fiftyDown" Grid.Row="1" Grid.Column="3" FontSize="40" Margin="5" Tag="50" Click="onNumberPress">-</Button>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="$20" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="twentyUp" Grid.Row="2" Grid.Column="1" FontSize="40" Margin="5" Tag="20" Click="onNumberPress">+</Button>
+        <Label Grid.Row="2" Grid.Column="2" Content="{Binding twenties}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="twentyDown" Grid.Row="2" Grid.Column="3" FontSize="40" Margin="5" Tag="20" Click="onNumberPress">-</Button>
+
+        <Label Grid.Row="3" Grid.Column="0" Content="$10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="tenUp" Grid.Row="3" Grid.Column="1" FontSize="40" Margin="5" Tag="10" Click="onNumberPress">+</Button>
+        <Label Grid.Row="3" Grid.Column="2" Content="{Binding tens}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="tenDown" Grid.Row="3" Grid.Column="3" FontSize="40" Margin="5" Tag="10" Click="onNumberPress">-</Button>
+
+        <Label Grid.Row="4" Grid.Column="0" Content="$5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="fiveUp" Grid.Row="4" Grid.Column="1" FontSize="40" Margin="5" Tag="5" Click="onNumberPress">+</Button>
+        <Label Grid.Row="4" Grid.Column="2" Content="{Binding fives}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="fiveDown" Grid.Row="4" Grid.Column="3" FontSize="40" Margin="5" Tag="5" Click="onNumberPress">-</Button>
+
+        <Label Grid.Row="5" Grid.Column="0" Content="$2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="twoUp" Grid.Row="5" Grid.Column="1" FontSize="40" Margin="5" Tag="2" Click="onNumberPress">+</Button>
+        <Label Grid.Row="5" Grid.Column="2" Content="{Binding twos}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="twoDown" Grid.Row="5" Grid.Column="3" FontSize="40" Margin="5" Tag="2" Click="onNumberPress">-</Button>
+
+        <Label Grid.Row="6" Grid.Column="0" Content="$1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="oneUp" Grid.Row="6" Grid.Column="1" FontSize="40" Margin="5" Tag="1" Click="onNumberPress">+</Button>
+        <Label Grid.Row="6" Grid.Column="2" Content="{Binding ones}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="oneDown" Grid.Row="6" Grid.Column="3" FontSize="40" Margin="5" Tag="1" Click="onNumberPress">-</Button>
+
+        <Label Grid.Row="0" Grid.Column="5" Content="$1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="dollarUp" Grid.Row="0" Grid.Column="6" FontSize="40" Margin="5" Tag="101" Click="onNumberPress">+</Button>
+        <Label Grid.Row="0" Grid.Column="7" Content="{Binding dollars}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="dollarDown" Grid.Row="0" Grid.Column="8" FontSize="40" Margin="5" Tag="101" Click="onNumberPress">-</Button>
+
+        <Label Grid.Row="1" Grid.Column="5" Content="$.50" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="halfDollarUp" Grid.Row="1" Grid.Column="6" FontSize="40" Margin="5" Tag=".50" Click="onNumberPress">+</Button>
+        <Label Grid.Row="1" Grid.Column="7" Content="{Binding halfDollars}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="halfDollarDown" Grid.Row="1" Grid.Column="8" FontSize="40" Margin="5" Tag=".50" Click="onNumberPress">-</Button>
+
+        <Label Grid.Row="2" Grid.Column="5" Content="$.25" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="quarterUp" Grid.Row="2" Grid.Column="6" FontSize="40" Margin="5" Tag=".25" Click="onNumberPress">+</Button>
+        <Label Grid.Row="2" Grid.Column="7" Content="{Binding quarters}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="quarterDown" Grid.Row="2" Grid.Column="8" FontSize="40" Margin="5" Tag=".25" Click="onNumberPress">-</Button>
+
+        <Label Grid.Row="3" Grid.Column="5" Content="$.10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="dimeUp" Grid.Row="3" Grid.Column="6" FontSize="40" Margin="5" Tag=".10" Click="onNumberPress">+</Button>
+        <Label Grid.Row="3" Grid.Column="7" Content="{Binding dimes}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="dimeDown" Grid.Row="3" Grid.Column="8" FontSize="40" Margin="5" Tag=".10" Click="onNumberPress">-</Button>
+
+        <Label Grid.Row="4" Grid.Column="5" Content="$.05" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="nickelUp" Grid.Row="4" Grid.Column="6" FontSize="40" Margin="5" Tag=".05" Click="onNumberPress">+</Button>
+        <Label Grid.Row="4" Grid.Column="7" Content="{Binding nickels}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="nickelDown" Grid.Row="4" Grid.Column="8" FontSize="40" Margin="5" Tag=".05" Click="onNumberPress">-</Button>
+
+        <Label Grid.Row="5" Grid.Column="5" Content="$.01" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="pennyUp" Grid.Row="5" Grid.Column="6" FontSize="40" Margin="5" Tag=".01" Click="onNumberPress">+</Button>
+        <Label Grid.Row="5" Grid.Column="7" Content="{Binding pennies}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Button Name="pennyDown" Grid.Row="5" Grid.Column="8" FontSize="40" Margin="5" Tag=".01" Click="onNumberPress">-</Button>
+
+        <Button Name="CashPay" Click="endCash" Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="4" FontSize="40" Margin="5">Click to Pay</Button>
+    </Grid>
+
+</UserControl>

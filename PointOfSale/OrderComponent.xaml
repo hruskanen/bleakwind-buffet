@@ -8,27 +8,19 @@
              d:DesignHeight="750" d:DesignWidth="500">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="68*"/>
-            <RowDefinition Height="5*"/>
             <RowDefinition Height="10*"/>
+            <RowDefinition Height="80*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*" MaxWidth="200"/>
+            <ColumnDefinition Width="18.75*"/>
+            <ColumnDefinition Width="18.75*"/>
+            <ColumnDefinition Width="18.75*"/>
+            <ColumnDefinition Width="18.75*"/>
+            <ColumnDefinition Width="25*" MaxWidth="200"/>
         </Grid.ColumnDefinitions>
-        <ItemsControl ItemsSource="{Binding curentOrder.orders}">
-            <ItemsControl.Resources>
-                <DataTemplate DataType="{x:Type local:IOrderItem}">
-                    
-                </DataTemplate>
-            </ItemsControl.Resources>
-        </ItemsControl>
-                      
-        <ListView Name="order" ItemsSource="{Binding curentOrder.orders}" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" MouseDoubleClick="changeItem">
+
+        <ListView Name="order" ItemsSource="{Binding curentOrder.orders}" Grid.Row="1" Grid.Column="4" MouseDoubleClick="changeItem">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -65,34 +57,35 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="3" TextAlignment="Center" VerticalAlignment="Center" FontSize="33" FontWeight="Bold">
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="4" TextAlignment="Center" VerticalAlignment="Center" FontSize="33" FontWeight="Bold">
             Bleakwind Buffet Menu
         </TextBlock>
 
 
-        <Label Content="{Binding curentOrder._orderNumber}"  ContentStringFormat="Order #{0}" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="25"/>
+        <Label Content="{Binding curentOrder._orderNumber}"  ContentStringFormat="Order #{0}" Grid.Row="0" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="25"/>
 
 
-        <Border Name="containerBorder" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="3"></Border>
+        <Border Name="containerBorder" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1"/>
 
-        <Label FontSize="13" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="3">
+        <Label FontSize="13" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="4">
             Sub Total:
         </Label>
         <Label Content="{Binding curentOrder._subTotal}" ContentStringFormat="${0:F2}" FontSize="13" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="3" Grid.Column="4">
         </Label>
-        <Label FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="3">
+        <Label FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="4">
             Tax:
         </Label>
         <Label Content="{Binding curentOrder._tax}" ContentStringFormat="${0:F2}" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="3" Grid.Column="4">
         </Label>
-        <Label FontSize="15" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="3">
+        <Label FontSize="15" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="4">
             Total:
         </Label>
         <Label Content="{Binding curentOrder._total}" ContentStringFormat="${0:F2}" FontSize="15" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="3" Grid.Column="4">
         </Label>
-        <Button Name="CancelButt" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Content="Cancel&#xD;&#xA;Order" Click="cancelOrder"/>
-        <Button Name="SendButt" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="5" Content="Send&#xD;&#xA;Order" Click="sendOrder"/>
-        <Button Name="ComboButt" Grid.Row="2" Grid.Column="3" Margin="5" Content="Create Combo" Click="createCombo"/>
+        <Button Name="CancelButt" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Content="Cancel&#xD;&#xA;Order" Click="cancelOrder"/>
+        <Button Name="SendButt" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Margin="5" Content="Send&#xD;&#xA;Order" Click="sendOrder"/>
+
+        <Border Name="overrideBorder" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="2"></Border>
     </Grid>
 
 </UserControl>

@@ -1,4 +1,9 @@
-﻿using System;
+﻿/* Hunter Ruskanen
+ * SideMenu.xaml.cs
+ * menu for the Sides
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
