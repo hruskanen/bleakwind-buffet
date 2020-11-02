@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using BleakwindBuffet.Data;
+using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Entrees;
 using BleakwindBuffet.Data.Sides;
 using BleakwindBuffet.Data.Drinks;

@@ -45,16 +45,28 @@ namespace BleakwindBuffet.Data
         public static IEnumerable<IOrderItem> Drinks()
         {
             List<IOrderItem> drinks = new List<IOrderItem>();
-            foreach (Size size in new[] { Size.Small, Size.Medium, Size.Large })
+
+            drinks.Add(new AretinoAppleJuice() { Size = Size.Small });
+            drinks.Add(new AretinoAppleJuice() { Size = Size.Medium });
+            drinks.Add(new AretinoAppleJuice() { Size = Size.Large });
+
+            drinks.Add(new CandlehearthCoffee() { Size = Size.Small });
+            drinks.Add(new CandlehearthCoffee() { Size = Size.Medium });
+            drinks.Add(new CandlehearthCoffee() { Size = Size.Large });
+
+            drinks.Add(new MarkarthMilk() { Size = Size.Small });
+            drinks.Add(new MarkarthMilk() { Size = Size.Medium });
+            drinks.Add(new MarkarthMilk() { Size = Size.Large });
+
+            drinks.Add(new WarriorWater() { Size = Size.Small });
+            drinks.Add(new WarriorWater() { Size = Size.Medium });
+            drinks.Add(new WarriorWater() { Size = Size.Large });
+
+            foreach (SodaFlavor flavor in Enum.GetValues(typeof(SodaFlavor)))
             {
-                drinks.Add(new AretinoAppleJuice() { Size = size } );
-                drinks.Add(new CandlehearthCoffee() { Size = size });
-                drinks.Add(new MarkarthMilk() { Size = size } );
-                drinks.Add(new WarriorWater() { Size = size } );
-                foreach (SodaFlavor flavor in Enum.GetValues(typeof(SodaFlavor)))
-                {
-                    drinks.Add(new SailorSoda() { Flavor = flavor, Size = size });
-                }
+                drinks.Add(new SailorSoda() { Flavor = flavor, Size = Size.Small });
+                drinks.Add(new SailorSoda() { Flavor = flavor, Size = Size.Medium });
+                drinks.Add(new SailorSoda() { Flavor = flavor, Size = Size.Large });
             }
 
             return drinks;
@@ -67,13 +79,21 @@ namespace BleakwindBuffet.Data
         public static IEnumerable<IOrderItem> Sides()
         {
             List<IOrderItem> sides = new List<IOrderItem>();
-            foreach (Size size in new[] { Size.Small, Size.Medium, Size.Large })
-            {
-                sides.Add(new DragonbornWaffleFries() { Size = size });
-                sides.Add(new FriedMiraak() { Size = size });
-                sides.Add(new MadOtarGrits() { Size = size });
-                sides.Add(new VokunSalad() { Size = size });
-            }
+            sides.Add(new DragonbornWaffleFries() { Size = Size.Small });
+            sides.Add(new DragonbornWaffleFries() { Size = Size.Medium });
+            sides.Add(new DragonbornWaffleFries() { Size = Size.Large });
+
+            sides.Add(new FriedMiraak() { Size = Size.Small });
+            sides.Add(new FriedMiraak() { Size = Size.Medium });
+            sides.Add(new FriedMiraak() { Size = Size.Large });
+
+            sides.Add(new MadOtarGrits() { Size = Size.Small });
+            sides.Add(new MadOtarGrits() { Size = Size.Medium });
+            sides.Add(new MadOtarGrits() { Size = Size.Large });
+
+            sides.Add(new VokunSalad() { Size = Size.Small });
+            sides.Add(new VokunSalad() { Size = Size.Medium });
+            sides.Add(new VokunSalad() { Size = Size.Large });
 
             return sides;
         }
