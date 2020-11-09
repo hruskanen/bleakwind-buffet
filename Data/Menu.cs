@@ -11,6 +11,8 @@ using BleakwindBuffet.Data.Drinks;
 using BleakwindBuffet.Data.Entrees;
 using BleakwindBuffet.Data.Sides;
 using BleakwindBuffet.Data.Enums;
+using System.Threading.Tasks;
+using System.IO;
 
 namespace BleakwindBuffet.Data
 {
@@ -111,6 +113,127 @@ namespace BleakwindBuffet.Data
             meun.AddRange(Sides());
 
             return meun;
+        }
+
+        /// <summary>
+        /// Searches though the menu for specified item
+        /// </summary>
+        /// <param name="terms"> what you are looking for</param>
+        /// <returns> searched list </returns>
+        public static IEnumerable<IOrderItem> Search(string terms, int type)
+        {
+            List<IOrderItem> results = new List<IOrderItem>();
+
+            if(type == 1)
+            {
+                if (terms == null) return Entrees();
+                foreach (IOrderItem item in Entrees())
+                {
+                    if (item.ToString().Contains(terms)) results.Add(item);
+                }
+            }
+            else if (type == 2)
+            {
+                if (terms == null) return Drinks();
+                foreach (IOrderItem item in Drinks())
+                {
+                    if (item.ToString().Contains(terms)) results.Add(item);
+                }
+            }
+            else if (type == 3)
+            {
+                if (terms == null) return Sides();
+                foreach (IOrderItem item in Sides())
+                {
+                    if (item.ToString().Contains(terms)) results.Add(item);
+                }
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Fliters the menu list for specified price range
+        /// </summary>
+        /// <param name="items"> the list of items </param>
+        /// <param name="min"> the min for the price range </param>
+        /// <param name="max"> the max for the price range </param>
+        /// <returns> filtered list </returns>
+        public static IEnumerable<IOrderItem> FilterByPrice(IEnumerable<IOrderItem> items, double? min, double? max)
+        {
+            if (min == null && max == null) return items;
+
+            var results = new List<IOrderItem>();
+
+            if (min == null) // only a maximum specified
+            {
+                foreach (IOrderItem item in items)
+                {
+                    if (item.Price <= max) results.Add(item);
+                }
+                return results;
+            }
+            else if (max == null) // only a minimum specified
+            {
+                foreach (IOrderItem item in items)
+                {
+                    if (item.Price >= min) results.Add(item);
+                }
+                return results;
+            }
+            else // Both minimum and maximum specified
+            {
+                foreach (IOrderItem item in items)
+                {
+                    if (item.Price >= min && item.Price <= max)
+                    {
+                        results.Add(item);
+                    }
+                }
+                return results;
+            }
+        }
+
+        /// <summary>
+        /// Fliters the menu list for specified calories range
+        /// </summary>
+        /// <param name="items"> the list of items </param>
+        /// <param name="min"> the min for the calorie range </param>
+        /// <param name="max"> the max for the calorie range </param>
+        /// <returns> filtered list </returns>
+        public static IEnumerable<IOrderItem> FilterByCalorie(IEnumerable<IOrderItem> items, double? min, double? max)
+        {
+            if (min == null && max == null) return items;
+
+            var results = new List<IOrderItem>();
+
+            if (min == null) // only a maximum specified
+            {
+                foreach (IOrderItem item in items)
+                {
+                    if (item.Calories <= max) results.Add(item);
+                }
+                return results;
+            }
+            else if (max == null) // only a minimum specified
+            {
+                foreach (IOrderItem item in items)
+                {
+                    if (item.Calories >= min) results.Add(item);
+                }
+                return results;
+            }
+            else // Both minimum and maximum specified
+            {
+                foreach (IOrderItem item in items)
+                {
+                    if (item.Calories >= min && item.Calories <= max)
+                    {
+                        results.Add(item);
+                    }
+                }
+                return results;
+            }
         }
     }
 }

@@ -3,93 +3,150 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<form id="menu-database">
 
-<h1>Bleakwind Buffet Menu</h1>
-<div> Please note any combination of an Entree, a Drink and a Side can create a combo resulting in a $1 discount to your order </div>
-<h2>Entrees</h2>
-<ul class="food-list">
-    @foreach (BleakwindBuffet.Data.IOrderItem item in BleakwindBuffet.Data.Menu.Entrees())
-    {
-        <li>
-            <div class="details">
-                <h3 class="item-name">@item</h3>
-                <!--<div class="options">@item</div> -->
-            </div>
-            <div class="price-calories">
-                <div class="price"> $@item.Price </div>
-                <div class="calories"> @item.Calories </div>
-            </div>
-        </li>
-    }
-</ul>
 
-<h2>Drinks</h2>
-<ul class="food-list">
-    @{
-        List<BleakwindBuffet.Data.IOrderItem> drinks = new List<BleakwindBuffet.Data.IOrderItem>();
-        drinks.AddRange(BleakwindBuffet.Data.Menu.Drinks());
-    }
+    <div id="search">
+        <input type="text" name="SearchTerms" value="@Model.SearchTerms" />
+        <input type="submit" value="Search" />
+    </div>
 
-    @for (int i = 0; i < drinks.Count; i += 3)
-    {
-        <li>
-            <div>
-                @if (drinks[i].ToString().Split(' ').Length == 4 && drinks[i].ToString().Split(' ')[2][0] == 'S')
-                {
-                    <h3 class="item-name">Salior Soda</h3>
-                    <div class="details">Flavors: Blackberry, Cherry, Grapefruit, Lemon, Peach, Watermelon </div>
-                }
-                else
-                {
-                    <h3 class="item-name">@drinks[i].ToString().Substring(drinks[i].ToString().IndexOf(" ") + 1)</h3>
-                }
+    <div id="filters">
+        <h4>Menu Type</h4>
+        @foreach (string type in Model.foodTypes)
+        {
+            <label>
+                <input type="checkbox" name="selectedFoodTypes" value="@type" checked="@Model.selectedFoodTypes.Contains(type)" />
+                @type
+            </label>
+        }
 
-                <div class="container">
-                    @for (int j = i; j < i + 3; j++)
-                    {
-                        <div class="details">
-                            <div style="text-align: center" class="options">@drinks[j].ToString().Substring(0, drinks[j].ToString().IndexOf(" "))</div>
+        <h4>Price</h4>
+        <div>
+            Between
+            <input name="PriceMin" type="number" min="0" max="10" step="0.01" placeholder="min" />
+            and
+            <input name="PriceMax" type="number" min="0" max="10" step="0.01" placeholder="max" />
+        </div>
 
-                            <div class="price-calories">
-                                <div class="price"> $@drinks[j].Price </div>
-                                <div class="calories"> @drinks[j].Calories  </div>
+        <h4>Calories</h4>
+        <div>
+            Between
+            <input name="CaloriesMin" type="number" min="0" max="1000" step="1" placeholder="min" />
+            and
+            <input name="CaloriesMax" type="number" min="0" max="1000" step="1" placeholder="max" />
+        </div>
+    </div>
+
+    <div id="results">
+        <h1>Bleakwind Buffet Menu</h1>
+        <div> Please note any combination of an Entree, a Drink and a Side can create a combo resulting in a $1 discount to your order </div>
+
+        <h2>Entrees</h2>
+        <ul class="food-list">
+            @foreach (BleakwindBuffet.Data.IOrderItem item in Model.EntreeMenu)
+            {
+                <li>
+                    <div class="details">
+                        <h3 class="item-name">@item</h3>
+                        <!--<div class="options">@item</div> -->
+                    </div>
+                    <div class="price-calories">
+                        <div class="price"> $@item.Price </div>
+                        <div class="calories"> @item.Calories </div>
+                    </div>
+                </li>
+            }
+        </ul>
+
+        <h2>Drinks</h2>
+        <ul class="food-list">
+            @{
+                List<BleakwindBuffet.Data.IOrderItem> drinks = new List<BleakwindBuffet.Data.IOrderItem>();
+                drinks.AddRange(Model.DrinkMenu);
+            }
+
+            @for (int i = 0; i < drinks.Count; i ++)
+            {
+                <li>
+                    <div>
+                        @{
+                            string current = drinks[i].ToString().Substring(drinks[i].ToString().IndexOf(" ") + 1);
+                            int count = 0;
+                        }
+                        @if (drinks[i].ToString().Split(' ').Length == 4 && drinks[i].ToString().Split(' ')[2][0] == 'S')
+                        {
+                            <h3 class="item-name">Salior Soda</h3>
+                            <div class="details">Flavors: Blackberry, Cherry, Grapefruit, Lemon, Peach, Watermelon </div>
+                        }
+                        else
+                        {
+                            <h3 class="item-name">@drinks[i].ToString().Substring(drinks[i].ToString().IndexOf(" ") + 1)</h3>
+                        }
+
+                    <div class="container">
+                        @while (true)
+                        {
+                            if (drinks.Count == (i + count) || !current.Equals(drinks[i + count].ToString().Substring(drinks[i + count].ToString().IndexOf(" ") + 1)))
+                            {
+                                i += count - 1;
+                                break;
+                            }
+                            <div class="details">
+                                <div style="text-align: center" class="options">@drinks[i + count].ToString().Substring(0, drinks[i + count].ToString().IndexOf(" "))</div>
+
+                                <div class="price-calories">
+                                    <div class="price"> $@drinks[i + count].Price </div>
+                                    <div class="calories"> @drinks[i + count].Calories  </div>
+                                </div>
                             </div>
+                            count++;
+                        }
+                    </div>
+                    </div>
+                </li>
+                @if (drinks[i].GetType() == typeof(BleakwindBuffet.Data.Drinks.SailorSoda)) break;
+            }
+        </ul>
+
+        <h2>Sides</h2>
+        <ul class="food-list">
+            @{
+                List<BleakwindBuffet.Data.IOrderItem> sides = new List<BleakwindBuffet.Data.IOrderItem>();
+                sides.AddRange(Model.SideMenu);
+            }
+
+            @for (int i = 0; i < sides.Count; i ++)
+            {
+                <li>
+                    <div>
+                        @{
+                            string current = sides[i].ToString().Substring(sides[i].ToString().IndexOf(" ") + 1);
+                            int count = 0;
+                        }
+                        <h3 class="item-name">@sides[i].ToString().Substring(sides[i].ToString().IndexOf(" ") + 1)</h3>
+                        <div class="container">
+                            @while (true)
+                            {
+                                if (sides.Count == (i + count) || !current.Equals(sides[i + count].ToString().Substring(sides[i + count].ToString().IndexOf(" ") + 1)))
+                                {
+                                    i += count - 1;
+                                    break;
+                                }
+                                <div class="details">
+                                    <div style="text-align: center" class="options">@sides[i + count].ToString().Substring(0, sides[i + count].ToString().IndexOf(" "))</div>
+
+                                    <div class="price-calories">
+                                        <div class="price"> $@sides[i + count].Price </div>
+                                        <div class="calories"> @sides[i + count].Calories  </div>
+                                    </div>
+                                </div>
+                                count++;
+                            }
                         </div>
-                    }
-                </div>
-            </div>
-        </li>
-        @if (drinks[i].GetType() == typeof(BleakwindBuffet.Data.Drinks.SailorSoda)) break;
-    }
-</ul>
-
-<h2>Sides</h2>
-<ul class="food-list">
-    @{ 
-        List<BleakwindBuffet.Data.IOrderItem> sides = new List<BleakwindBuffet.Data.IOrderItem>();
-        sides.AddRange(BleakwindBuffet.Data.Menu.Sides());
-    }
-
-    @for(int i = 0; i < sides.Count; i+=3)
-    {
-        <li>
-            <div>
-                <h3 class="item-name">@sides[i].ToString().Substring(sides[i].ToString().IndexOf(" ") + 1)</h3>
-            
-                <div class="container">
-                    @for (int j = i; j < i + 3; j++)
-                    {
-                        <div class="details">
-                            <div style="text-align: center" class="options">@sides[j].ToString().Substring(0, sides[j].ToString().IndexOf(" "))</div>
-
-                            <div class="price-calories">
-                                <div class="price"> $@sides[j].Price </div>
-                                <div class="calories"> @sides[j].Calories  </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-        </li>
-    }
-</ul>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</form>
