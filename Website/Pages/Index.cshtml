@@ -3,150 +3,20 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<form id="menu-database">
 
 
-    <div id="search">
-        <input type="text" name="SearchTerms" value="@Model.SearchTerms" />
-        <input type="submit" value="Search" />
+<div class="flex-columns">
+    <div>
+        <h1>Column One</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at eros a risus interdum ornare. Proin congue porttitor metus, et hendrerit massa mattis ac. Nam rhoncus, orci non sodales feugiat, quam ligula elementum ante, ac vestibulum urna sem eu massa. Vivamus vulputate enim purus, vitae gravida ligula dictum sed. Suspendisse potenti. Nulla bibendum massa quis pretium placerat. Etiam luctus porta fringilla. Praesent turpis velit, tempus vitae convallis nec, molestie at purus. Donec sit amet sem ut ex porta sodales. Maecenas rutrum aliquet orci quis mollis. Nulla maximus aliquam odio, vitae elementum nisi dapibus non. In sapien leo, porttitor eu hendrerit ut, sollicitudin ut nibh. Duis congue convallis nisi ut congue. Nunc a finibus diam. Vivamus bibendum risus et nunc fringilla, eget bibendum orci mollis.</p>
     </div>
-
-    <div id="filters">
-        <h4>Menu Type</h4>
-        @foreach (string type in Model.foodTypes)
-        {
-            <label>
-                <input type="checkbox" name="selectedFoodTypes" value="@type" checked="@Model.selectedFoodTypes.Contains(type)" />
-                @type
-            </label>
-        }
-
-        <h4>Price</h4>
-        <div>
-            Between
-            <input name="PriceMin" type="number" min="0" max="10" step="0.01" placeholder="min" />
-            and
-            <input name="PriceMax" type="number" min="0" max="10" step="0.01" placeholder="max" />
-        </div>
-
-        <h4>Calories</h4>
-        <div>
-            Between
-            <input name="CaloriesMin" type="number" min="0" max="1000" step="1" placeholder="min" />
-            and
-            <input name="CaloriesMax" type="number" min="0" max="1000" step="1" placeholder="max" />
-        </div>
+    <div>
+        <h1>Column Two</h1>
+        <p>Quisque a metus tempor, interdum ipsum sit amet, dictum diam. Etiam consectetur velit lectus. Aenean aliquet ligula a libero convallis semper. Donec venenatis dolor ut erat vehicula, ut ornare eros lobortis. Nullam libero leo, iaculis sed pharetra quis, faucibus vitae orci. Quisque sit amet gravida lorem, in suscipit magna. Duis egestas auctor ex, sollicitudin molestie erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec condimentum id mauris at tempus. Nullam ac mollis lorem. Aenean odio arcu, aliquet vitae facilisis ut, luctus eget ante. Nunc malesuada pretium eros, vitae dignissim erat maximus dignissim. Praesent aliquet posuere diam, eget mollis tellus auctor at.</p>
     </div>
-
-    <div id="results">
-        <h1>Bleakwind Buffet Menu</h1>
-        <div> Please note any combination of an Entree, a Drink and a Side can create a combo resulting in a $1 discount to your order </div>
-
-        <h2>Entrees</h2>
-        <ul class="food-list">
-            @foreach (BleakwindBuffet.Data.IOrderItem item in Model.EntreeMenu)
-            {
-                <li>
-                    <div class="details">
-                        <h3 class="item-name">@item</h3>
-                        <!--<div class="options">@item</div> -->
-                    </div>
-                    <div class="price-calories">
-                        <div class="price"> $@item.Price </div>
-                        <div class="calories"> @item.Calories </div>
-                    </div>
-                </li>
-            }
-        </ul>
-
-        <h2>Drinks</h2>
-        <ul class="food-list">
-            @{
-                List<BleakwindBuffet.Data.IOrderItem> drinks = new List<BleakwindBuffet.Data.IOrderItem>();
-                drinks.AddRange(Model.DrinkMenu);
-            }
-
-            @for (int i = 0; i < drinks.Count; i ++)
-            {
-                <li>
-                    <div>
-                        @{
-                            string current = drinks[i].ToString().Substring(drinks[i].ToString().IndexOf(" ") + 1);
-                            int count = 0;
-                        }
-                        @if (drinks[i].ToString().Split(' ').Length == 4 && drinks[i].ToString().Split(' ')[2][0] == 'S')
-                        {
-                            <h3 class="item-name">Salior Soda</h3>
-                            <div class="details">Flavors: Blackberry, Cherry, Grapefruit, Lemon, Peach, Watermelon </div>
-                        }
-                        else
-                        {
-                            <h3 class="item-name">@drinks[i].ToString().Substring(drinks[i].ToString().IndexOf(" ") + 1)</h3>
-                        }
-
-                    <div class="container">
-                        @while (true)
-                        {
-                            if (drinks.Count == (i + count) || !current.Equals(drinks[i + count].ToString().Substring(drinks[i + count].ToString().IndexOf(" ") + 1)))
-                            {
-                                i += count - 1;
-                                break;
-                            }
-                            <div class="details">
-                                <div style="text-align: center" class="options">@drinks[i + count].ToString().Substring(0, drinks[i + count].ToString().IndexOf(" "))</div>
-
-                                <div class="price-calories">
-                                    <div class="price"> $@drinks[i + count].Price </div>
-                                    <div class="calories"> @drinks[i + count].Calories  </div>
-                                </div>
-                            </div>
-                            count++;
-                        }
-                    </div>
-                    </div>
-                </li>
-                @if (drinks[i].GetType() == typeof(BleakwindBuffet.Data.Drinks.SailorSoda)) break;
-            }
-        </ul>
-
-        <h2>Sides</h2>
-        <ul class="food-list">
-            @{
-                List<BleakwindBuffet.Data.IOrderItem> sides = new List<BleakwindBuffet.Data.IOrderItem>();
-                sides.AddRange(Model.SideMenu);
-            }
-
-            @for (int i = 0; i < sides.Count; i ++)
-            {
-                <li>
-                    <div>
-                        @{
-                            string current = sides[i].ToString().Substring(sides[i].ToString().IndexOf(" ") + 1);
-                            int count = 0;
-                        }
-                        <h3 class="item-name">@sides[i].ToString().Substring(sides[i].ToString().IndexOf(" ") + 1)</h3>
-                        <div class="container">
-                            @while (true)
-                            {
-                                if (sides.Count == (i + count) || !current.Equals(sides[i + count].ToString().Substring(sides[i + count].ToString().IndexOf(" ") + 1)))
-                                {
-                                    i += count - 1;
-                                    break;
-                                }
-                                <div class="details">
-                                    <div style="text-align: center" class="options">@sides[i + count].ToString().Substring(0, sides[i + count].ToString().IndexOf(" "))</div>
-
-                                    <div class="price-calories">
-                                        <div class="price"> $@sides[i + count].Price </div>
-                                        <div class="calories"> @sides[i + count].Calories  </div>
-                                    </div>
-                                </div>
-                                count++;
-                            }
-                        </div>
-                    </div>
-                </li>
-            }
-        </ul>
+    <div>
+        <h1>Column Three</h1>
+        <p>Cras sed porttitor nibh. Cras quis est sed turpis maximus imperdiet id ac diam. Vivamus aliquam turpis sem, in molestie augue tincidunt hendrerit. Nam aliquet, diam et semper fringilla, magna lectus suscipit justo, non pretium nisl tortor sed lectus. Aliquam euismod faucibus ultricies. Praesent non sodales ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce nec ligula semper, ultricies mi dapibus, auctor purus. Quisque quis convallis lectus, in ultricies massa. Proin accumsan laoreet ante at facilisis. Vivamus varius felis id turpis sodales mollis. Curabitur facilisis augue a lorem mattis malesuada. Sed scelerisque laoreet mauris non suscipit. Aliquam ante tortor, pulvinar a est et, cursus vulputate felis.</p>
     </div>
-</form>
+</div>
+<div class="clearfix"></div>

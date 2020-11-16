@@ -57,6 +57,11 @@ namespace BleakwindBuffet.Data.Sides
         public override List<string> SpecialInstructions { get; } = new List<string>();
 
         /// <summary>
+        /// The description of the item
+        /// </summary>
+        public override string description { get { return "Crispy fried potato waffle fries."; } }
+
+        /// <summary>
         /// Returns a description of the Dragonborn Waffle Fries
         /// </summary>
         /// <returns> 

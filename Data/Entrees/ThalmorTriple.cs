@@ -259,6 +259,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// The description of the item
+        /// </summary>
+        public override string description { get { return "Think you are strong enough to take on the Thalmor? Inlcudes two 1/4lb patties with a 1/2lb patty inbetween with ketchup, mustard, pickle, cheese, tomato, lettuce, mayo, bacon, and an egg."; } }
+
 
         /// <summary>
         /// Returns a description of the Thalmor Triple

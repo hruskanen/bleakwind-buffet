@@ -68,5 +68,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             ThugsTBone item = new ThugsTBone();
             Assert.IsAssignableFrom<INotifyPropertyChanged>(item);
         }
+
+        [Fact]
+        public void ShouldReturnDescription()
+        {
+            ThugsTBone item = new ThugsTBone();
+            Assert.Equal("Juicy T-Bone, not much else to say.", item.description);
+        }
     }
 }

@@ -14,19 +14,24 @@ namespace BleakwindBuffet.Data
     public interface IOrderItem : INotifyPropertyChanged
     {
         /// <summary>
-        /// The price of the drinks
+        /// The price of the tiem
         /// </summary>
         /// <value> In dollars </value>
         double Price { get; }
 
         /// <summary>
-        /// The calorie count for the drinks
+        /// The calorie count for the item
         /// </summary>
         uint Calories { get; }
 
         /// <summary>
-        /// Special Instructions to prepare the drinks
+        /// Special Instructions to prepare the item
         /// </summary>
         List<string> SpecialInstructions { get; }
+
+        /// <summary>
+        /// The description of the item
+        /// </summary>
+        string description { get; }
     }
 }

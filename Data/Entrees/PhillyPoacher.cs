@@ -105,6 +105,11 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// The description of the item
+        /// </summary>
+        public override string description { get { return "Cheesesteak sandwich made from grilled sirloin, topped with onions on a fried roll."; } }
+
 
         /// <summary>
         /// Returns a description of the Philly Poacher

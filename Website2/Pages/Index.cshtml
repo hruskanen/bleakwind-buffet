@@ -1,0 +1,180 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1 style="text-align: center">Bleakwind Buffet Menu</h1>
+<div style="text-align: center"> Please note any combination of an Entree, a Drink and a Side can create a combo resulting in a $1 discount to your order </div>
+
+
+<form id="menu-database">
+        <div id="search">
+            <input type="text" name="SearchTerms" value="@Model.SearchTerms" />
+            <input type="submit" value="Search"/>
+        </div>
+
+        <div id="filters">
+            <h4>Menu Type</h4>
+            @foreach (string type in Model.foodTypes)
+            {
+                <div>
+                    <input type="checkbox" name="selectedFoodTypes" value="@type" checked="@Model.selectedFoodTypes.Contains(type)" />
+                    @type
+                </div>
+            }
+
+            <h4>Price</h4>
+            <div>
+                Between
+                <input name="PriceMin" type="number" min="0" step=".01" placeholder="min" value="@Model.PriceMin" />
+                and
+                <input name="PriceMax" type="number" min="0" step=".01" placeholder="max" value="@Model.PriceMax" />
+            </div>
+
+            <h4>Calories</h4>
+            <div>
+                Between
+                <input name="CaloriesMin" type="number" min="0" step="1" placeholder="min" value="@Model.CaloriesMin" />
+                and
+                <input name="CaloriesMax" type="number" min="0" step="1" placeholder="max" value="@Model.CaloriesMax" />
+            </div>
+        </div>
+
+
+        <div id="results" class="flex-columns">
+            <div>
+                <h2>Entrees</h2>
+                @if (Model.selectedFoodTypes.Contains("Entrees") || Model.selectedFoodTypes.Count() == 0)
+                {
+                    <ul class="food-list">
+                        @foreach (BleakwindBuffet.Data.IOrderItem item in Model.EntreeMenu)
+                        {
+                            <li>
+                                <div>
+                                    <h3 class="item-name">@item</h3>
+                                    <div class="details"> @item.description </div>
+
+
+                                    <div class="price-calories">
+                                        <div class="price"> $@item.Price </div>
+                                        <div class="calories"> @item.Calories </div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <div>No Entrees fit specified criteria</div>
+                }
+            </div>
+            <div>
+                <h2>Drinks</h2>
+                @if (Model.selectedFoodTypes.Contains("Drinks") || Model.selectedFoodTypes.Count() == 0)
+                {
+                    <ul class="food-list">
+                        @{
+                            List<BleakwindBuffet.Data.IOrderItem> drinks = new List<BleakwindBuffet.Data.IOrderItem>();
+                            drinks.AddRange(Model.DrinkMenu);
+                        }
+
+                        @for (int i = 0; i < drinks.Count; i++)
+                        {
+                            <li>
+                                <div>
+                                    @{
+                                        string current = drinks[i].ToString().Substring(drinks[i].ToString().IndexOf(" ") + 1);
+                                        int count = 0;
+                                    }
+                                    @if (drinks[i].ToString().Split(' ').Length == 4 && drinks[i].ToString().Split(' ')[2][0] == 'S')
+                                    {
+                                        <h3 class="item-name">Salior Soda</h3>
+                                        <div class="details">Flavors: Blackberry, Cherry, Grapefruit, Lemon, Peach, Watermelon </div>
+                                    }
+                                    else
+                                    {
+                                        <h3 class="item-name">@drinks[i].ToString().Substring(drinks[i].ToString().IndexOf(" ") + 1)</h3>
+                                    }
+                                    <div class="details">@drinks[i].description</div>
+
+                                    @while (true)
+                                    {
+                                        if (drinks.Count == (i + count) || !current.Equals(drinks[i + count].ToString().Substring(drinks[i + count].ToString().IndexOf(" ") + 1)))
+                                        {
+                                            i += count - 1;
+                                            break;
+                                        }
+                                        <div class="details">
+                                            <div class="options">@drinks[i + count].ToString().Substring(0, drinks[i + count].ToString().IndexOf(" "))</div>
+
+                                            <div class="price-calories">
+                                                <div class="price"> $@drinks[i + count].Price </div>
+                                                <div class="calories">@drinks[i + count].Calories</div>
+                                            </div>
+                                        </div>
+                                        count++;
+                                    }
+                                </div>
+                            </li>
+                            @if (drinks[i].GetType() == typeof(BleakwindBuffet.Data.Drinks.SailorSoda)) break;
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <div>No Drinks fit specified criteria</div>
+                }
+            </div>
+            <div>
+                <h2>Sides</h2>
+                @if (Model.selectedFoodTypes.Contains("Sides") || Model.selectedFoodTypes.Count() == 0)
+                {
+                    <ul class="food-list">
+                        @{
+                            List<BleakwindBuffet.Data.IOrderItem> sides = new List<BleakwindBuffet.Data.IOrderItem>();
+                            sides.AddRange(Model.SideMenu);
+                        }
+
+                        @for (int i = 0; i < sides.Count; i++)
+                        {
+                            <li>
+                                <div>
+                                    @{
+                                        string current = sides[i].ToString().Substring(sides[i].ToString().IndexOf(" ") + 1);
+                                        int count = 0;
+                                    }
+                                    <h3 class="item-name">@sides[i].ToString().Substring(sides[i].ToString().IndexOf(" ") + 1)</h3>
+                                    <div class="details">@sides[i].description</div>
+
+                                    @while (true)
+                                    {
+                                        if (sides.Count == (i + count) || !current.Equals(sides[i + count].ToString().Substring(sides[i + count].ToString().IndexOf(" ") + 1)))
+                                        {
+                                            i += count - 1;
+                                            break;
+                                        }
+                                        <div class="details">
+                                            <div class="options">@sides[i + count].ToString().Substring(0, sides[i + count].ToString().IndexOf(" "))</div>
+
+                                            <div class="price-calories">
+                                                <div class="price"> $@sides[i + count].Price </div>
+                                                <div class="calories"> @sides[i + count].Calories  </div>
+                                            </div>
+                                        </div>
+                                        count++;
+                                    }
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <div>No Drinks fit specified criteria</div>
+                }
+            </div>
+        </div>
+</form>
+<div class="clearfix"></div>

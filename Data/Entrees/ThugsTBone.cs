@@ -31,7 +31,12 @@ namespace BleakwindBuffet.Data.Entrees
         /// </summary>
         public override List<string> SpecialInstructions { get; } = new List<string>();
 
-        ///Unique
+
+        /// <summary>
+        /// The description of the item
+        /// </summary>
+        public override string description { get { return "Juicy T-Bone, not much else to say."; } }
+
 
         /// <summary>
         /// Returns a description of the Thugs T-Bone

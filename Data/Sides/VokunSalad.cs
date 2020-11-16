@@ -57,6 +57,11 @@ namespace BleakwindBuffet.Data.Sides
         public override List<string> SpecialInstructions { get; } = new List<string>();
 
         /// <summary>
+        /// The description of the item
+        /// </summary>
+        public override string description { get { return "A seasonal fruit salad of mellons, berries, mango, grape, apple, and oranges."; } }
+
+        /// <summary>
         /// Returns a description of the Vokun Salad
         /// </summary>
         /// <returns> 
